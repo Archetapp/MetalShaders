@@ -31,10 +31,15 @@ export default function ShaderOverlay({
   const [backdropVisible, setBackdropVisible] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const heroInnerRef = useRef<HTMLDivElement>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const closingRef = useRef(false);
   const recompileRef = useRef<((src: string) => string | null) | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tiltAnim = useRef<number | null>(null);
+  const tilt = useRef({ tx: 0, ty: 0, cx: 0, cy: 0 });
+  const tiltHovered = useRef(false);
 
   useEffect(() => {
     Promise.all([
