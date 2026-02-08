@@ -94,6 +94,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
               onExpand={(rect) =>
                 setExpandState({ slug: shader.slug, rect })
               }
+              isExpanded={expandState?.slug === shader.slug}
             />
           ))}
         </div>

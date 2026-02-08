@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { ShaderMeta } from "@/types/shader";
 import ShaderCanvas from "./ShaderCanvas";
 import CodeBlock from "./CodeBlock";
@@ -23,7 +29,9 @@ export default function ShaderOverlay({
   const [editedFragSource, setEditedFragSource] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"metal" | "glsl">("glsl");
   const [backdropVisible, setBackdropVisible] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const [detailsVisible, setDetailsVisible] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const closingRef = useRef(false);
   const recompileRef = useRef<((src: string) => string | null) | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -40,35 +48,34 @@ export default function ShaderOverlay({
   }, [shader.slug]);
 
   useLayoutEffect(() => {
-    const panel = panelRef.current;
-    if (!panel) return;
+    const hero = heroRef.current;
+    if (!hero) return;
 
-    const finalRect = panel.getBoundingClientRect();
-    const scaleX = sourceRect.width / finalRect.width;
-    const scaleY = sourceRect.height / finalRect.height;
+    const heroRect = hero.getBoundingClientRect();
+    const scaleX = sourceRect.width / heroRect.width;
+    const scaleY = sourceRect.height / heroRect.height;
     const dx =
       sourceRect.left +
       sourceRect.width / 2 -
-      (finalRect.left + finalRect.width / 2);
+      (heroRect.left + heroRect.width / 2);
     const dy =
       sourceRect.top +
       sourceRect.height / 2 -
-      (finalRect.top + finalRect.height / 2);
+      (heroRect.top + heroRect.height / 2);
 
-    panel.style.transition = "none";
-    panel.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
-    panel.style.opacity = "0.4";
-    panel.style.borderRadius = "1rem";
+    hero.style.transition = "none";
+    hero.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
+    hero.style.opacity = "0.6";
 
-    panel.offsetHeight;
+    hero.offsetHeight;
 
-    panel.style.transition =
-      "transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease, border-radius 0.4s ease";
-    panel.style.transform = "none";
-    panel.style.opacity = "1";
-    panel.style.borderRadius = "";
+    hero.style.transition =
+      "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease";
+    hero.style.transform = "none";
+    hero.style.opacity = "1";
 
     requestAnimationFrame(() => setBackdropVisible(true));
+    setTimeout(() => setDetailsVisible(true), 150);
   }, [sourceRect]);
 
   useEffect(() => {
@@ -82,29 +89,37 @@ export default function ShaderOverlay({
   const handleClose = useCallback(() => {
     if (closingRef.current) return;
     closingRef.current = true;
+
+    setDetailsVisible(false);
     setBackdropVisible(false);
 
-    const panel = panelRef.current;
-    if (panel) {
-      const currentRect = panel.getBoundingClientRect();
-      const scaleX = sourceRect.width / currentRect.width;
-      const scaleY = sourceRect.height / currentRect.height;
+    const hero = heroRef.current;
+    const scrollContainer = scrollRef.current;
+    const scrolledFar = scrollContainer && scrollContainer.scrollTop > 150;
+
+    if (hero && !scrolledFar) {
+      const heroRect = hero.getBoundingClientRect();
+      const scaleX = sourceRect.width / heroRect.width;
+      const scaleY = sourceRect.height / heroRect.height;
       const dx =
         sourceRect.left +
         sourceRect.width / 2 -
-        (currentRect.left + currentRect.width / 2);
+        (heroRect.left + heroRect.width / 2);
       const dy =
         sourceRect.top +
         sourceRect.height / 2 -
-        (currentRect.top + currentRect.height / 2);
+        (heroRect.top + heroRect.height / 2);
 
-      panel.style.transition =
-        "transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease, border-radius 0.35s ease";
-      panel.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
-      panel.style.opacity = "0";
-      panel.style.borderRadius = "1rem";
+      hero.style.transition =
+        "transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.35s ease";
+      hero.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
+      hero.style.opacity = "0";
 
-      setTimeout(onClose, 350);
+      setTimeout(onClose, 400);
+    } else if (hero) {
+      hero.style.transition = "opacity 0.3s ease";
+      hero.style.opacity = "0";
+      setTimeout(onClose, 300);
     } else {
       setTimeout(onClose, 200);
     }
@@ -136,7 +151,7 @@ export default function ShaderOverlay({
   );
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
+    <div className="fixed inset-0 z-50">
       <div
         className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           backdropVisible ? "opacity-100" : "opacity-0"
@@ -145,31 +160,24 @@ export default function ShaderOverlay({
       />
 
       <div
-        className="relative min-h-full flex items-start justify-center py-8 px-4"
+        ref={scrollRef}
+        className="fixed inset-0 overflow-y-auto"
         onClick={handleClose}
       >
-        <div
-          ref={panelRef}
-          className="relative w-full max-w-4xl"
-          style={{ transformOrigin: "center top" }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200/60">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">
-                  {shader.title}
-                </h2>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  {shader.description}
-                </p>
-              </div>
+        <div className="min-h-full flex items-start justify-center py-8 px-4 md:px-8">
+          <div className="w-full max-w-4xl flex flex-col gap-4 pointer-events-none">
+            <div
+              ref={heroRef}
+              className="rounded-2xl overflow-hidden shadow-2xl relative pointer-events-auto"
+              style={{ transformOrigin: "center center" }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={handleClose}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -182,53 +190,81 @@ export default function ShaderOverlay({
                   />
                 </svg>
               </button>
+
+              {editedFragSource ? (
+                <ShaderCanvas
+                  fragSource={editedFragSource}
+                  width={1024}
+                  height={576}
+                  alwaysVisible
+                  onRecompileReady={handleRecompileReady}
+                />
+              ) : (
+                <div
+                  className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
+                  style={{ aspectRatio: "16/9" }}
+                />
+              )}
+
+              <div className="absolute inset-x-0 bottom-0 glass-overlay px-6 pt-12 pb-5">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {shader.title}
+                </h2>
+                <p className="text-sm text-gray-500 mt-0.5">
+                  {shader.description}
+                </p>
+              </div>
             </div>
 
-            {editedFragSource ? (
-              <div className="flex flex-col">
-                <div className="shader-preview">
-                  <ShaderCanvas
-                    fragSource={editedFragSource}
-                    width={1024}
-                    height={576}
-                    alwaysVisible
-                    onRecompileReady={handleRecompileReady}
-                  />
-                </div>
-
-                <div className="px-6 py-4">
+            <div
+              className={`flex flex-col gap-4 transition-all duration-500 ease-out ${
+                detailsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+            >
+              {editedFragSource && (
+                <div
+                  className="pointer-events-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <ParameterControls
                     fragSource={editedFragSource}
                     onSourceChange={handleParameterChange}
                   />
                 </div>
+              )}
 
-                <div className="px-6 pb-6">
-                  <div className="flex gap-1 mb-4">
-                    <button
-                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                        activeTab === "glsl"
-                          ? "bg-gray-900 text-white shadow-sm"
-                          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-                      }`}
-                      onClick={() => setActiveTab("glsl")}
-                    >
-                      GLSL (Editable)
-                    </button>
-                    <button
-                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                        activeTab === "metal"
-                          ? "bg-gray-900 text-white shadow-sm"
-                          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-                      }`}
-                      onClick={() => setActiveTab("metal")}
-                    >
-                      Metal
-                    </button>
-                  </div>
+              <div
+                className="glass-card rounded-2xl overflow-hidden shadow-lg pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex gap-1 px-4 pt-4 pb-2">
+                  <button
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                      activeTab === "glsl"
+                        ? "bg-gray-900 text-white shadow-sm"
+                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setActiveTab("glsl")}
+                  >
+                    GLSL (Editable)
+                  </button>
+                  <button
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                      activeTab === "metal"
+                        ? "bg-gray-900 text-white shadow-sm"
+                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setActiveTab("metal")}
+                  >
+                    Metal
+                  </button>
+                </div>
 
-                  <div className="rounded-xl">
-                    {activeTab === "glsl" ? (
+                <div className="px-4 pb-4">
+                  <div className="rounded-xl overflow-hidden">
+                    {activeTab === "glsl" && editedFragSource ? (
                       <EditableCodeBlock
                         code={editedFragSource}
                         language="glsl"
@@ -239,26 +275,22 @@ export default function ShaderOverlay({
                     ) : null}
                   </div>
                 </div>
+              </div>
 
-                <div className="px-6 pb-4 flex flex-wrap items-center gap-2 border-t border-gray-200/60 pt-4">
-                  {shader.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  <span className="text-xs text-gray-400 ml-1">
-                    By {shader.author}
+              <div className="flex flex-wrap items-center gap-2 px-2 pb-4 pointer-events-auto">
+                {shader.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-white/70 text-gray-600 border border-gray-200/60"
+                  >
+                    {tag}
                   </span>
-                </div>
+                ))}
+                <span className="text-xs text-gray-400 ml-1">
+                  By {shader.author}
+                </span>
               </div>
-            ) : (
-              <div className="flex items-center justify-center py-20">
-                <div className="w-8 h-8 border-2 border-gray-300 border-t-indigo-500 rounded-full animate-spin" />
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

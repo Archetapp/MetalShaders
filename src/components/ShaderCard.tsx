@@ -7,9 +7,10 @@ import { useEffect, useState, useRef } from "react";
 interface ShaderCardProps {
   shader: ShaderMeta;
   onExpand: (rect: DOMRect) => void;
+  isExpanded?: boolean;
 }
 
-export default function ShaderCard({ shader, onExpand }: ShaderCardProps) {
+export default function ShaderCard({ shader, onExpand, isExpanded }: ShaderCardProps) {
   const [fragSource, setFragSource] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +30,9 @@ export default function ShaderCard({ shader, onExpand }: ShaderCardProps) {
     <div
       ref={cardRef}
       onClick={handleExpand}
-      className="shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full"
+      className={`shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full transition-opacity duration-300 ${
+        isExpanded ? "opacity-0" : "opacity-100"
+      }`}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {

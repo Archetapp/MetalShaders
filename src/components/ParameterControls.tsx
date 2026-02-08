@@ -41,7 +41,7 @@ export default function ParameterControls({
   if (params.length === 0) return null;
 
   return (
-    <div className="parameter-controls glass-card rounded-xl p-4">
+    <div className="parameter-controls glass-card rounded-2xl p-4">
       <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
         Parameters
       </h3>
