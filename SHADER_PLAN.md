@@ -427,6 +427,135 @@ Effects for app interfaces and transitions.
 
 ---
 
+## 19. Interactive — Holographic & Card Effects
+
+Touch- and gyroscope-driven effects. These respond to device tilt (CMMotionManager) and touch input for maximum "wow" factor on iOS.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 269 | Pokemon Holo Card | Rainbow diffraction grating that shifts with tilt — cosmos/galaxy holo pattern overlaid on card art | Gyroscope | Medium | `[ ]` |
+| 270 | Foil Stamp | Metallic foil with angle-dependent iridescence and tiny flake sparkles — Fresnel reflections at grazing angles | Gyroscope | Medium | `[ ]` |
+| 271 | Diamond Grid Holo | Dense diamond-shaped facet grid, each catching light independently for maximum bling sparkle | Gyroscope | Medium | `[ ]` |
+| 272 | Lenticular Card | Security-hologram-like rainbow shimmer that ripples across surface from multiple angles | Gyroscope + Scroll | Medium | `[ ]` |
+| 273 | Tilt Sparkle Grid | Grid of tiny sparkle points with random facet normals — different sparkles light up as you tilt, like real glitter paper | Gyroscope | Easy | `[ ]` |
+| 274 | Holographic Sticker | Pearlescent sticker with embossed pattern visible at certain angles — security label style | Gyroscope | Medium | `[ ]` |
+| 275 | Prismatic Glass Edge | Glass card protector with beveled edges showing chromatic RGB separation at borders | Gyroscope | Medium | `[ ]` |
+| 276 | Metallic Crosshatch | Crosshatch engraving pattern with sun-pillar metallic sheen responding to tilt | Gyroscope | Easy | `[ ]` |
+| 277 | Brushed Aluminum Tilt | Anisotropic brushed metal that shifts specular highlights as device tilts | Gyroscope | Easy | `[ ]` |
+| 278 | Parallax Depth Card | Multi-layer card elements (art, frame, text) moving at different rates with tilt for convincing 3D parallax | Gyroscope | Medium | `[ ]` |
+
+---
+
+## 20. Interactive — Touch-Reactive Effects
+
+Effects driven by direct touch input — tap, drag, swipe, multi-touch.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 279 | Touch Water Ripple | Concentric ripples emanate from each touch point, distorting the view like water surface refraction | Touch position | Easy | `[ ]` |
+| 280 | Magnetic Particle Field | Thousands of particles attracted to or repelled from touch point — swirling galaxy formations | Touch position | Medium | `[ ]` |
+| 281 | Ferrofluid | Black spiky liquid forming sharp peaks pointing toward touch point, like real ferrofluid near a magnet | Touch position | Hard | `[ ]` |
+| 282 | Scratch-Off Reveal | Metallic coating scratched away by finger to reveal hidden content underneath — lottery ticket style | Touch drag | Easy | `[ ]` |
+| 283 | Heat Map Touch | Touch turns surface red/hot, slowly cools to blue over time — thermal camera visualization of touch history | Touch position + time | Easy | `[ ]` |
+| 284 | Frosted Glass Wipe | Drag finger to wipe away frost/blur from glass surface, revealing sharp content underneath — steamy mirror | Touch drag | Medium | `[ ]` |
+| 285 | Touch Shockwave | Expanding energy ring from each tap — sci-fi shockwave that distorts the view as it passes | Touch tap | Easy | `[ ]` |
+| 286 | Neon Light Painting | Glowing neon lines trail behind finger with bloom and fade — draw with light | Touch drag | Medium | `[ ]` |
+| 287 | Morphing Blob Drag | Organic metaball droplets that merge and separate as you drag them — liquid mercury stretching | Touch drag | Medium | `[ ]` |
+| 288 | Voronoi Glass Shatter | Touch creates impact point, screen shatters into Voronoi glass fragments that fall away | Touch tap | Hard | `[ ]` |
+| 289 | Black Hole Lens | Touch places a gravitational lens — surrounding content warps and bends around the event horizon | Touch position | Medium | `[ ]` |
+| 290 | Swirl Vortex Portal | Spiral vortex sucks pixels toward touch point creating a wormhole/portal effect | Touch position | Easy | `[ ]` |
+| 291 | X-Ray Reveal Lens | Circular lens follows finger showing an alternative hidden layer underneath (wireframe, skeleton, etc.) | Touch position | Easy | `[ ]` |
+| 292 | Electric Lightning Arc | Jagged lightning bolts arc between two touch points, branching and flickering with energy | Two-touch | Medium | `[ ]` |
+| 293 | Displacement Warp | Image warps and stretches around touch point like poking a rubber sheet — funhouse mirror | Touch position | Easy | `[ ]` |
+| 294 | Reaction-Diffusion Paint | Touch seeds organic biological patterns (spots, stripes, coral) that grow outward over time | Touch drag | Hard | `[ ]` |
+| 295 | Ink Watercolor Spread | Touch places drops of ink that spread organically following paper grain texture — watercolor bleeding | Touch tap | Medium | `[ ]` |
+| 296 | Falling Sand | Colored sand particles fall under gravity, pile up, and flow around obstacles drawn by touch | Touch draw + Gyroscope | Medium | `[ ]` |
+
+---
+
+## 21. Interactive — Weather & Nature
+
+Realistic environmental effects driven by device motion and touch.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 297 | Rain on Window | Raindrops sliding down glass with refraction trails — tilt device to change gravity direction | Gyroscope | Hard | `[ ]` |
+| 298 | Snowfall | Layered snowflakes at different depths with wind drift — tilt device to change wind direction | Gyroscope | Easy | `[ ]` |
+| 299 | Water Drops on Surface | Individual water beads sitting on a surface with refraction, slowly merging and rolling when tilted | Gyroscope | Medium | `[ ]` |
+| 300 | Condensation | Tiny water droplets forming on cold glass, growing, merging, and eventually sliding down | Gyroscope + time | Medium | `[ ]` |
+| 301 | Frost Crystallization | Ice crystals grow outward from touch points with fractal branching — frost spreading across glass | Touch position | Hard | `[ ]` |
+| 302 | Puddle Splash | Still puddle that splashes with expanding rings when tapped, calms back to mirror reflection | Touch tap | Medium | `[ ]` |
+| 303 | Dew Drops | Morning dew drops forming on a surface with perfect spherical refraction and slow growth | Time + Gyroscope | Medium | `[ ]` |
+| 304 | Fog Wipe | Dense fog/mist that clears where you drag your finger, slowly creeping back | Touch drag | Easy | `[ ]` |
+| 305 | Underwater Bubbles | Rising bubbles from touch point, wobbling and refracting, merging when close — blow with mic to scatter | Touch + Microphone | Medium | `[ ]` |
+| 306 | Dripping Water | Water dripping from the top edge, forming drops that fall and splash at the bottom | Gyroscope | Medium | `[ ]` |
+| 307 | Tidal Wave | Ocean surface with waves — tilt device to create waves in that direction, shake for storm | Gyroscope | Hard | `[ ]` |
+| 308 | Snowglobe | Shake to stir up snow particles inside a glass globe that settle slowly with gravity | Gyroscope + shake | Medium | `[ ]` |
+
+---
+
+## 22. Interactive — Fluid & Physics
+
+GPU-driven simulations responding to real-time input.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 309 | Navier-Stokes Fluid | Full Navier-Stokes 2D fluid sim — swipe injects velocity and colorful dye | Touch velocity | Hard | `[ ]` |
+| 310 | Smoke & Vapor | Wispy smoke trails following finger, dissipating over time — blow mic to scatter | Touch drag + Mic | Medium | `[ ]` |
+| 311 | Cloth Simulation | Fabric sheet that can be grabbed and dragged with realistic fold physics — pinch to tear | Touch drag | Hard | `[ ]` |
+| 312 | Liquid Metal Mercury | Chrome reflective blob that deforms and morphs when touched — T-1000 style | Touch + Gyroscope | Hard | `[ ]` |
+| 313 | Dynamic Island Morph | Metaball shapes that stretch, merge, and separate with elastic liquid bridging — Apple Dynamic Island style | Touch / animation | Medium | `[ ]` |
+| 314 | Gravity Wells | Multiple touch points create gravity attractors — particles orbit and slingshot between them | Multi-touch | Medium | `[ ]` |
+| 315 | Spring Mesh Deform | Grid of connected springs that deforms when poked and wobbles back — jelly physics | Touch position | Medium | `[ ]` |
+| 316 | Oil & Water | Two immiscible fluids that separate — drag to mix, release to watch them separate again | Touch drag | Hard | `[ ]` |
+
+---
+
+## 23. Interactive — Light & Optical
+
+Shader effects simulating light physics responding to device orientation.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 317 | Oil Slick Iridescence | Thin-film rainbow interference shifting with viewing angle — gasoline on water | Gyroscope | Medium | `[ ]` |
+| 318 | Prism Dispersion | Light splitting into rainbow as it passes through prism shape — tilt changes light angle | Gyroscope | Medium | `[ ]` |
+| 319 | Light Sweep Glare | Bright band of light sweeping across polished surface as device tilts | Gyroscope | Easy | `[ ]` |
+| 320 | Caustic Light Patterns | Shimmering underwater light patterns — touch creates waves that change the caustic dance | Touch + time | Medium | `[ ]` |
+| 321 | Disco Ball Reflections | Rotating faceted sphere casting light spots that sweep across the surface with tilt | Gyroscope + time | Medium | `[ ]` |
+| 322 | Lens Flare | Cinematic lens flare that tracks with device tilt — anamorphic streaks and ghost rings | Gyroscope | Medium | `[ ]` |
+| 323 | Stained Glass Light | Colored light pouring through stained glass panels — tilt changes sun angle and color cast | Gyroscope | Medium | `[ ]` |
+| 324 | Laser Grid | Scanning laser beams that follow touch point — fog-filled room with volumetric light | Touch + time | Medium | `[ ]` |
+
+---
+
+## 24. Interactive — Dissolve & Transition
+
+Effects for revealing, destroying, and transforming content with touch.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 325 | Dissolve to Embers | Content burns away from touch point — edge glows hot orange before disintegrating into floating embers | Touch position | Medium | `[ ]` |
+| 326 | Pixel Disintegration | Touch triggers Thanos-style disintegration — pixels scatter as particles from touch origin | Touch position | Medium | `[ ]` |
+| 327 | Portal Reveal | Circular portal opens at touch point revealing alternate world underneath — edges shimmer with energy | Touch position | Medium | `[ ]` |
+| 328 | Ice Freeze Over | Touch freezes content in place — ice crystallizes outward from touch, turning the scene to frozen glass | Touch position | Medium | `[ ]` |
+| 329 | Glitch Corruption | Touch infects the image with digital glitch artifacts that spread from contact point — RGB split, pixel sort, scan errors | Touch position | Medium | `[ ]` |
+| 330 | Paint Peel | Touch peels back a layer of paint revealing a different surface underneath — 3D curl deformation at peel edge | Touch drag | Hard | `[ ]` |
+
+---
+
+## 25. Interactive — Audio Reactive
+
+Effects driven by microphone input or music playback.
+
+| # | Shader | Description | Input | Difficulty | Status |
+|---|--------|-------------|-------|------------|--------|
+| 331 | Audio Waveform | Real-time oscilloscope waveform with glowing neon line that pulses with sound | Microphone | Medium | `[ ]` |
+| 332 | Frequency Spectrum | Vertical bars/mountain range responding to FFT frequency bins — bass shakes, treble sparkles | Microphone | Medium | `[ ]` |
+| 333 | Audio Reactive Blob | 3D sphere that deforms based on frequency spectrum — bass = big wobbles, treble = fine spikes | Microphone | Medium | `[ ]` |
+| 334 | Sound Rings | Concentric rings that pulse outward with audio amplitude — each ring captures a moment of sound | Microphone | Easy | `[ ]` |
+
+---
+
 ## Summary
 
 | Category | Count |
@@ -449,7 +578,14 @@ Effects for app interfaces and transitions.
 | Math Visualization | 13 |
 | Artistic Movements | 12 |
 | UI & Motion Design | 11 |
-| **Total** | **268** |
+| Interactive — Holographic & Card | 10 |
+| Interactive — Touch-Reactive | 18 |
+| Interactive — Weather & Nature | 12 |
+| Interactive — Fluid & Physics | 8 |
+| Interactive — Light & Optical | 8 |
+| Interactive — Dissolve & Transition | 6 |
+| Interactive — Audio Reactive | 4 |
+| **Total** | **334** |
 
 ---
 
@@ -460,13 +596,23 @@ Mesh Gradient, Mandelbrot, Ocean Surface, Synthwave Sunset, Reaction Diffusion,
 Metaballs, Starfield, Lightning, SDF Primitives, Truchet Tiles, Film Grain,
 Kaleidoscope, Aurora Borealis, Game of Life, Matrix Rain
 
+### Wave 1.5 — Interactive Showstoppers (viral potential)
+Pokemon Holo Card, Touch Water Ripple, Rain on Window, Snowfall, Navier-Stokes Fluid,
+Dissolve to Embers, Magnetic Particle Field, Falling Sand, Scratch-Off Reveal,
+Snowglobe, Water Drops on Surface, Frost Crystallization
+
 ### Wave 2 — Visual Variety
 Liquid Chrome, Julia Set, Rain on Glass, Volumetric Clouds, Neon Sign,
 Hexagonal Grid, Halftone, Fire, Galaxy Spiral, Op Art Waves, Moire,
 Brushed Metal, Spirograph, CRT Monitor, Dissolve Transition
 
+### Wave 2.5 — Interactive Expansion
+Ferrofluid, Voronoi Glass Shatter, Electric Lightning Arc, Cloth Simulation,
+Oil Slick Iridescence, Prism Dispersion, Audio Waveform, Dynamic Island Morph,
+Neon Light Painting, Black Hole Lens, Tidal Wave, Ink Watercolor Spread
+
 ### Wave 3 — Deep Cuts
-Black Hole, Diamond Facets, Fluid Advection, Reaction Diffusion, Celtic Knot,
+Black Hole, Diamond Facets, Fluid Advection, Celtic Knot,
 Islamic Geometry, DLA Growth, Escher Tessellation, Strange Attractor,
 Droste Effect, Pollock Drip, Planet Surface, Ray March 3D
 

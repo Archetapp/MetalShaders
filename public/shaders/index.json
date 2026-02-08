@@ -13,6 +13,54 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "mandelbrot",
+      "title": "Mandelbrot Set",
+      "description": "Classic escape-time fractal with smooth continuous coloring and slow auto-zoom",
+      "tags": [
+        "fractal",
+        "math",
+        "zoom"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "mesh-gradient",
+      "title": "Mesh Gradient",
+      "description": "Apple-style flowing gradient with soft color blobs morphing via simplex noise",
+      "tags": [
+        "gradient",
+        "modern",
+        "ui"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "metaballs",
+      "title": "Metaballs",
+      "description": "Soft organic blobs that drift, merge, and separate with smooth color blending",
+      "tags": [
+        "sdf",
+        "organic",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "ocean-surface",
+      "title": "Ocean Surface",
+      "description": "Gerstner wave ocean with Fresnel reflections, sun specular, and foam highlights",
+      "tags": [
+        "water",
+        "nature",
+        "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "plasma-wave",
       "title": "Plasma Wave",
       "description": "Classic plasma effect using sine wave interference patterns",
@@ -20,6 +68,18 @@
         "procedural",
         "color",
         "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "synthwave-sunset",
+      "title": "Synthwave Sunset",
+      "description": "80s retro sun with horizontal bands sinking behind a glowing perspective grid",
+      "tags": [
+        "retro",
+        "synthwave",
+        "80s"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"

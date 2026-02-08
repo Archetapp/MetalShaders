@@ -1,0 +1,8 @@
+{
+  "slug": "mesh-gradient",
+  "title": "Mesh Gradient",
+  "description": "Apple-style flowing gradient with soft color blobs morphing via simplex noise",
+  "tags": ["gradient", "modern", "ui"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}
