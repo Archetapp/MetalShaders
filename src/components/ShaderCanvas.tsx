@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useShaderRenderer } from "@/hooks/useShaderRenderer";
 import ShaderError from "./ShaderError";
@@ -36,8 +36,11 @@ export default function ShaderCanvas({
 
   useShaderRendererRecompileRef(recompile, onRecompileReady);
 
-  const handleMouseMove = useCallback(
+  const mouseDownRef = useRef(false);
+
+  const handleMouseDown = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      mouseDownRef.current = true;
       const rect = e.currentTarget.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * width;
       const y = (1 - (e.clientY - rect.top) / rect.height) * height;
@@ -46,7 +49,24 @@ export default function ShaderCanvas({
     [width, height, setMouse]
   );
 
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!mouseDownRef.current) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * width;
+      const y = (1 - (e.clientY - rect.top) / rect.height) * height;
+      setMouse(x, y);
+    },
+    [width, height, setMouse]
+  );
+
+  const handleMouseUp = useCallback(() => {
+    mouseDownRef.current = false;
+    setMouse(0, 0);
+  }, [setMouse]);
+
   const handleMouseLeave = useCallback(() => {
+    mouseDownRef.current = false;
     setMouse(0, 0);
   }, [setMouse]);
 
@@ -71,7 +91,9 @@ export default function ShaderCanvas({
       ref={observerRef as React.RefObject<HTMLDivElement>}
       className={`relative ${className}`}
       style={{ aspectRatio: `${width}/${height}` }}
+      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchMove}
       onTouchMove={handleTouchMove}
@@ -87,8 +109,6 @@ export default function ShaderCanvas({
     </div>
   );
 }
-
-import { useEffect, useRef } from "react";
 
 function useShaderRendererRecompileRef(
   recompile: (src: string) => string | null,
