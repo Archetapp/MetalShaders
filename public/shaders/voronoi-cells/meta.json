@@ -1,0 +1,8 @@
+{
+  "slug": "voronoi-cells",
+  "title": "Voronoi Cells",
+  "description": "Animated Voronoi diagram with smooth cell boundaries and color gradients",
+  "tags": ["procedural", "geometry", "animation"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "fractal-noise",
+  "title": "Fractal Noise",
+  "description": "Layered fractal Brownian motion noise with animated color mapping",
+  "tags": ["noise", "procedural", "animation"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}
