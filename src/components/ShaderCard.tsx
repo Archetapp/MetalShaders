@@ -21,25 +21,33 @@ export default function ShaderCard({ shader }: ShaderCardProps) {
 
   return (
     <Link href={`/shaders/${shader.slug}`}>
-      <div className="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow cursor-pointer h-full">
-        <figure className="relative overflow-hidden">
+      <div className="shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full">
+        <div className="relative">
           {fragSource ? (
             <ShaderCanvas fragSource={fragSource} width={400} height={300} />
           ) : (
-            <div className="w-full bg-base-300 animate-pulse rounded-t-2xl" style={{ aspectRatio: "4/3" }} />
+            <div
+              className="w-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse"
+              style={{ aspectRatio: "4/3" }}
+            />
           )}
-        </figure>
-        <div className="card-body p-4">
-          <h2 className="card-title text-base">{shader.title}</h2>
-          <p className="text-sm text-base-content/70 line-clamp-2">
-            {shader.description}
-          </p>
-          <div className="flex flex-wrap gap-1 mt-2">
-            {shader.tags.map((tag) => (
-              <span key={tag} className="badge badge-outline badge-sm">
-                {tag}
-              </span>
-            ))}
+          <div className="glass-overlay absolute inset-x-0 bottom-0 px-4 pt-10 pb-4">
+            <h2 className="text-base font-semibold text-gray-900 mb-1">
+              {shader.title}
+            </h2>
+            <p className="text-sm text-gray-500 line-clamp-1 mb-2">
+              {shader.description}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {shader.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 text-xs font-medium rounded-full bg-white/60 text-gray-600 border border-gray-200/60"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

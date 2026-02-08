@@ -16,12 +16,13 @@ export default function Home() {
   const shaders = loadShaders();
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Shader Gallery</h1>
-        <p className="text-base-content/70">
-          Browse Metal shaders with live previews. Click any shader to view the
-          full source code.
+    <main className="container mx-auto px-6 pt-10 pb-16">
+      <div className="mb-10">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 mb-2">
+          Shader Gallery
+        </h1>
+        <p className="text-lg text-gray-500">
+          Live Metal shader previews. Click to explore the source.
         </p>
       </div>
       <ShaderGrid shaders={shaders} />

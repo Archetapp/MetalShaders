@@ -39,7 +39,7 @@ export default function ShaderCanvas({
         ref={canvasRef}
         width={width}
         height={height}
-        className="w-full h-full object-cover rounded-t-2xl"
+        className="w-full h-full object-cover"
       />
       {error && <ShaderError error={error} />}
     </div>

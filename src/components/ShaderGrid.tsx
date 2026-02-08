@@ -51,12 +51,14 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
       />
 
       {filteredShaders.length === 0 ? (
-        <div className="text-center py-16 text-base-content/50">
-          <p className="text-lg">No shaders found</p>
-          <p className="text-sm mt-1">Try adjusting your search or filters</p>
+        <div className="text-center py-20">
+          <p className="text-lg text-gray-400">No shaders found</p>
+          <p className="text-sm text-gray-300 mt-1">
+            Try adjusting your search or filters
+          </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredShaders.map((shader) => (
             <ShaderCard key={shader.slug} shader={shader} />
           ))}
