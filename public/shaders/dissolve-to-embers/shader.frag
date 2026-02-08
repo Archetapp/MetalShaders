@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -13,14 +14,12 @@ float dteFbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*dteNoise(p);p*=
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
-    float cycle = mod(iTime * 0.3, 2.0);
-    float burnProgress = smoothstep(0.0, 1.5, cycle);
+    float burnProgress = smoothstep(0.0, 1.5, iMouseTime * 0.3);
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 burnOrigin = hasInput ? mouseCentered : vec2(sin(floor(iTime * 0.3 / 2.0) * 2.3) * 0.2,
-                           cos(floor(iTime * 0.3 / 2.0) * 1.7) * 0.15);
+    vec2 burnOrigin = hasInput ? mouseCentered : vec2(0.0, 0.0);
 
     float dist = length(uv - burnOrigin);
     float noise = dteFbm(uv * 5.0) * 0.3 + dteFbm(uv * 10.0) * 0.15;

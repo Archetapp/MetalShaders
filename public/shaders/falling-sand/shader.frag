@@ -1,6 +1,8 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
+uniform float iMouseDown;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -38,6 +40,7 @@ void main() {
     float aspect = iResolution.x / iResolution.y;
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    bool isInteracting = iMouseDown > 0.5;
 
     float gridRes = 80.0;
     vec2 gridUv = floor(uv * gridRes) / gridRes;
@@ -52,10 +55,11 @@ void main() {
     float streamId = 0.0;
 
     for (float s = 0.0; s < 6.0; s++) {
-        float streamX = (s == 0.0 && hasInput) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
+        float streamX = (s == 0.0 && isInteracting) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
         float streamWidth = 0.03 + 0.02 * sin(iTime * 0.5 + s);
 
         float inStream = smoothstep(streamWidth, 0.0, abs(cellX - streamX));
+        if (s == 0.0 && !isInteracting) inStream = 0.0;
 
         float fallSpeed = 0.4 + sandHash(vec2(s, 0.0)) * 0.3;
         float fallPhase = fract(iTime * fallSpeed + sandHash(vec2(s, 1.0)));
@@ -64,7 +68,7 @@ void main() {
         float grain = sandHash3(vec3(gridUv * gridRes, floor(iTime * 10.0 + s * 100.0)));
 
         float pileHeight = 0.0;
-        float timeFactor = min(iTime * 0.05, 0.6);
+        float timeFactor = (s == 0.0) ? min(iMouseTime * 0.05, 0.6) : min(iTime * 0.05, 0.6);
 
         float noiseOffset = sandNoise(vec2(cellX * 10.0 + s * 7.0, s)) * 0.1;
         float distFromStream = abs(cellX - streamX);
@@ -111,7 +115,7 @@ void main() {
         col += vec3(0.03) * gridLine;
 
         for (float s = 0.0; s < 6.0; s++) {
-            float streamX = (s == 0.0 && hasInput) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
+            float streamX = (s == 0.0 && isInteracting) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
             float funnelGlow = exp(-abs(cellX - streamX) * 40.0) * smoothstep(0.8, 1.0, uv.y);
             col += sandColor(s) * funnelGlow * 0.3;
         }

@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -11,7 +12,7 @@ void main() {
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 dragPos = hasInput ? mouseCentered : vec2(sin(iTime * 0.7) * 0.3, cos(iTime * 0.5) * 0.25);
+    vec2 dragPos = hasInput ? mouseCentered : vec2(sin(iMouseTime * 0.7) * 0.3, cos(iMouseTime * 0.5) * 0.25);
 
     float field = 0.0;
     vec3 colorField = vec3(0.0);
@@ -22,12 +23,12 @@ void main() {
 
     for (int i = 0; i < 6; i++) {
         float fi = float(i);
-        float angle = fi * 1.047 + iTime * 0.3;
-        float radius = 0.2 + 0.1 * sin(iTime * 0.4 + fi);
+        float angle = fi * 1.047 + iMouseTime * 0.3;
+        float radius = 0.2 + 0.1 * sin(iMouseTime * 0.4 + fi);
         vec2 blobPos = vec2(cos(angle), sin(angle)) * radius;
 
         float dist = length(uv - blobPos);
-        float blobSize = 0.06 + 0.02 * sin(iTime * 0.5 + fi * 2.0);
+        float blobSize = 0.06 + 0.02 * sin(iMouseTime * 0.5 + fi * 2.0);
         float blob = blobSize / dist;
         field += blob;
 
@@ -37,7 +38,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        vec2 trailPos = dragPos - normalize(vec2(cos(iTime * 0.7), -sin(iTime * 0.5))) * (fi + 1.0) * 0.06;
+        vec2 trailPos = dragPos - normalize(vec2(cos(iMouseTime * 0.7), -sin(iMouseTime * 0.5))) * (fi + 1.0) * 0.06;
         float trailBlob = (0.04 - fi * 0.008) / length(uv - trailPos);
         field += trailBlob;
         colorField += trailBlob * vec3(0.2, 0.4, 0.9);

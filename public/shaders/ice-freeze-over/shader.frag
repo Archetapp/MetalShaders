@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -12,14 +13,12 @@ return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
-    float cycle = mod(iTime * 0.3, 2.0);
-    float freezeProgress = smoothstep(0.0, 1.5, cycle);
+    float freezeProgress = smoothstep(0.0, 1.5, iMouseTime * 0.3);
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 freezeOrigin = hasInput ? mouseCentered : vec2(sin(floor(iTime * 0.15) * 2.3) * 0.2,
-                             cos(floor(iTime * 0.15) * 1.7) * 0.15);
+    vec2 freezeOrigin = hasInput ? mouseCentered : vec2(0.0, 0.0);
 
     vec3 warmContent = vec3(0.8, 0.4, 0.2);
     warmContent += sin(uv.x * 10.0) * 0.1 * vec3(0.1, 0.05, 0.0);

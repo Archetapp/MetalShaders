@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -72,7 +73,7 @@ void main() {
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
 
     float cycleTime = 12.0;
-    float t = mod(iTime, cycleTime);
+    float t = iMouseTime;
 
     float scratchMask = 0.0;
 

@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -22,7 +23,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        float scanPos = (i == 0 && hasInput) ? mouseCentered.y : sin(iTime * (0.5 + fi * 0.2) + fi * 1.5) * 0.4;
+        float scanPos = (i == 0 && hasInput) ? mouseCentered.y : sin(iMouseTime * (0.5 + fi * 0.2) + fi * 1.5) * 0.4;
         float beamH = smoothstep(0.004, 0.0, abs(uv.y - scanPos));
         float beamGlowH = exp(-abs(uv.y - scanPos) * 30.0);
         vec3 beamColor = fi < 2.0 ? vec3(1.0, 0.1, 0.1) : vec3(0.1, 1.0, 0.2);
@@ -34,7 +35,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        float scanPos = (i == 0 && hasInput) ? mouseCentered.x : cos(iTime * (0.4 + fi * 0.15) + fi * 2.0) * 0.4;
+        float scanPos = (i == 0 && hasInput) ? mouseCentered.x : cos(iMouseTime * (0.4 + fi * 0.15) + fi * 2.0) * 0.4;
         float beamV = smoothstep(0.004, 0.0, abs(uv.x - scanPos));
         float beamGlowV = exp(-abs(uv.x - scanPos) * 30.0);
         vec3 beamColor = fi < 2.0 ? vec3(0.1, 0.3, 1.0) : vec3(0.8, 0.1, 0.8);
@@ -44,8 +45,8 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            float hi = (i == 0 && hasInput) ? mouseCentered.y : sin(iTime * (0.5 + float(i) * 0.2) + float(i) * 1.5) * 0.4;
-            float vj = (j == 0 && hasInput) ? mouseCentered.x : cos(iTime * (0.4 + float(j) * 0.15) + float(j) * 2.0) * 0.4;
+            float hi = (i == 0 && hasInput) ? mouseCentered.y : sin(iMouseTime * (0.5 + float(i) * 0.2) + float(i) * 1.5) * 0.4;
+            float vj = (j == 0 && hasInput) ? mouseCentered.x : cos(iMouseTime * (0.4 + float(j) * 0.15) + float(j) * 2.0) * 0.4;
             vec2 intersection = vec2(vj, hi);
             float intDist = length(uv - intersection);
             float intGlow = exp(-intDist * 20.0) * 0.3;

@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -34,7 +35,7 @@ void main() {
     float heat = 0.0;
 
     for (int i = 0; i < 6; i++) {
-        float t = iTime * 0.4 + float(i) * 1.5;
+        float t = iMouseTime * 0.4 + float(i) * 1.5;
         float phase = floor(t / 3.0);
         float localT = fract(t / 3.0) * 3.0;
 

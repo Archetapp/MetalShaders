@@ -77,12 +77,12 @@ export function renderFrame(
 
   if (state.mousePressed && !state._mousePrevPressed) {
     state._mousePressStart = now;
-    state.mouseTime = 0;
-  }
-  if (state.mousePressed) {
-    state.mouseTime = now - state._mousePressStart;
   }
   state._mousePrevPressed = state.mousePressed;
+
+  if (state._mousePressStart > 0) {
+    state.mouseTime = now - state._mousePressStart;
+  }
 
   setUniforms(
     gl,
@@ -92,7 +92,8 @@ export function renderFrame(
     height,
     state.mouseX,
     state.mouseY,
-    state.mouseTime
+    state.mouseTime,
+    state.mousePressed ? 1.0 : 0.0
   );
 
   drawQuad(gl, state.vao);

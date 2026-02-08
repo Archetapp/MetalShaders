@@ -1,6 +1,8 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
+uniform float iMouseDown;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -23,13 +25,14 @@ void main() {
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    bool isInteracting = iMouseDown > 0.5;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
 
     vec3 col = vec3(0.02, 0.02, 0.03);
 
     for (int i = 0; i < 3; i++) {
         float fi = float(i);
-        vec2 sourcePos = (i == 0 && hasInput) ? mouseCentered : vec2((fi - 1.0) * 0.2, -0.4);
+        vec2 sourcePos = (i == 0 && isInteracting) ? mouseCentered : vec2((fi - 1.0) * 0.2, -0.4);
         vec2 smokeUv = uv - sourcePos;
         smokeUv.x += sin(smokeUv.y * 3.0 + iTime * 0.5 + fi) * 0.1 * (smokeUv.y + 0.4);
         smokeUv.x *= 1.0 / (1.0 + (smokeUv.y + 0.4) * 0.8);

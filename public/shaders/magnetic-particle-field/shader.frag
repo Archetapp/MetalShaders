@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -19,7 +20,7 @@ void main() {
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 magnetPos = hasInput ? mouseCentered : vec2(sin(iTime * 0.6) * 0.3, cos(iTime * 0.8) * 0.3);
+    vec2 magnetPos = hasInput ? mouseCentered : vec2(sin(iMouseTime * 0.6) * 0.3, cos(iMouseTime * 0.8) * 0.3);
 
     vec3 col = vec3(0.02, 0.01, 0.04);
 
@@ -31,7 +32,7 @@ void main() {
         float dist = length(toMagnet);
         vec2 dir = normalize(toMagnet);
 
-        float orbitAngle = atan(toMagnet.y, toMagnet.x) + iTime * (0.5 + mpfHash(seed + 10.0));
+        float orbitAngle = atan(toMagnet.y, toMagnet.x) + iMouseTime * (0.5 + mpfHash(seed + 10.0));
         float orbitRadius = 0.05 + dist * 0.3;
         vec2 orbit = vec2(cos(orbitAngle), sin(orbitAngle)) * orbitRadius;
 
@@ -52,7 +53,7 @@ void main() {
 
     float fieldLines = 0.0;
     for (int i = 0; i < 8; i++) {
-        float angle = float(i) * 0.785 + iTime * 0.2;
+        float angle = float(i) * 0.785 + iMouseTime * 0.2;
         vec2 dir = vec2(cos(angle), sin(angle));
         float lineField = abs(dot(uv - magnetPos, dir));
         lineField = exp(-lineField * 30.0) * exp(-length(uv - magnetPos) * 3.0);

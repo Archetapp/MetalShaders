@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -28,9 +29,9 @@ void main() {
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
     vec2 causticCenter = hasInput ? mouseCentered : vec2(0.0);
-    float c1 = clpCaustic(uv - causticCenter, iTime);
-    float c2 = clpCaustic(uv - causticCenter + vec2(0.3, 0.7), iTime * 0.8);
-    float c3 = clpCaustic((uv - causticCenter) * 1.5, iTime * 1.2);
+    float c1 = clpCaustic(uv - causticCenter, iMouseTime);
+    float c2 = clpCaustic(uv - causticCenter + vec2(0.3, 0.7), iMouseTime * 0.8);
+    float c3 = clpCaustic((uv - causticCenter) * 1.5, iMouseTime * 1.2);
     float caustic = c1 * c2 + c3 * 0.3;
     caustic = pow(caustic, 1.5) * 2.0;
 
@@ -45,7 +46,7 @@ void main() {
     float depth = smoothstep(-0.5, 0.5, uv.y);
     col *= 0.6 + 0.4 * depth;
 
-    float shimmer = sin(uv.x * 30.0 + iTime * 2.0) * sin(uv.y * 25.0 + iTime * 1.5) * 0.03;
+    float shimmer = sin(uv.x * 30.0 + iMouseTime * 2.0) * sin(uv.y * 25.0 + iMouseTime * 1.5) * 0.03;
     col += shimmer * lightColor;
 
     fragColor = vec4(col, 1.0);

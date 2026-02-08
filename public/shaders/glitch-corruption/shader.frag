@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -21,8 +22,8 @@ void main() {
     content.b = sin((uv.x + uv.y) * 12.0 + 2.0) * 0.5 + 0.5;
     content *= 0.5;
 
-    float glitchTime = floor(iTime * 8.0);
-    float glitchIntensity = hasInput ? smoothstep(0.5, 0.0, length(uv - mouseUV)) : pow(sin(iTime * 0.5) * 0.5 + 0.5, 2.0);
+    float glitchTime = floor(iMouseTime * 8.0);
+    float glitchIntensity = hasInput ? smoothstep(0.5, 0.0, length(uv - mouseUV)) : smoothstep(0.0, 0.5, iMouseTime);
 
     float blockSize = 0.05 + gcHash(glitchTime) * 0.1;
     vec2 blockId = floor(uv / blockSize);
@@ -41,10 +42,10 @@ void main() {
                         gcHash2(blockId + glitchTime + 2.0),
                         gcHash2(blockId + glitchTime + 3.0)), blockGlitch * 0.5);
 
-    float scanError = step(0.95, gcHash(floor(uv.y * 100.0 + iTime * 50.0)));
+    float scanError = step(0.95, gcHash(floor(uv.y * 100.0 + iMouseTime * 50.0)));
     col = mix(col, vec3(1.0), scanError * glitchIntensity);
 
-    float staticNoise = gcHash2(uv * 500.0 + iTime) * glitchIntensity * 0.15;
+    float staticNoise = gcHash2(uv * 500.0 + iMouseTime) * glitchIntensity * 0.15;
     col += staticNoise;
 
     float colorBand = step(0.9, gcHash(floor(uv.y * 30.0) + glitchTime * 0.5));

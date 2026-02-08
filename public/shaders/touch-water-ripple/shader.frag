@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -26,18 +27,18 @@ void main() {
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
 
     vec2 touchPoints[5];
-    touchPoints[0] = hasInput ? mouseUV : vec2(0.5 + 0.3 * cos(iTime * 0.4), 0.5 + 0.3 * sin(iTime * 0.5));
-    touchPoints[1] = vec2(0.5 + 0.25 * sin(iTime * 0.7 + 1.0), 0.5 + 0.25 * cos(iTime * 0.3 + 2.0));
-    touchPoints[2] = vec2(0.5 + 0.35 * cos(iTime * 0.3 + 3.0), 0.5 + 0.2 * sin(iTime * 0.6 + 1.5));
-    touchPoints[3] = vec2(0.5 + 0.2 * sin(iTime * 0.5 + 4.0), 0.5 + 0.35 * cos(iTime * 0.4 + 3.0));
-    touchPoints[4] = vec2(0.5 + 0.3 * cos(iTime * 0.6 + 5.0), 0.5 + 0.3 * sin(iTime * 0.35 + 4.5));
+    touchPoints[0] = hasInput ? mouseUV : vec2(0.5, 0.5);
+    touchPoints[1] = vec2(0.5 + 0.25 * sin(iMouseTime * 0.7 + 1.0), 0.5 + 0.25 * cos(iMouseTime * 0.3 + 2.0));
+    touchPoints[2] = vec2(0.5 + 0.35 * cos(iMouseTime * 0.3 + 3.0), 0.5 + 0.2 * sin(iMouseTime * 0.6 + 1.5));
+    touchPoints[3] = vec2(0.5 + 0.2 * sin(iMouseTime * 0.5 + 4.0), 0.5 + 0.35 * cos(iMouseTime * 0.4 + 3.0));
+    touchPoints[4] = vec2(0.5 + 0.3 * cos(iMouseTime * 0.6 + 5.0), 0.5 + 0.3 * sin(iMouseTime * 0.35 + 4.5));
 
     for (int i = 0; i < 5; i++) {
         vec2 tp = vec2(touchPoints[i].x * aspect, touchPoints[i].y);
         float interval = 2.0 + float(i) * 0.5;
         for (int j = 0; j < 4; j++) {
-            float birthTime = floor(iTime / interval) * interval - float(j) * interval;
-            totalDisplacement += rippleWave(uvAspect, tp, iTime, birthTime) * 0.03;
+            float birthTime = floor(iMouseTime / interval) * interval - float(j) * interval;
+            totalDisplacement += rippleWave(uvAspect, tp, iMouseTime, birthTime) * 0.03;
         }
     }
 

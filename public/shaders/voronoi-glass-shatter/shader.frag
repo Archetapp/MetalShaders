@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -13,16 +14,13 @@ vec2 vgsHash2(vec2 p) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
-    float cycleTime = 4.0;
-    float t = mod(iTime, cycleTime);
-    float shatterProgress = smoothstep(0.0, 0.5, t);
-    float fallProgress = smoothstep(0.5, 3.5, t);
+    float shatterProgress = smoothstep(0.0, 0.5, iMouseTime);
+    float fallProgress = smoothstep(0.5, 3.5, iMouseTime);
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 impactPoint = hasInput ? mouseCentered : vec2(sin(floor(iTime / cycleTime) * 2.3) * 0.2,
-                            cos(floor(iTime / cycleTime) * 1.7) * 0.15);
+    vec2 impactPoint = hasInput ? mouseCentered : vec2(0.0, 0.0);
 
     float scale = 8.0;
     vec2 cellUv = uv * scale;

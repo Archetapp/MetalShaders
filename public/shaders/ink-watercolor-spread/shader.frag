@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -35,7 +36,7 @@ void main() {
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
         vec2 dropPos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 2.3 + 0.5) * 0.25, cos(fi * 1.8 + 1.0) * 0.2);
-        float dropTime = max(0.0, iTime * 0.3 - fi * 0.8);
+        float dropTime = max(0.0, iMouseTime * 0.3 - fi * 0.8);
 
         float baseRadius = dropTime * 0.12;
         float noiseDistort = iwsFbm(uv * 8.0 + fi * 10.0 + iTime * 0.02) * 0.15;

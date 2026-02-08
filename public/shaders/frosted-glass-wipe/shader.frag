@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -35,15 +36,15 @@ void main() {
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
-    vec2 wipePos = hasInput ? mouseCentered : vec2(sin(iTime * 0.4) * 0.4, cos(iTime * 0.3) * 0.3);
+    vec2 wipePos = hasInput ? mouseCentered : vec2(sin(iMouseTime * 0.4) * 0.4, cos(iMouseTime * 0.3) * 0.3);
     float wipeDist = length(centered - wipePos);
 
-    float wipeRadius = 0.3 + 0.1 * sin(iTime * 0.5);
+    float wipeRadius = 0.3 + 0.1 * sin(iMouseTime * 0.5);
     float clearMask = smoothstep(wipeRadius, wipeRadius - 0.15, wipeDist);
 
     float regrow = 0.0;
     for (int i = 0; i < 4; i++) {
-        float t = iTime * 0.4 + float(i) * 2.0;
+        float t = iMouseTime * 0.4 + float(i) * 2.0;
         float phase = floor(t / 4.0);
         float localT = fract(t / 4.0) * 4.0;
         vec2 oldWipe = vec2(sin(phase * 1.3) * 0.4, cos(phase * 0.9) * 0.3);

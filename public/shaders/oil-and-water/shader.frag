@@ -1,6 +1,8 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
+uniform float iMouseDown;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -23,12 +25,13 @@ void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    bool isInteracting = iMouseDown > 0.5;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
 
     float boundary = oawFbm(uv*3.0 + iTime*0.15);
     boundary += oawFbm(uv*6.0 - iTime*0.1)*0.3;
     boundary += sin(uv.x*5.0+iTime*0.3)*0.1 + sin(uv.y*4.0-iTime*0.2)*0.1;
-    if (hasInput) {
+    if (isInteracting) {
         float distToMouse = length(uv - mouseCentered);
         boundary += exp(-distToMouse * distToMouse * 8.0) * 0.4;
     }

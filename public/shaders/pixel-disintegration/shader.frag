@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -9,8 +10,7 @@ float pdHash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
-    float cycle = mod(iTime * 0.25, 2.0);
-    float progress = smoothstep(0.0, 1.5, cycle);
+    float progress = smoothstep(0.0, 1.5, iMouseTime * 0.25);
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;

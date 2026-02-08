@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -14,17 +15,17 @@ void main() {
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 vortexCenter = hasInput ? mouseCentered : vec2(sin(iTime * 0.3) * 0.1, cos(iTime * 0.2) * 0.1);
+    vec2 vortexCenter = hasInput ? mouseCentered : vec2(sin(iMouseTime * 0.3) * 0.1, cos(iMouseTime * 0.2) * 0.1);
     vec2 toCenter = uv - vortexCenter;
     float dist = length(toCenter);
     float angle = atan(toCenter.y, toCenter.x);
 
     float swirlStrength = 3.0 * exp(-dist * 2.0);
-    float swirlAngle = angle + swirlStrength - iTime * 1.5;
+    float swirlAngle = angle + swirlStrength - iMouseTime * 1.5;
 
     vec2 swirlUv = vec2(cos(swirlAngle), sin(swirlAngle)) * dist;
 
-    float spiralArms = sin(swirlAngle * 4.0 - dist * 15.0 + iTime * 2.0) * 0.5 + 0.5;
+    float spiralArms = sin(swirlAngle * 4.0 - dist * 15.0 + iMouseTime * 2.0) * 0.5 + 0.5;
     spiralArms = pow(spiralArms, 2.0);
 
     float innerGlow = exp(-dist * 5.0);
@@ -49,7 +50,7 @@ void main() {
     stars = pow(stars, 25.0) * 3.0 * (1.0 - innerGlow);
     col += stars * vec3(0.8, 0.9, 1.0);
 
-    vec3 portalInside = mix(vec3(0.1, 0.0, 0.3), vec3(0.3, 0.1, 0.5), sin(iTime * 2.0 + dist * 10.0) * 0.5 + 0.5);
+    vec3 portalInside = mix(vec3(0.1, 0.0, 0.3), vec3(0.3, 0.1, 0.5), sin(iMouseTime * 2.0 + dist * 10.0) * 0.5 + 0.5);
     col = mix(col, portalInside, eventHorizon);
 
     float edgeDistort = exp(-pow(dist - 0.1, 2.0) * 50.0);

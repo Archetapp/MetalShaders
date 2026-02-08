@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -118,7 +119,7 @@ void main() {
     vec2 mouseP = (mouseUV - 0.5) * vec2(aspect, 1.0);
 
     float growthTime = 10.0;
-    float cycleProgress = mod(iTime, growthTime) / growthTime;
+    float cycleProgress = clamp(iMouseTime / growthTime, 0.0, 1.0);
 
     vec3 bgColor = mix(vec3(0.02, 0.04, 0.08), vec3(0.05, 0.08, 0.15), uv.y);
 

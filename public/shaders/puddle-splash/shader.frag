@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -21,9 +22,9 @@ void main() {
     for (int i = 0; i < 6; i++) {
         float fi = float(i);
         float dropInterval = 1.5 + fi * 0.7;
-        float dropTime = mod(iTime + fi * 2.3, dropInterval);
-        vec2 dropPos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 3.1 + floor((iTime + fi * 2.3) / dropInterval) * 1.7) * 0.3,
-                            cos(fi * 2.7 + floor((iTime + fi * 2.3) / dropInterval) * 2.1) * 0.2);
+        float dropTime = mod(iMouseTime + fi * 2.3, dropInterval);
+        vec2 dropPos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 3.1 + floor((iMouseTime + fi * 2.3) / dropInterval) * 1.7) * 0.3,
+                            cos(fi * 2.7 + floor((iMouseTime + fi * 2.3) / dropInterval) * 2.1) * 0.2);
 
         float dist = length(uv - dropPos);
         float waveSpeed = 0.4;

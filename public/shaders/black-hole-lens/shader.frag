@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -36,7 +37,7 @@ vec3 bhStarColor(vec2 uv) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
-    float t = iTime;
+    float t = iMouseTime;
 
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
@@ -53,9 +54,9 @@ void main() {
 
     vec2 lensedUV = uv + dir * deflection;
 
-    float starLayer1 = bhStarField(lensedUV + t * 0.01, 30.0);
-    float starLayer2 = bhStarField(lensedUV * 1.5 + t * 0.005 + 5.0, 50.0);
-    float starLayer3 = bhStarField(lensedUV * 0.7 - t * 0.008 + 10.0, 20.0);
+    float starLayer1 = bhStarField(lensedUV + iTime * 0.01, 30.0);
+    float starLayer2 = bhStarField(lensedUV * 1.5 + iTime * 0.005 + 5.0, 50.0);
+    float starLayer3 = bhStarField(lensedUV * 0.7 - iTime * 0.008 + 10.0, 20.0);
 
     vec3 starColor = bhStarColor(lensedUV);
     float totalStars = starLayer1 + starLayer2 * 0.6 + starLayer3 * 0.3;

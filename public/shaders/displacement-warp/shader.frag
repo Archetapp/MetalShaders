@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -12,7 +13,7 @@ void main() {
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
-    vec2 pokePoint = hasInput ? mouseCentered : vec2(sin(iTime * 0.6) * 0.25, cos(iTime * 0.5) * 0.2);
+    vec2 pokePoint = hasInput ? mouseCentered : vec2(sin(iMouseTime * 0.6) * 0.25, cos(iMouseTime * 0.5) * 0.2);
     vec2 toPoint = uv - pokePoint;
     float dist = length(toPoint);
     float pokeRadius = 0.25;

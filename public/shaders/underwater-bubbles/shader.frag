@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -21,10 +22,10 @@ void main() {
         float fi = float(i);
         float speed = 0.1 + ubHash(fi * 1.23) * 0.15;
         float xBase = (i == 0 && hasInput) ? mouseCentered.x : (ubHash(fi * 2.47) - 0.5) * 0.8;
-        float wobble = sin(iTime * (1.0 + ubHash(fi * 3.71)) + fi) * 0.03;
-        float yPos = mod(-0.6 + iTime * speed + fi * 0.3, 1.4) - 0.7;
+        float wobble = sin(iMouseTime * (1.0 + ubHash(fi * 3.71)) + fi) * 0.03;
+        float yPos = mod(-0.6 + iMouseTime * speed + fi * 0.3, 1.4) - 0.7;
         float size = 0.02 + ubHash(fi * 4.93) * 0.03;
-        float squash = 1.0 + sin(iTime * 3.0 + fi) * 0.1;
+        float squash = 1.0 + sin(iMouseTime * 3.0 + fi) * 0.1;
 
         vec2 bubblePos = vec2(xBase + wobble, yPos);
         vec2 toBubble = uv - bubblePos;

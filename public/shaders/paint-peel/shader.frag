@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -19,7 +20,7 @@ void main() {
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     vec2 mouseCentered = (mouseUV * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
 
-    float peelProgress = sin(iTime * 0.3) * 0.5 + 0.5;
+    float peelProgress = clamp(iMouseTime * 0.3, 0.0, 1.0);
     float peelLine = hasInput ? (centered.x + centered.y * 0.3 - (mouseCentered.x + mouseCentered.y * 0.3)) : (centered.x + centered.y * 0.3 - (peelProgress * 2.5 - 1.0));
     float noiseEdge = ppNoise(centered * 5.0) * 0.15;
     peelLine += noiseEdge;

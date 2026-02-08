@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -38,7 +39,7 @@ void main() {
     float clearMask = 0.0;
     for (int i = 0; i < 5; i++) {
         float fi = float(i);
-        float t = iTime * 0.3 + fi * 1.8;
+        float t = iMouseTime * 0.3 + fi * 1.8;
         vec2 wipePos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(t * 0.7 + fi) * 0.5, cos(t * 0.5 + fi * 0.7) * 0.4);
         float wipeAge = fract(t / 5.0) * 5.0;
         float wipeRadius = 0.2 + 0.1 * sin(fi);

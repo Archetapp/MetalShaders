@@ -1,6 +1,7 @@
 #version 300 es
 precision highp float;
 uniform float iTime;
+uniform float iMouseTime;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
@@ -26,7 +27,7 @@ void main() {
         float fi = float(i);
         vec2 seedPoint = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 2.1 + 1.0) * 0.3, cos(fi * 1.7 + 0.5) * 0.25);
         float seedTime = fi * 1.2;
-        float growthTime = max(0.0, iTime - seedTime);
+        float growthTime = max(0.0, iMouseTime - seedTime);
         float growthRadius = growthTime * 0.08;
 
         float dist = length(uv - seedPoint);
