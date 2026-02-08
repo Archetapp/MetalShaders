@@ -217,7 +217,7 @@ export default function ShaderCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`rounded-2xl overflow-hidden cursor-grab h-full select-none relative bg-white ${
+      className={`rounded-2xl overflow-hidden cursor-grab h-full select-none relative ${
         isExpanded ? "opacity-0" : ""
       }`}
       style={{
@@ -243,27 +243,10 @@ export default function ShaderCard({
             style={{ aspectRatio: "4/3" }}
           />
         )}
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
-      </div>
-
-      <div className="px-4 pt-1 pb-4">
-        <h2 className="text-base font-semibold text-gray-900 mb-1">
-          {shader.title}
-        </h2>
-        <p className="text-sm text-gray-500 line-clamp-1 mb-3">
-          {shader.description}
-        </p>
-        <div className="border-t border-gray-100 pt-3">
-          <div className="flex flex-wrap gap-1.5">
-            {shader.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-50 text-gray-600 border border-gray-200/60"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="absolute inset-x-0 top-0 px-4 py-3 bg-gradient-to-b from-black/50 to-transparent">
+          <h2 className="text-sm font-semibold text-white drop-shadow-sm">
+            {shader.title}
+          </h2>
         </div>
       </div>
 
