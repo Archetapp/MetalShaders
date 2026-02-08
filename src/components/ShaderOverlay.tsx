@@ -6,6 +6,7 @@ import {
   useLayoutEffect,
   useCallback,
   useRef,
+  type ChangeEvent,
 } from "react";
 import { ShaderMeta } from "@/types/shader";
 import ShaderCanvas from "./ShaderCanvas";
@@ -40,6 +41,22 @@ export default function ShaderOverlay({
   const tiltAnim = useRef<number | null>(null);
   const tilt = useRef({ tx: 0, ty: 0, cx: 0, cy: 0 });
   const tiltHovered = useRef(false);
+
+  const DEFAULT_BG_URL =
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1280&q=80";
+  const BLEND_MODES = [
+    { value: "screen", label: "Screen" },
+    { value: "multiply", label: "Multiply" },
+    { value: "overlay", label: "Overlay" },
+    { value: "soft-light", label: "Soft Light" },
+    { value: "difference", label: "Difference" },
+    { value: "normal", label: "Normal" },
+  ] as const;
+
+  const [bgEnabled, setBgEnabled] = useState(false);
+  const [bgImageUrl, setBgImageUrl] = useState(DEFAULT_BG_URL);
+  const [blendMode, setBlendMode] = useState("screen");
+  const customBgRef = useRef<string | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -216,7 +233,25 @@ export default function ShaderOverlay({
   useEffect(() => {
     return () => {
       if (tiltAnim.current) cancelAnimationFrame(tiltAnim.current);
+      if (customBgRef.current) URL.revokeObjectURL(customBgRef.current);
     };
+  }, []);
+
+  const handleBgUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (customBgRef.current) URL.revokeObjectURL(customBgRef.current);
+    const url = URL.createObjectURL(file);
+    customBgRef.current = url;
+    setBgImageUrl(url);
+  }, []);
+
+  const handleBgReset = useCallback(() => {
+    if (customBgRef.current) {
+      URL.revokeObjectURL(customBgRef.current);
+      customBgRef.current = null;
+    }
+    setBgImageUrl(DEFAULT_BG_URL);
   }, []);
 
   return (
