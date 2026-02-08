@@ -112,37 +112,49 @@ export function useShaderRenderer({
       return;
     }
 
-    const pool = getContextPool();
-    const acquired = pool.acquire();
-    if (!acquired) {
-      setError("No WebGL context available");
-      return;
-    }
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    let cancelled = false;
 
-    const { gl } = acquired;
-    glRef.current = gl;
+    const tryAcquire = () => {
+      if (cancelled) return;
 
-    const offscreenCanvas = gl.canvas as OffscreenCanvas;
-    offscreenCanvas.width = width;
-    offscreenCanvas.height = height;
+      const pool = getContextPool();
+      const acquired = pool.acquire();
+      if (!acquired) {
+        retryTimer = setTimeout(tryAcquire, 250);
+        return;
+      }
 
-    const { state, error: compileError } = createRenderer(gl, fragSource);
-    if (!state || compileError) {
-      setError(compileError);
-      pool.release(gl);
-      glRef.current = null;
-      return;
-    }
+      const { gl } = acquired;
+      glRef.current = gl;
 
-    setError(null);
-    stateRef.current = state;
-    startRenderLoop(gl, state, canvasRef.current);
+      const offscreenCanvas = gl.canvas as OffscreenCanvas;
+      offscreenCanvas.width = width;
+      offscreenCanvas.height = height;
+
+      const { state, error: compileError } = createRenderer(gl, fragSource);
+      if (!state || compileError) {
+        setError(compileError);
+        pool.release(gl);
+        glRef.current = null;
+        return;
+      }
+
+      setError(null);
+      stateRef.current = state;
+      startRenderLoop(gl, state, canvasRef.current);
+    };
+
+    tryAcquire();
 
     return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
       if (stateRef.current && glRef.current) {
         captureFrame();
         destroyRenderer(glRef.current, stateRef.current);
         stateRef.current = null;
+        const pool = getContextPool();
         pool.release(glRef.current);
         glRef.current = null;
       }
