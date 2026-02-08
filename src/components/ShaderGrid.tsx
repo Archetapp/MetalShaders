@@ -95,6 +95,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
                 setExpandState({ slug: shader.slug, rect })
               }
               isExpanded={expandState?.slug === shader.slug}
+              overlayOpen={!!expandState}
             />
           ))}
         </div>

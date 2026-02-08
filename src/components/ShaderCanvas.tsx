@@ -10,6 +10,7 @@ interface ShaderCanvasProps {
   height?: number;
   className?: string;
   alwaysVisible?: boolean;
+  paused?: boolean;
   onRecompileReady?: (recompile: (src: string) => string | null) => void;
 }
 
@@ -19,10 +20,11 @@ export default function ShaderCanvas({
   height = 300,
   className = "",
   alwaysVisible = false,
+  paused = false,
   onRecompileReady,
 }: ShaderCanvasProps) {
   const [observerRef, isIntersecting] = useIntersectionObserver(0.1);
-  const isVisible = alwaysVisible || isIntersecting;
+  const isVisible = !paused && (alwaysVisible || isIntersecting);
 
   const { canvasRef, error, recompile } = useShaderRenderer({
     fragSource,

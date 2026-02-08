@@ -8,12 +8,14 @@ interface ShaderCardProps {
   shader: ShaderMeta;
   onExpand: (rect: DOMRect) => void;
   isExpanded?: boolean;
+  overlayOpen?: boolean;
 }
 
 export default function ShaderCard({
   shader,
   onExpand,
   isExpanded,
+  overlayOpen = false,
 }: ShaderCardProps) {
   const [fragSource, setFragSource] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -236,7 +238,7 @@ export default function ShaderCard({
     >
       <div className="relative">
         {fragSource ? (
-          <ShaderCanvas fragSource={fragSource} width={400} height={300} />
+          <ShaderCanvas fragSource={fragSource} width={400} height={300} paused={overlayOpen} />
         ) : (
           <div
             className="w-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse"
