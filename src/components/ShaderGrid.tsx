@@ -43,6 +43,14 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     return Array.from(tagSet).sort();
   }, [shaders]);
 
+  const tagCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    shaders.forEach((s) => s.tags.forEach((t) => {
+      counts[t] = (counts[t] || 0) + 1;
+    }));
+    return counts;
+  }, [shaders]);
+
   const filteredShaders = useMemo(() => {
     return shaders.filter((shader) => {
       const matchesSearch =
@@ -76,6 +84,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
         allTags={allTags}
         selectedTags={selectedTags}
         onTagToggle={handleTagToggle}
+        tagCounts={tagCounts}
       />
 
       {filteredShaders.length === 0 ? (
