@@ -237,43 +237,58 @@ export default function ShaderOverlay({
           <div className="w-full max-w-4xl flex flex-col gap-4 pointer-events-none">
             <div
               ref={heroRef}
-              className="rounded-2xl overflow-hidden shadow-2xl relative pointer-events-auto"
+              className="pointer-events-auto"
               style={{ transformOrigin: "center center" }}
               onClick={(e) => e.stopPropagation()}
+              onMouseMove={handleHeroMouseMove}
+              onMouseEnter={handleHeroMouseEnter}
+              onMouseLeave={handleHeroMouseLeave}
             >
-              <button
-                onClick={handleClose}
-                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
+              <div
+                ref={heroInnerRef}
+                className="rounded-2xl overflow-hidden shadow-2xl relative"
+                style={{ willChange: "transform" }}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                <button
+                  onClick={handleClose}
+                  className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
 
-              {editedFragSource ? (
-                <ShaderCanvas
-                  fragSource={editedFragSource}
-                  width={1024}
-                  height={576}
-                  alwaysVisible
-                  onRecompileReady={handleRecompileReady}
-                />
-              ) : (
+                {editedFragSource ? (
+                  <ShaderCanvas
+                    fragSource={editedFragSource}
+                    width={1024}
+                    height={576}
+                    alwaysVisible
+                    onRecompileReady={handleRecompileReady}
+                  />
+                ) : (
+                  <div
+                    className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
+                    style={{ aspectRatio: "16/9" }}
+                  />
+                )}
+
                 <div
-                  className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
-                  style={{ aspectRatio: "16/9" }}
+                  ref={glareRef}
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+                  style={{ opacity: 0, mixBlendMode: "overlay" }}
                 />
-              )}
+              </div>
             </div>
 
             <div
