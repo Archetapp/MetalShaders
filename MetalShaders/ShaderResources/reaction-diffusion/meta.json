@@ -1,0 +1,8 @@
+{
+  "slug": "reaction-diffusion",
+  "title": "Reaction Diffusion",
+  "description": "Gray-Scott model producing organic spots, stripes, and mitosis-like patterns",
+  "tags": ["simulation", "organic", "math"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}

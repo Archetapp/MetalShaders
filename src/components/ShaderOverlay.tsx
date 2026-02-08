@@ -203,15 +203,6 @@ export default function ShaderOverlay({
                   style={{ aspectRatio: "16/9" }}
                 />
               )}
-
-              <div className="absolute inset-x-0 bottom-0 glass-overlay px-6 pt-12 pb-5">
-                <h2 className="text-xl font-bold text-gray-900">
-                  {shader.title}
-                </h2>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  {shader.description}
-                </p>
-              </div>
             </div>
 
             <div
@@ -221,6 +212,31 @@ export default function ShaderOverlay({
                   : "opacity-0 translate-y-6"
               }`}
             >
+              <div
+                className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-5"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h2 className="text-xl font-bold text-gray-900">
+                  {shader.title}
+                </h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  {shader.description}
+                </p>
+                <div className="border-t border-gray-200/60 mt-4 pt-3 flex flex-wrap items-center gap-2">
+                  {shader.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-50 text-gray-600 border border-gray-200/60"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  <span className="text-xs text-gray-400 ml-auto">
+                    By {shader.author}
+                  </span>
+                </div>
+              </div>
+
               {editedFragSource && (
                 <div
                   className="pointer-events-auto"
@@ -273,20 +289,6 @@ export default function ShaderOverlay({
                     ) : null}
                   </div>
                 </div>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2 px-2 pb-4 pointer-events-auto">
-                {shader.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-white/70 text-gray-600 border border-gray-200/60"
-                  >
-                    {tag}
-                  </span>
-                ))}
-                <span className="text-xs text-gray-400 ml-1">
-                  By {shader.author}
-                </span>
               </div>
             </div>
           </div>

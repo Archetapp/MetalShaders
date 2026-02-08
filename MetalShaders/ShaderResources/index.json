@@ -1,6 +1,30 @@
 {
   "shaders": [
     {
+      "slug": "aurora-borealis",
+      "title": "Aurora Borealis",
+      "description": "Flowing curtains of green, purple, and blue light undulating like the northern lights",
+      "tags": [
+        "nature",
+        "atmosphere",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "film-grain",
+      "title": "Film Grain",
+      "description": "Animated photographic film grain overlay with adjustable intensity and warmth",
+      "tags": [
+        "post-processing",
+        "film",
+        "texture"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "fractal-noise",
       "title": "Fractal Noise",
       "description": "Layered fractal Brownian motion noise with animated color mapping",
@@ -13,6 +37,102 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "game-of-life",
+      "title": "Game of Life",
+      "description": "Conway's cellular automaton with gliders and emergent patterns from random initial state",
+      "tags": [
+        "simulation",
+        "cellular",
+        "math"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "kaleidoscope",
+      "title": "Kaleidoscope",
+      "description": "N-fold radial mirror symmetry applied to animated noise with rainbow coloring",
+      "tags": [
+        "optical",
+        "psychedelic",
+        "symmetry"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "lightning",
+      "title": "Lightning Bolt",
+      "description": "Branching electric discharge with glow bloom and random re-strikes",
+      "tags": [
+        "energy",
+        "nature",
+        "glow"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "mandelbrot",
+      "title": "Mandelbrot Set",
+      "description": "Classic escape-time fractal with smooth continuous coloring and slow auto-zoom",
+      "tags": [
+        "fractal",
+        "math",
+        "zoom"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "matrix-rain",
+      "title": "Matrix Rain",
+      "description": "Falling green katakana columns with varying speeds, brightness trails, and glow",
+      "tags": [
+        "retro",
+        "text",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "mesh-gradient",
+      "title": "Mesh Gradient",
+      "description": "Apple-style flowing gradient with soft color blobs morphing via simplex noise",
+      "tags": [
+        "gradient",
+        "modern",
+        "ui"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "metaballs",
+      "title": "Metaballs",
+      "description": "Soft organic blobs that drift, merge, and separate with smooth color blending",
+      "tags": [
+        "sdf",
+        "organic",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "ocean-surface",
+      "title": "Ocean Surface",
+      "description": "Gerstner wave ocean with Fresnel reflections, sun specular, and foam highlights",
+      "tags": [
+        "water",
+        "nature",
+        "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "plasma-wave",
       "title": "Plasma Wave",
       "description": "Classic plasma effect using sine wave interference patterns",
@@ -20,6 +140,66 @@
         "procedural",
         "color",
         "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "reaction-diffusion",
+      "title": "Reaction Diffusion",
+      "description": "Gray-Scott model producing organic spots, stripes, and mitosis-like patterns",
+      "tags": [
+        "simulation",
+        "organic",
+        "math"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-primitives",
+      "title": "SDF Primitives",
+      "description": "Gallery of signed distance field shapes — circle, box, star, heart — with smooth blending",
+      "tags": [
+        "sdf",
+        "geometry",
+        "math"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "starfield",
+      "title": "Starfield Parallax",
+      "description": "Multi-depth star layers with twinkling, slow drift, and parallax depth",
+      "tags": [
+        "space",
+        "particles",
+        "parallax"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "synthwave-sunset",
+      "title": "Synthwave Sunset",
+      "description": "80s retro sun with horizontal bands sinking behind a glowing perspective grid",
+      "tags": [
+        "retro",
+        "synthwave",
+        "80s"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "truchet-tiles",
+      "title": "Truchet Tiles",
+      "description": "Quarter-circle arcs randomly rotated per cell creating animated maze-like paths",
+      "tags": [
+        "pattern",
+        "geometry",
+        "tiling"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
