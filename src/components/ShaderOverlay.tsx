@@ -153,6 +153,72 @@ export default function ShaderOverlay({
     []
   );
 
+  const ensureTiltLoop = useCallback(() => {
+    if (tiltAnim.current) return;
+    const tick = () => {
+      const t = tilt.current;
+      const el = heroInnerRef.current;
+      t.cx += (t.tx - t.cx) * 0.1;
+      t.cy += (t.ty - t.cy) * 0.1;
+      if (el) {
+        el.style.transform = `perspective(1200px) rotateX(${t.cx}deg) rotateY(${t.cy}deg) scale3d(1.01, 1.01, 1)`;
+        const lift = Math.abs(t.cx) + Math.abs(t.cy);
+        const shadowX = t.cy * -1;
+        const shadowY = 8 + t.cx * 1;
+        el.style.boxShadow = `${shadowX}px ${shadowY}px ${30 + lift}px rgba(0,0,0,${(0.15 + lift * 0.005).toFixed(3)})`;
+      }
+      const settled = Math.abs(t.cx - t.tx) < 0.05 && Math.abs(t.cy - t.ty) < 0.05;
+      if (tiltHovered.current || !settled) {
+        tiltAnim.current = requestAnimationFrame(tick);
+      } else {
+        tiltAnim.current = null;
+        t.cx = t.tx = 0;
+        t.cy = t.ty = 0;
+        if (el) {
+          el.style.transform = "";
+          el.style.boxShadow = "";
+        }
+      }
+    };
+    tiltAnim.current = requestAnimationFrame(tick);
+  }, []);
+
+  const handleHeroMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      const el = heroInnerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width;
+      const ny = (e.clientY - rect.top) / rect.height;
+      tilt.current.tx = (ny - 0.5) * -12;
+      tilt.current.ty = (nx - 0.5) * 12;
+      if (glareRef.current) {
+        glareRef.current.style.background = `radial-gradient(circle at ${nx * 100}% ${ny * 100}%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 40%, transparent 70%)`;
+        glareRef.current.style.opacity = "1";
+      }
+    },
+    []
+  );
+
+  const handleHeroMouseEnter = useCallback(() => {
+    tiltHovered.current = true;
+    ensureTiltLoop();
+  }, [ensureTiltLoop]);
+
+  const handleHeroMouseLeave = useCallback(() => {
+    tiltHovered.current = false;
+    tilt.current.tx = 0;
+    tilt.current.ty = 0;
+    if (glareRef.current) glareRef.current.style.opacity = "0";
+    ensureTiltLoop();
+  }, [ensureTiltLoop]);
+
+  useEffect(() => {
+    return () => {
+      if (tiltAnim.current) cancelAnimationFrame(tiltAnim.current);
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-50">
       <div
