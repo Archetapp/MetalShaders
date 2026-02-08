@@ -324,6 +324,7 @@ export default function ShaderOverlay({
                         width={1024}
                         height={576}
                         alwaysVisible
+                        mouseMode={shader.mouseMode}
                         onRecompileReady={handleRecompileReady}
                       />
                     ) : (

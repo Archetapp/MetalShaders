@@ -54,6 +54,7 @@ export default function ShaderDetail({ shader }: ShaderDetailProps) {
             width={1024}
             height={576}
             alwaysVisible
+            mouseMode={shader.mouseMode}
           />
         </div>
 

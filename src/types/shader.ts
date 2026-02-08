@@ -5,6 +5,7 @@ export interface ShaderMeta {
   tags: string[];
   author: string;
   date: string;
+  mouseMode?: "hover" | "press";
 }
 
 export interface ShaderData extends ShaderMeta {

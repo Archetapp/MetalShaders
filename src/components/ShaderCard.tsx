@@ -238,7 +238,7 @@ export default function ShaderCard({
     >
       <div className="relative">
         {fragSource ? (
-          <ShaderCanvas fragSource={fragSource} width={400} height={300} paused={overlayOpen} />
+          <ShaderCanvas fragSource={fragSource} width={400} height={300} paused={overlayOpen} mouseMode={shader.mouseMode} />
         ) : (
           <div
             className="w-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse"

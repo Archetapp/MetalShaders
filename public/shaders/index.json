@@ -178,7 +178,8 @@
         "distortion"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "bloom-glow",
@@ -226,7 +227,8 @@
         "material"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "brushed-metal",
@@ -370,7 +372,8 @@
         "light"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "caustics",
@@ -490,7 +493,8 @@
         "3d"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "cloud-shadows",
@@ -574,7 +578,8 @@
         "nature"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "confetti-burst",
@@ -706,7 +711,8 @@
         "organic"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "diamond-facets",
@@ -730,7 +736,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "disco-ball-reflections",
@@ -742,7 +749,8 @@
         "retro"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "displacement-warp",
@@ -754,7 +762,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "dissolve-embers",
@@ -778,7 +787,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "dissolve-transition",
@@ -862,7 +872,8 @@
         "animation"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "droste-effect",
@@ -910,7 +921,8 @@
         "animation"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "eclipse",
@@ -970,7 +982,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "elementary-ca",
@@ -1054,7 +1067,8 @@
         "cellular"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "feather-barbs",
@@ -1078,7 +1092,8 @@
         "organic"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "fibonacci-spiral",
@@ -1186,7 +1201,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "foil-stamp",
@@ -1198,7 +1214,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "forest-fire",
@@ -1282,7 +1299,8 @@
         "growth"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "frosted-glass",
@@ -1306,7 +1324,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "frosted-metal",
@@ -1402,7 +1421,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "god-rays",
@@ -1486,7 +1506,8 @@
         "physics"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "guilloche",
@@ -1570,7 +1591,8 @@
         "color"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "heat-shimmer",
@@ -1630,7 +1652,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "hopf-fibration",
@@ -1690,7 +1713,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "impossible-triangle",
@@ -1750,7 +1774,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "interference-rings",
@@ -1870,7 +1895,8 @@
         "light"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "lava-flow",
@@ -1942,7 +1968,8 @@
         "light"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "lenticular-card",
@@ -1954,7 +1981,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "light-sweep-glare",
@@ -1966,7 +1994,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "lightning",
@@ -2002,7 +2031,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "liquid-morph",
@@ -2074,7 +2104,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "magnetic-particles",
@@ -2170,7 +2201,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "meteor-shower",
@@ -2242,7 +2274,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "morphing-blobs",
@@ -2302,7 +2335,8 @@
         "physics"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "nebula",
@@ -2338,7 +2372,8 @@
         "trails"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "neon-sign",
@@ -2422,7 +2457,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "oil-slick-material",
@@ -2458,7 +2494,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "op-art-waves",
@@ -2506,7 +2543,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "parallax-depth-card",
@@ -2518,7 +2556,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "parametric-surface",
@@ -2614,7 +2653,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "pixel-dithering",
@@ -2698,7 +2738,8 @@
         "rainbow"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "polar-rose",
@@ -2770,7 +2811,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "posterize",
@@ -2794,7 +2836,8 @@
         "physics"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "prismatic-glass-edge",
@@ -2806,7 +2849,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "prismatic-light",
@@ -2866,7 +2910,8 @@
         "nature"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "pulsar-beam",
@@ -2926,7 +2971,8 @@
         "refraction"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "rainbow-arc",
@@ -2974,7 +3020,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "retro-terminal",
@@ -3082,7 +3129,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "scratched-surface",
@@ -3310,7 +3358,8 @@
         "atmosphere"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "snowfall",
@@ -3322,7 +3371,8 @@
         "winter"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "snowglobe",
@@ -3334,7 +3384,8 @@
         "particles"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "soap-film",
@@ -3430,7 +3481,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "stained-glass",
@@ -3454,7 +3506,8 @@
         "artistic"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "starfield",
@@ -3550,7 +3603,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "synthwave-sunset",
@@ -3610,7 +3664,8 @@
         "nature"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "tiled-mirrors",
@@ -3634,7 +3689,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "tornado-vortex",
@@ -3670,7 +3726,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "touch-water-ripple",
@@ -3682,7 +3739,8 @@
         "distortion"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "tree-growth",
@@ -3778,7 +3836,8 @@
         "nature"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "value-noise",
@@ -3886,7 +3945,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     },
     {
       "slug": "voronoi-shatter",
@@ -3922,7 +3982,8 @@
         "organic"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "hover"
     },
     {
       "slug": "water-ripple",
@@ -4054,7 +4115,8 @@
         "interactive"
       ],
       "author": "Jared Davidson",
-      "date": "2026-02-08"
+      "date": "2026-02-08",
+      "mouseMode": "press"
     }
   ]
 }

@@ -12,6 +12,7 @@ interface ShaderCanvasProps {
   className?: string;
   alwaysVisible?: boolean;
   paused?: boolean;
+  mouseMode?: "hover" | "press";
   onRecompileReady?: (recompile: (src: string) => string | null) => void;
 }
 
@@ -22,6 +23,7 @@ export default function ShaderCanvas({
   className = "",
   alwaysVisible = false,
   paused = false,
+  mouseMode,
   onRecompileReady,
 }: ShaderCanvasProps) {
   const [observerRef, isIntersecting] = useIntersectionObserver(0.1);
@@ -38,53 +40,61 @@ export default function ShaderCanvas({
 
   const mouseDownRef = useRef(false);
 
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      mouseDownRef.current = true;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * width;
-      const y = (1 - (e.clientY - rect.top) / rect.height) * height;
+  const computeMouse = useCallback(
+    (clientX: number, clientY: number, rect: DOMRect) => {
+      const x = ((clientX - rect.left) / rect.width) * width;
+      const y = (1 - (clientY - rect.top) / rect.height) * height;
       setMouse(x, y);
     },
     [width, height, setMouse]
+  );
+
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!mouseMode) return;
+      mouseDownRef.current = true;
+      if (mouseMode === "press") {
+        computeMouse(e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
+      }
+    },
+    [mouseMode, computeMouse]
   );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!mouseDownRef.current) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * width;
-      const y = (1 - (e.clientY - rect.top) / rect.height) * height;
-      setMouse(x, y);
+      if (!mouseMode) return;
+      if (mouseMode === "press" && !mouseDownRef.current) return;
+      computeMouse(e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
     },
-    [width, height, setMouse]
+    [mouseMode, computeMouse]
   );
 
   const handleMouseUp = useCallback(() => {
+    if (!mouseMode) return;
     mouseDownRef.current = false;
     setMouse(0, 0);
-  }, [setMouse]);
+  }, [mouseMode, setMouse]);
 
   const handleMouseLeave = useCallback(() => {
+    if (!mouseMode) return;
     mouseDownRef.current = false;
     setMouse(0, 0);
-  }, [setMouse]);
+  }, [mouseMode, setMouse]);
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent<HTMLDivElement>) => {
+      if (!mouseMode) return;
       const touch = e.touches[0];
       if (!touch) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = ((touch.clientX - rect.left) / rect.width) * width;
-      const y = (1 - (touch.clientY - rect.top) / rect.height) * height;
-      setMouse(x, y);
+      computeMouse(touch.clientX, touch.clientY, e.currentTarget.getBoundingClientRect());
     },
-    [width, height, setMouse]
+    [mouseMode, computeMouse]
   );
 
   const handleTouchEnd = useCallback(() => {
+    if (!mouseMode) return;
     setMouse(0, 0);
-  }, [setMouse]);
+  }, [mouseMode, setMouse]);
 
   return (
     <div

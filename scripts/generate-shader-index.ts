@@ -10,6 +10,7 @@ interface ShaderMeta {
   tags: string[];
   author: string;
   date: string;
+  mouseMode?: "hover" | "press";
 }
 
 function generateIndex() {
