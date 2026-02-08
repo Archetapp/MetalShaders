@@ -50,7 +50,7 @@ export default function SearchFilter({
             }`}
             onClick={() => onTagToggle(tag)}
           >
-            {tag}
+            {tag.charAt(0).toUpperCase() + tag.slice(1)}
           </button>
         ))}
       </div>
