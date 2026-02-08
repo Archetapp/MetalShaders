@@ -1,0 +1,8 @@
+{
+  "slug": "sdf-primitives",
+  "title": "SDF Primitives",
+  "description": "Gallery of signed distance field shapes — circle, box, star, heart — with smooth blending",
+  "tags": ["sdf", "geometry", "math"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}
