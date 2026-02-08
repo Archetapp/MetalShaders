@@ -56,6 +56,7 @@ export default function ShaderOverlay({
   const [bgEnabled, setBgEnabled] = useState(false);
   const [bgImageUrl, setBgImageUrl] = useState(DEFAULT_BG_URL);
   const [blendMode, setBlendMode] = useState("screen");
+  const [hasCustomBg, setHasCustomBg] = useState(false);
   const customBgRef = useRef<string | null>(null);
 
   useEffect(() => {
@@ -244,6 +245,7 @@ export default function ShaderOverlay({
     const url = URL.createObjectURL(file);
     customBgRef.current = url;
     setBgImageUrl(url);
+    setHasCustomBg(true);
   }, []);
 
   const handleBgReset = useCallback(() => {
@@ -252,6 +254,7 @@ export default function ShaderOverlay({
       customBgRef.current = null;
     }
     setBgImageUrl(DEFAULT_BG_URL);
+    setHasCustomBg(false);
   }, []);
 
   return (
@@ -282,46 +285,58 @@ export default function ShaderOverlay({
               <div
                 ref={heroInnerRef}
                 className="rounded-2xl overflow-hidden shadow-2xl relative"
-                style={{ willChange: "transform" }}
+                style={{ willChange: "transform", isolation: "isolate" }}
               >
-                <button
-                  onClick={handleClose}
-                  className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-
-                {editedFragSource ? (
-                  <ShaderCanvas
-                    fragSource={editedFragSource}
-                    width={1024}
-                    height={576}
-                    alwaysVisible
-                    onRecompileReady={handleRecompileReady}
-                  />
-                ) : (
-                  <div
-                    className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
-                    style={{ aspectRatio: "16/9" }}
+                {bgEnabled && (
+                  <img
+                    src={bgImageUrl}
+                    alt="Background"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ zIndex: 0 }}
                   />
                 )}
+
+                <div style={{ position: "relative", zIndex: 10, mixBlendMode: bgEnabled ? blendMode : undefined } as React.CSSProperties}>
+                  <button
+                    onClick={handleClose}
+                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
+                    style={{ zIndex: 30 }}
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+
+                  {editedFragSource ? (
+                    <ShaderCanvas
+                      fragSource={editedFragSource}
+                      width={1024}
+                      height={576}
+                      alwaysVisible
+                      onRecompileReady={handleRecompileReady}
+                    />
+                  ) : (
+                    <div
+                      className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
+                      style={{ aspectRatio: "16/9" }}
+                    />
+                  )}
+                </div>
 
                 <div
                   ref={glareRef}
                   className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
-                  style={{ opacity: 0, mixBlendMode: "overlay" }}
+                  style={{ opacity: 0, zIndex: 20, mixBlendMode: "overlay" }}
                 />
               </div>
             </div>
@@ -333,6 +348,62 @@ export default function ShaderOverlay({
                   : "opacity-0 translate-y-6"
               }`}
             >
+              <div
+                className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-sm font-medium text-gray-700">
+                    Background
+                  </span>
+                  <button
+                    onClick={() => setBgEnabled((v) => !v)}
+                    className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+                      bgEnabled
+                        ? "bg-gray-900 text-white"
+                        : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                    }`}
+                  >
+                    {bgEnabled ? "On" : "Off"}
+                  </button>
+
+                  {bgEnabled && (
+                    <>
+                      <select
+                        value={blendMode}
+                        onChange={(e) => setBlendMode(e.target.value)}
+                        className="px-2 py-1 text-xs rounded-lg border border-gray-200 bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                      >
+                        {BLEND_MODES.map((m) => (
+                          <option key={m.value} value={m.value}>
+                            {m.label}
+                          </option>
+                        ))}
+                      </select>
+
+                      <label className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer">
+                        Upload Image
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleBgUpload}
+                        />
+                      </label>
+
+                      {hasCustomBg && (
+                        <button
+                          onClick={handleBgReset}
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+                        >
+                          Reset
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
               <div
                 className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-5"
                 onClick={(e) => e.stopPropagation()}
