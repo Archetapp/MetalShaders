@@ -2,12 +2,16 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float ubHash(float n) { return fract(sin(n) * 43758.5453); }
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
     vec3 waterColor = mix(vec3(0.0, 0.08, 0.15), vec3(0.0, 0.15, 0.3), uv.y + 0.5);
     float caustic = sin(uv.x * 15.0 + iTime) * sin(uv.y * 12.0 + iTime * 0.7) * 0.05;
     waterColor += caustic;
@@ -16,7 +20,7 @@ void main() {
     for (int i = 0; i < 20; i++) {
         float fi = float(i);
         float speed = 0.1 + ubHash(fi * 1.23) * 0.15;
-        float xBase = (ubHash(fi * 2.47) - 0.5) * 0.8;
+        float xBase = (i == 0 && hasInput) ? mouseCentered.x : (ubHash(fi * 2.47) - 0.5) * 0.8;
         float wobble = sin(iTime * (1.0 + ubHash(fi * 3.71)) + fi) * 0.03;
         float yPos = mod(-0.6 + iTime * speed + fi * 0.3, 1.4) - 0.7;
         float size = 0.02 + ubHash(fi * 4.93) * 0.03;

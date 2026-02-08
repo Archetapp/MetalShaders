@@ -139,7 +139,7 @@ void main() {
     int numSeeds = 5;
     for (int s = 0; s < 5; s++) {
         float seedId = float(s);
-        vec2 seedPos = vec2(
+        vec2 seedPos = (s == 0 && hasInput) ? mouseP : vec2(
             (frostHash(vec2(seedId * 1.3, 0.0)) - 0.5) * aspect * 0.8,
             (frostHash(vec2(seedId * 2.7, 1.0)) - 0.5) * 0.8
         );

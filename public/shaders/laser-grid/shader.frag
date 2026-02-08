@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float lgNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);
@@ -11,6 +12,9 @@ return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
     vec3 col = vec3(0.02, 0.02, 0.03);
 
     float fog = lgNoise(uv * 3.0 + iTime * 0.1) * 0.05;
@@ -18,7 +22,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        float scanPos = sin(iTime * (0.5 + fi * 0.2) + fi * 1.5) * 0.4;
+        float scanPos = (i == 0 && hasInput) ? mouseCentered.y : sin(iTime * (0.5 + fi * 0.2) + fi * 1.5) * 0.4;
         float beamH = smoothstep(0.004, 0.0, abs(uv.y - scanPos));
         float beamGlowH = exp(-abs(uv.y - scanPos) * 30.0);
         vec3 beamColor = fi < 2.0 ? vec3(1.0, 0.1, 0.1) : vec3(0.1, 1.0, 0.2);
@@ -30,7 +34,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        float scanPos = cos(iTime * (0.4 + fi * 0.15) + fi * 2.0) * 0.4;
+        float scanPos = (i == 0 && hasInput) ? mouseCentered.x : cos(iTime * (0.4 + fi * 0.15) + fi * 2.0) * 0.4;
         float beamV = smoothstep(0.004, 0.0, abs(uv.x - scanPos));
         float beamGlowV = exp(-abs(uv.x - scanPos) * 30.0);
         vec3 beamColor = fi < 2.0 ? vec3(0.1, 0.3, 1.0) : vec3(0.8, 0.1, 0.8);
@@ -40,8 +44,8 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            float hi = sin(iTime * (0.5 + float(i) * 0.2) + float(i) * 1.5) * 0.4;
-            float vj = cos(iTime * (0.4 + float(j) * 0.15) + float(j) * 2.0) * 0.4;
+            float hi = (i == 0 && hasInput) ? mouseCentered.y : sin(iTime * (0.5 + float(i) * 0.2) + float(i) * 1.5) * 0.4;
+            float vj = (j == 0 && hasInput) ? mouseCentered.x : cos(iTime * (0.4 + float(j) * 0.15) + float(j) * 2.0) * 0.4;
             vec2 intersection = vec2(vj, hi);
             float intDist = length(uv - intersection);
             float intGlow = exp(-intDist * 20.0) * 0.3;

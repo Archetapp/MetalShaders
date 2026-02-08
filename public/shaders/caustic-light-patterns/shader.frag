@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float clpNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);
@@ -23,9 +24,13 @@ float clpCaustic(vec2 uv, float t) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
-    float c1 = clpCaustic(uv, iTime);
-    float c2 = clpCaustic(uv + vec2(0.3, 0.7), iTime * 0.8);
-    float c3 = clpCaustic(uv * 1.5, iTime * 1.2);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 causticCenter = hasInput ? mouseCentered : vec2(0.0);
+    float c1 = clpCaustic(uv - causticCenter, iTime);
+    float c2 = clpCaustic(uv - causticCenter + vec2(0.3, 0.7), iTime * 0.8);
+    float c3 = clpCaustic((uv - causticCenter) * 1.5, iTime * 1.2);
     float caustic = c1 * c2 + c3 * 0.3;
     caustic = pow(caustic, 1.5) * 2.0;
 
