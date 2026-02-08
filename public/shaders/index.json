@@ -13,6 +13,66 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "anamorphic-stretch",
+      "title": "Anamorphic Stretch",
+      "description": "Cylindrical anamorphic projection distortion",
+      "tags": [
+        "optical",
+        "distortion",
+        "art"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "apollonian-gasket",
+      "title": "Apollonian Gasket",
+      "description": "Circle packing fractal",
+      "tags": [
+        "math",
+        "fractal",
+        "packing"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "art-deco-fans",
+      "title": "Art Deco Fans",
+      "description": "Radiating fan motifs in gold",
+      "tags": [
+        "art",
+        "deco",
+        "elegant"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "ascii-art",
+      "title": "ASCII Art",
+      "description": "Content rendered as ASCII density characters",
+      "tags": [
+        "retro",
+        "text",
+        "creative"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "asteroid-field",
+      "title": "Asteroid Field",
+      "description": "Tumbling rocks with depth and shadow",
+      "tags": [
+        "space",
+        "3d",
+        "rocks"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "atmospheric-sunset",
       "title": "Atmospheric Sunset",
       "description": "Rayleigh scattering simulation with sun disk, orange/pink/purple sky",
@@ -49,6 +109,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "barnsley-fern",
+      "title": "Barnsley Fern",
+      "description": "IFS fern with animated wind sway effect",
+      "tags": [
+        "fractal",
+        "organic",
+        "classic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "barrel-distortion",
+      "title": "Barrel Distortion",
+      "description": "Lens distortion with adjustable strength",
+      "tags": [
+        "post-processing",
+        "lens",
+        "distortion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "bauhaus-circles",
+      "title": "Bauhaus Circles",
+      "description": "Overlapping primary-color circles",
+      "tags": [
+        "art",
+        "geometric",
+        "design"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "black-hole",
       "title": "Black Hole",
       "description": "Gravitational lensing of a procedural star field. Schwarzschild metric approximation bending light rays. Accretion disk with Doppler shifting. Dark event horizon sphere.",
@@ -68,6 +164,30 @@
         "space",
         "physics",
         "distortion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "bloom-glow",
+      "title": "Bloom and Glow",
+      "description": "Bright areas bleed light soft glow",
+      "tags": [
+        "post-processing",
+        "glow",
+        "cinematic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "breathing-glow",
+      "title": "Breathing Glow",
+      "description": "Sine-pulsing glow ring Siri-style",
+      "tags": [
+        "ui",
+        "ambient",
+        "glow"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -116,6 +236,30 @@
         "water",
         "iridescence",
         "organic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "buddhabrot",
+      "title": "Buddhabrot (Approx)",
+      "description": "Trajectory density estimation of escaped Mandelbrot orbits",
+      "tags": [
+        "fractal",
+        "math",
+        "density"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "burning-ship",
+      "title": "Burning Ship",
+      "description": "Absolute-value Mandelbrot variant with fire-inspired palette",
+      "tags": [
+        "fractal",
+        "math",
+        "fire"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -193,6 +337,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "cassette-tape",
+      "title": "Cassette Tape",
+      "description": "Spinning reel-to-reel with moving tape",
+      "tags": [
+        "retro",
+        "music",
+        "mechanical"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "caustic-light-patterns",
+      "title": "Caustic Light Patterns",
+      "description": "Shimmering underwater light patterns on the surface",
+      "tags": [
+        "caustic",
+        "water",
+        "light"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "caustics",
       "title": "Caustics",
       "description": "Dancing underwater light patterns from surface refraction",
@@ -253,6 +421,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "channel-mixer",
+      "title": "Channel Mixer",
+      "description": "RGB channel remapping and swapping",
+      "tags": [
+        "post-processing",
+        "color",
+        "creative"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "chevron-pulse",
       "title": "Chevron Pulse",
       "description": "Animated chevron arrows pulsing like a conveyor",
@@ -260,6 +440,18 @@
         "pattern",
         "motion",
         "ui"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "chromatic-aberration",
+      "title": "Chromatic Aberration",
+      "description": "RGB offset toward edges",
+      "tags": [
+        "post-processing",
+        "lens",
+        "color"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -289,6 +481,66 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "cloud-shadows",
+      "title": "Cloud Shadows",
+      "description": "Overhead cloud shadows drifting across sunlit ground",
+      "tags": [
+        "nature",
+        "atmosphere",
+        "shadow"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "color-afterimage",
+      "title": "Color Afterimage",
+      "description": "Stare-then-reveal complementary color illusion",
+      "tags": [
+        "optical",
+        "illusion",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "color-grading",
+      "title": "Color Grading",
+      "description": "Temp tint contrast saturation adjustments",
+      "tags": [
+        "post-processing",
+        "color",
+        "cinematic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "comet-tail",
+      "title": "Comet Tail",
+      "description": "Bright nucleus with dust and ion tails",
+      "tags": [
+        "space",
+        "particles",
+        "motion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "complex-mapping",
+      "title": "Complex Mapping",
+      "description": "Domain coloring of f(z)",
+      "tags": [
+        "math",
+        "complex",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "concentric-rings",
       "title": "Concentric Rings",
       "description": "Expanding rings from center with interference patterns",
@@ -296,6 +548,30 @@
         "pattern",
         "wave",
         "geometry"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "condensation",
+      "title": "Condensation",
+      "description": "Tiny water droplets forming on cold glass, growing and merging",
+      "tags": [
+        "water",
+        "glass",
+        "nature"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "confetti-burst",
+      "title": "Confetti Burst",
+      "description": "Colorful paper rectangles exploding and fluttering",
+      "tags": [
+        "ui",
+        "celebration",
+        "particles"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -313,6 +589,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "cracked-earth",
+      "title": "Cracked Earth",
+      "description": "Dry mud with deep crack network",
+      "tags": [
+        "nature",
+        "texture",
+        "drought"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "crt-monitor",
       "title": "CRT Monitor",
       "description": "Scanlines, barrel distortion, phosphor RGB subpixels, screen curvature, and slight color bleeding over animated content",
@@ -325,6 +613,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "cubist-facets",
+      "title": "Cubist Facets",
+      "description": "Fragmented angular views of shapes",
+      "tags": [
+        "art",
+        "abstract",
+        "fragmented"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "curl-noise",
       "title": "Curl Noise",
       "description": "Divergence-free field visualized as flowing streamlines",
@@ -332,6 +632,30 @@
         "noise",
         "flow",
         "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "cycloid-family",
+      "title": "Cycloid Family",
+      "description": "Epicycloid and hypocycloid animations",
+      "tags": [
+        "math",
+        "curves",
+        "geometry"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "de-stijl",
+      "title": "De Stijl",
+      "description": "Horizontal vertical black lines with color rectangles",
+      "tags": [
+        "art",
+        "geometric",
+        "classic"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -361,6 +685,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "dew-drops",
+      "title": "Dew Drops",
+      "description": "Morning dew drops with spherical refraction and slow growth",
+      "tags": [
+        "water",
+        "nature",
+        "organic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "diamond-facets",
       "title": "Diamond Facets",
       "description": "Brilliant-cut gem with internal refraction and spectral dispersion. Multiple internal bounces creating fire effect. Rotating slowly.",
@@ -385,6 +721,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "disco-ball-reflections",
+      "title": "Disco Ball Reflections",
+      "description": "Rotating faceted sphere casting light spots everywhere",
+      "tags": [
+        "disco",
+        "light",
+        "retro"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "displacement-warp",
+      "title": "Displacement Warp",
+      "description": "Image warps around point like poking rubber sheet",
+      "tags": [
+        "warp",
+        "distortion",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "dissolve-embers",
       "title": "Dissolve to Embers",
       "description": "Content burns away from an animated point with noise-based dissolve, glowing orange edge, and rising ember particles",
@@ -392,6 +752,18 @@
         "transition",
         "fire",
         "particles"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "dissolve-to-embers",
+      "title": "Dissolve to Embers",
+      "description": "Content burns from point, edge glows before disintegrating into embers",
+      "tags": [
+        "fire",
+        "dissolve",
+        "interactive"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -445,6 +817,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "dragon-curve",
+      "title": "Dragon Curve",
+      "description": "Paper-folding fractal via IFS transformation",
+      "tags": [
+        "fractal",
+        "geometry",
+        "recursive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "dripping-paint",
       "title": "Dripping Paint",
       "description": "Thick viscous drips running down with gravity",
@@ -452,6 +836,18 @@
         "art",
         "fluid",
         "gravity"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "dripping-water",
+      "title": "Dripping Water",
+      "description": "Water dripping from top edge, forming drops that fall and splash",
+      "tags": [
+        "water",
+        "nature",
+        "animation"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -493,6 +889,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "dynamic-island-morph",
+      "title": "Dynamic Island Morph",
+      "description": "Metaball shapes stretching and merging with elastic bridging",
+      "tags": [
+        "metaball",
+        "ui",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "eclipse",
+      "title": "Eclipse",
+      "description": "Moon passing before the sun with glowing corona",
+      "tags": [
+        "space",
+        "dramatic",
+        "astronomy"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "edge-detection",
+      "title": "Edge Detection",
+      "description": "Sobel filter highlighting edges",
+      "tags": [
+        "post-processing",
+        "filter",
+        "technical"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "electric-arc",
       "title": "Electric Arc",
       "description": "Jagged lightning bolts arcing between orbiting points with branching and blue electric glow",
@@ -517,6 +949,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "electric-lightning-arc",
+      "title": "Electric Lightning Arc",
+      "description": "Jagged lightning bolts arcing between two points",
+      "tags": [
+        "lightning",
+        "energy",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "elementary-ca",
       "title": "Elementary CA",
       "description": "Wolfram Rule 30/90/110 scrolling",
@@ -524,6 +968,18 @@
         "cellular",
         "automata",
         "pattern"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "emboss",
+      "title": "Emboss",
+      "description": "Directional emboss creating raised illusion",
+      "tags": [
+        "post-processing",
+        "filter",
+        "3d"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -613,6 +1069,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "fibonacci-spiral",
+      "title": "Fibonacci Spiral",
+      "description": "Golden ratio with sunflower seeds",
+      "tags": [
+        "math",
+        "nature",
+        "spiral"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "film-grain",
       "title": "Film Grain",
       "description": "Animated photographic film grain overlay with adjustable intensity and warmth",
@@ -685,6 +1153,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "fog-mist",
+      "title": "Fog & Mist",
+      "description": "Layered translucent noise sheets creating depth fog",
+      "tags": [
+        "atmosphere",
+        "nature",
+        "depth"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "fog-wipe",
+      "title": "Fog Wipe",
+      "description": "Dense fog that clears where wiped, slowly creeping back",
+      "tags": [
+        "fog",
+        "atmosphere",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "foil-stamp",
       "title": "Foil Stamp",
       "description": "Metallic foil with angle-dependent iridescence and tiny flake sparkles",
@@ -709,6 +1201,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "fourier-series",
+      "title": "Fourier Series",
+      "description": "Building square and triangle waves from harmonics",
+      "tags": [
+        "math",
+        "wave",
+        "educational"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "fractal-flame",
+      "title": "Fractal Flame",
+      "description": "IFS with nonlinear variation functions and log-density coloring",
+      "tags": [
+        "fractal",
+        "generative",
+        "art"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "fractal-noise",
       "title": "Fractal Noise",
       "description": "Layered fractal Brownian motion noise with animated color mapping",
@@ -716,6 +1232,18 @@
         "noise",
         "procedural",
         "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "fractal-spiral",
+      "title": "Fractal Spiral",
+      "description": "Spiral arms containing smaller spirals recursively",
+      "tags": [
+        "fractal",
+        "spiral",
+        "recursive"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -745,6 +1273,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "frosted-glass-wipe",
+      "title": "Frosted Glass Wipe",
+      "description": "Frost wiped away revealing sharp content underneath, like a steamy mirror",
+      "tags": [
+        "glass",
+        "frost",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "frosted-metal",
+      "title": "Frosted Metal",
+      "description": "Matte brushed finish with soft reflections",
+      "tags": [
+        "material",
+        "metal",
+        "subtle"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "galaxy-spiral",
       "title": "Galaxy Spiral",
       "description": "Rotating spiral arms with star density variation, dust lanes, embedded bright stars, and core glow",
@@ -769,6 +1321,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "game-boy",
+      "title": "Game Boy",
+      "description": "4-shade green palette with chunky pixel rendering",
+      "tags": [
+        "retro",
+        "gaming",
+        "pixel"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "game-of-life",
       "title": "Game of Life",
       "description": "Conway's cellular automaton with gliders and emergent patterns from random initial state",
@@ -781,6 +1345,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "gaussian-blur",
+      "title": "Gaussian Blur",
+      "description": "Separable Gaussian on procedural content",
+      "tags": [
+        "post-processing",
+        "blur",
+        "utility"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "geometric-bloom",
       "title": "Geometric Bloom",
       "description": "Expanding geometric shapes radiating from center",
@@ -788,6 +1364,42 @@
         "geometry",
         "animation",
         "elegant"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "god-rays",
+      "title": "God Rays",
+      "description": "Crepuscular rays through cloud gaps",
+      "tags": [
+        "atmosphere",
+        "light",
+        "volumetric"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "gooey-effect",
+      "title": "Gooey Effect",
+      "description": "Sticky blob separation when elements pull apart",
+      "tags": [
+        "ui",
+        "organic",
+        "fun"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "gradient-map",
+      "title": "Gradient Map",
+      "description": "Luminance remapped to color ramp",
+      "tags": [
+        "post-processing",
+        "color",
+        "artistic"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -829,6 +1441,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "gravity-wells",
+      "title": "Gravity Wells",
+      "description": "Particles orbiting and slingshotting between gravity attractors",
+      "tags": [
+        "gravity",
+        "particles",
+        "physics"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "guilloche",
       "title": "Guilloche",
       "description": "Fine-line security pattern engraving",
@@ -841,6 +1465,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "gyroid-surface",
+      "title": "Gyroid Surface",
+      "description": "Triply periodic minimal surface lattice",
+      "tags": [
+        "sdf",
+        "math",
+        "organic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "halftone-cmyk",
       "title": "Halftone CMYK",
       "description": "Color separation into rotated dot screens over an animated gradient with each CMYK layer at different rotation angles",
@@ -848,6 +1484,18 @@
         "retro",
         "print",
         "pattern"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "hammered-metal",
+      "title": "Hammered Metal",
+      "description": "Dimpled surface with per-dimple specular",
+      "tags": [
+        "material",
+        "metal",
+        "artisan"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -872,6 +1520,30 @@
         "simulation",
         "thermal",
         "physics"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "heat-map-touch",
+      "title": "Heat Map Touch",
+      "description": "Surface turns red/hot at touch, slowly cools to blue like a thermal camera",
+      "tags": [
+        "thermal",
+        "interactive",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "heat-shimmer",
+      "title": "Heat Shimmer",
+      "description": "Refractive distortion rising from hot surface",
+      "tags": [
+        "atmosphere",
+        "distortion",
+        "desert"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -925,6 +1597,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "hopf-fibration",
+      "title": "Hopf Fibration",
+      "description": "3-sphere fiber bundle projected to 2D",
+      "tags": [
+        "math",
+        "topology",
+        "abstract"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "houndstooth",
       "title": "Houndstooth",
       "description": "Classic two-tone fashion pattern with animated color shift",
@@ -937,6 +1621,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "hypnotic-spiral",
+      "title": "Hypnotic Spiral",
+      "description": "Logarithmic spiral with color rotation and infinite zoom",
+      "tags": [
+        "optical",
+        "hypnotic",
+        "spiral"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "ice-crystals",
       "title": "Ice Crystals",
       "description": "Branching crystalline frost using angular Worley noise",
@@ -944,6 +1640,30 @@
         "nature",
         "ice",
         "procedural"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "impossible-triangle",
+      "title": "Impossible Triangle",
+      "description": "Penrose triangle with depth contradiction",
+      "tags": [
+        "optical",
+        "illusion",
+        "geometry"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "impressionist-brush",
+      "title": "Impressionist Brush",
+      "description": "Short directional brush-stroke texture",
+      "tags": [
+        "art",
+        "painting",
+        "texture"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -968,6 +1688,30 @@
         "art",
         "organic",
         "diffusion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "ink-watercolor-spread",
+      "title": "Ink Watercolor Spread",
+      "description": "Ink drops spreading organically following paper grain",
+      "tags": [
+        "ink",
+        "watercolor",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "interference-rings",
+      "title": "Interference Rings",
+      "description": "Overlapping circular waves creating interference patterns",
+      "tags": [
+        "physics",
+        "wave",
+        "pattern"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1021,6 +1765,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "kandinsky",
+      "title": "Kandinsky",
+      "description": "Animated circles lines triangles composition",
+      "tags": [
+        "art",
+        "abstract",
+        "animated"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "koch-snowflake",
+      "title": "Koch Snowflake",
+      "description": "Edge-distance estimation of Koch curve at high recursion depth",
+      "tags": [
+        "fractal",
+        "geometry",
+        "snow"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "kuwahara-filter",
+      "title": "Kuwahara Filter",
+      "description": "Painterly smoothing preserving edges",
+      "tags": [
+        "post-processing",
+        "art",
+        "painting"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "langtons-ant",
       "title": "Langtons Ant",
       "description": "Turing machine producing emergent highway",
@@ -1028,6 +1808,30 @@
         "cellular",
         "automata",
         "emergent"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "laser-grid",
+      "title": "Laser Grid",
+      "description": "Scanning laser beams with volumetric fog",
+      "tags": [
+        "laser",
+        "sci-fi",
+        "light"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "lava-flow",
+      "title": "Lava Flow",
+      "description": "Bright cracks over dark cooled surface crust",
+      "tags": [
+        "nature",
+        "fire",
+        "procedural"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1081,12 +1885,36 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "lens-flare",
+      "title": "Lens Flare",
+      "description": "Cinematic lens flare with anamorphic streaks and ghost rings",
+      "tags": [
+        "lens",
+        "cinematic",
+        "light"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "lenticular-card",
       "title": "Lenticular Card",
       "description": "Security-hologram rainbow shimmer rippling across surface",
       "tags": [
         "holographic",
         "rainbow",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "light-sweep-glare",
+      "title": "Light Sweep Glare",
+      "description": "Bright band of light sweeping across polished surface",
+      "tags": [
+        "light",
+        "glare",
         "interactive"
       ],
       "author": "Jared Davidson",
@@ -1117,6 +1945,66 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "liquid-metal-mercury",
+      "title": "Liquid Metal Mercury",
+      "description": "Chrome reflective blob that deforms and morphs, T-1000 style",
+      "tags": [
+        "liquid",
+        "chrome",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "liquid-morph",
+      "title": "Liquid Morph",
+      "description": "Shape morphing with inertia and spring settle",
+      "tags": [
+        "ui",
+        "morph",
+        "fluid"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "lissajous-curves",
+      "title": "Lissajous Curves",
+      "description": "Parametric curves with evolving frequency ratios",
+      "tags": [
+        "math",
+        "curves",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "loading-spinner",
+      "title": "Loading Spinner",
+      "description": "Animated arc spinner with gradient tail",
+      "tags": [
+        "ui",
+        "animation",
+        "utility"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "lyapunov-fractal",
+      "title": "Lyapunov Fractal",
+      "description": "Logistic map exponents in AB parameter space",
+      "tags": [
+        "fractal",
+        "math",
+        "chaos"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "magnetic-field",
       "title": "Magnetic Field",
       "description": "Iron-filing field lines from two poles",
@@ -1129,6 +2017,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "magnetic-particle-field",
+      "title": "Magnetic Particle Field",
+      "description": "Particles attracted to and repelled from moving point, forming galaxy formations",
+      "tags": [
+        "particles",
+        "magnetic",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "magnetic-particles",
       "title": "Magnetic Particle Field",
       "description": "Thousands of procedural particles attracted toward an orbiting point, creating swirling galaxy-like formations",
@@ -1136,6 +2036,18 @@
         "particles",
         "physics",
         "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "mandelbrot-power",
+      "title": "Mandelbrot Power",
+      "description": "z^n+c with animated power n from 2 to 5, watching symmetry increase",
+      "tags": [
+        "fractal",
+        "math",
+        "animation"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1213,6 +2125,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "meteor-shower",
+      "title": "Meteor Shower",
+      "description": "Bright streaks across the night sky",
+      "tags": [
+        "space",
+        "particles",
+        "night"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "moire-circles",
       "title": "Moire Circles",
       "description": "Two overlapping sets of concentric circles creating interference",
@@ -1237,6 +2161,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "mondrian",
+      "title": "Mondrian",
+      "description": "Random rectangular partition with primary colors",
+      "tags": [
+        "art",
+        "geometric",
+        "classic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "moon-phases",
+      "title": "Moon Phases",
+      "description": "Accurate lunar phase with crater detail and earthshine",
+      "tags": [
+        "space",
+        "moon",
+        "astronomy"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "morphing-blob-drag",
+      "title": "Morphing Blob Drag",
+      "description": "Organic metaball droplets that merge and separate",
+      "tags": [
+        "metaball",
+        "organic",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "morphing-blobs",
       "title": "Morphing Blobs",
       "description": "Soft metaball gradients drifting and merging organically",
@@ -1249,6 +2209,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "motion-blur",
+      "title": "Motion Blur",
+      "description": "Directional streak blur",
+      "tags": [
+        "post-processing",
+        "blur",
+        "motion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "multibrot",
+      "title": "Multibrot",
+      "description": "Higher-power z^3 and z^4 Mandelbrot with smooth coloring",
+      "tags": [
+        "fractal",
+        "math",
+        "variation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "mushroom-spores",
       "title": "Mushroom Spores",
       "description": "Expanding spore cloud with Brownian drift",
@@ -1256,6 +2240,18 @@
         "nature",
         "particles",
         "organic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "navier-stokes-fluid",
+      "title": "Navier-Stokes Fluid",
+      "description": "2D fluid simulation with colorful dye injection",
+      "tags": [
+        "fluid",
+        "simulation",
+        "physics"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1321,6 +2317,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "newtons-fractal",
+      "title": "Newton's Fractal",
+      "description": "Convergence basins for z cubed minus one with three-color domain coloring",
+      "tags": [
+        "fractal",
+        "math",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "night-sky",
+      "title": "Night Sky",
+      "description": "Dark gradient with procedural stars and milky way band",
+      "tags": [
+        "space",
+        "night",
+        "stars"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "nuclear-glow",
+      "title": "Nuclear Glow",
+      "description": "Cherenkov blue core with pulsing radiation rings",
+      "tags": [
+        "energy",
+        "science",
+        "glow"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "ocean-surface",
       "title": "Ocean Surface",
       "description": "Gerstner wave ocean with Fresnel reflections, sun specular, and foam highlights",
@@ -1328,6 +2360,18 @@
         "water",
         "nature",
         "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "oil-and-water",
+      "title": "Oil and Water",
+      "description": "Two immiscible fluids that separate with flowing boundaries",
+      "tags": [
+        "fluid",
+        "simulation",
+        "interactive"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1357,6 +2401,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "oil-slick-iridescence",
+      "title": "Oil Slick Iridescence",
+      "description": "Thin-film rainbow interference like gasoline on water",
+      "tags": [
+        "iridescence",
+        "rainbow",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "op-art-waves",
       "title": "Op Art Waves",
       "description": "Bridget Riley-style undulating black and white stripes creating depth and motion illusion",
@@ -1364,6 +2420,54 @@
         "optical",
         "illusion",
         "geometric"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "outrun-road",
+      "title": "Outrun Road",
+      "description": "Perspective highway with mountains and gradient sky",
+      "tags": [
+        "retro",
+        "driving",
+        "80s"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "page-curl",
+      "title": "Page Curl",
+      "description": "Paper curling back to reveal content",
+      "tags": [
+        "ui",
+        "transition",
+        "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "parallax-depth-card",
+      "title": "Parallax Depth Card",
+      "description": "Multi-layer elements moving at different rates for 3D parallax",
+      "tags": [
+        "parallax",
+        "3d",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "parametric-surface",
+      "title": "Parametric Surface",
+      "description": "Animated parametric curve butterfly spirals",
+      "tags": [
+        "math",
+        "curves",
+        "animation"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1417,6 +2521,66 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "phase-portrait",
+      "title": "Phase Portrait",
+      "description": "2D dynamical system vector field with flow",
+      "tags": [
+        "math",
+        "physics",
+        "visualization"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "phoenix-fractal",
+      "title": "Phoenix Fractal",
+      "description": "Two-term Julia variant with feathered organic structures",
+      "tags": [
+        "fractal",
+        "math",
+        "organic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pixel-disintegration",
+      "title": "Pixel Disintegration",
+      "description": "Thanos-style pixels scattering as particles",
+      "tags": [
+        "dissolve",
+        "particles",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pixel-dithering",
+      "title": "Pixel Dithering",
+      "description": "Bayer matrix dithering reducing to limited color palette",
+      "tags": [
+        "retro",
+        "pixel",
+        "dither"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pixelate",
+      "title": "Pixelate",
+      "description": "Mosaic pixelation at configurable block size",
+      "tags": [
+        "post-processing",
+        "pixel",
+        "retro"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "planet-surface",
       "title": "Planet Surface",
       "description": "Procedural terrain on a sphere — continents, oceans, clouds, atmosphere glow. Slowly rotating.",
@@ -1424,6 +2588,18 @@
         "space",
         "procedural",
         "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "plasma-ball",
+      "title": "Plasma Ball",
+      "description": "Branching filaments reaching toward a point inside glass sphere",
+      "tags": [
+        "energy",
+        "electric",
+        "retro"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1441,6 +2617,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "pointillism",
+      "title": "Pointillism",
+      "description": "Seurat-style dots creating blended image",
+      "tags": [
+        "art",
+        "impressionist",
+        "dots"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "pokemon-holo-card",
       "title": "Pokemon Holo Card",
       "description": "Rainbow diffraction grating that shifts with viewing angle, with noise-distorted holographic patterns",
@@ -1448,6 +2636,30 @@
         "holographic",
         "card",
         "rainbow"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "polar-rose",
+      "title": "Polar Rose",
+      "description": "r equals cos n theta over d petal patterns",
+      "tags": [
+        "math",
+        "geometry",
+        "elegant"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "polaroid-develop",
+      "title": "Polaroid Develop",
+      "description": "Photo slowly developing from white",
+      "tags": [
+        "retro",
+        "photo",
+        "transition"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1472,6 +2684,30 @@
         "art",
         "generative",
         "abstract"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pop-art-dots",
+      "title": "Pop Art Dots",
+      "description": "Ben-Day dots with bold flat colors",
+      "tags": [
+        "art",
+        "retro",
+        "pop"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "posterize",
+      "title": "Posterize",
+      "description": "Reduced color levels for poster-art bands",
+      "tags": [
+        "post-processing",
+        "art",
+        "stylized"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1525,6 +2761,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "progress-ring",
+      "title": "Progress Ring",
+      "description": "Circular progress with smooth animated fill",
+      "tags": [
+        "ui",
+        "animation",
+        "utility"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "puddle-reflection",
       "title": "Puddle Reflection",
       "description": "Still water reflection with distortion",
@@ -1532,6 +2780,54 @@
         "water",
         "reflection",
         "nature"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "puddle-splash",
+      "title": "Puddle Splash",
+      "description": "Still puddle splashing with expanding rings",
+      "tags": [
+        "water",
+        "splash",
+        "nature"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pulsar-beam",
+      "title": "Pulsar Beam",
+      "description": "Rotating lighthouse beam from neutron star",
+      "tags": [
+        "space",
+        "rotation",
+        "energy"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "pulsing-grid",
+      "title": "Pulsing Grid",
+      "description": "Grid of circles pulsing in traveling wave patterns",
+      "tags": [
+        "pattern",
+        "wave",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "radial-blur",
+      "title": "Radial Blur",
+      "description": "Blur from center point zoom blur",
+      "tags": [
+        "post-processing",
+        "blur",
+        "dramatic"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1561,6 +2857,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "rainbow-arc",
+      "title": "Rainbow",
+      "description": "Circular arc with correct spectral ordering and secondary bow",
+      "tags": [
+        "nature",
+        "optics",
+        "color"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "rainfall",
+      "title": "Rainfall",
+      "description": "Streak-based rain with splash impacts on ground",
+      "tags": [
+        "weather",
+        "nature",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "reaction-diffusion",
       "title": "Reaction Diffusion",
       "description": "Gray-Scott model producing organic spots, stripes, and mitosis-like patterns",
@@ -1573,6 +2893,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "reaction-diffusion-paint",
+      "title": "Reaction Diffusion Paint",
+      "description": "Touch seeds organic biological patterns that grow outward",
+      "tags": [
+        "simulation",
+        "organic",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "retro-terminal",
+      "title": "Retro Terminal",
+      "description": "Green phosphor terminal with cursor and CRT glow",
+      "tags": [
+        "retro",
+        "terminal",
+        "hacker"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "ridged-noise",
       "title": "Ridged Noise",
       "description": "Inverted absolute noise summed for mountain ridge patterns",
@@ -1580,6 +2924,42 @@
         "noise",
         "terrain",
         "procedural"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "ripple-touch",
+      "title": "Ripple Touch",
+      "description": "Material Design touch ripple expanding",
+      "tags": [
+        "ui",
+        "material",
+        "touch"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "rotating-illusion",
+      "title": "Rotating Illusion",
+      "description": "Static pattern appearing to rotate via peripheral drift",
+      "tags": [
+        "optical",
+        "illusion",
+        "trick"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "rothko-fields",
+      "title": "Rothko Fields",
+      "description": "Soft-edged color field rectangles",
+      "tags": [
+        "art",
+        "minimal",
+        "color"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1609,6 +2989,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "saturn-rings",
+      "title": "Saturn Rings",
+      "description": "Particle ring system with gaps and shadow",
+      "tags": [
+        "space",
+        "planet",
+        "rings"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "scratch-off-reveal",
       "title": "Scratch-Off Reveal",
       "description": "Metallic silver coating being scratched away over time to reveal colorful content underneath with animated scratch paths",
@@ -1616,6 +3008,66 @@
         "reveal",
         "metallic",
         "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "scratched-surface",
+      "title": "Scratched Surface",
+      "description": "Fine directional scratches catching light",
+      "tags": [
+        "material",
+        "wear",
+        "metal"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-booleans",
+      "title": "SDF Booleans",
+      "description": "Union intersection subtraction of shapes",
+      "tags": [
+        "sdf",
+        "geometry",
+        "boolean"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-morphing",
+      "title": "SDF Morphing",
+      "description": "One shape smoothly becoming another",
+      "tags": [
+        "sdf",
+        "animation",
+        "transition"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-noise-displace",
+      "title": "SDF Noise Displace",
+      "description": "Shape boundary displaced by noise",
+      "tags": [
+        "sdf",
+        "organic",
+        "noise"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-outline",
+      "title": "SDF Outline",
+      "description": "Exact-width rounded dashed outlines",
+      "tags": [
+        "sdf",
+        "design",
+        "clean"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1633,6 +3085,66 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "sdf-repetition",
+      "title": "SDF Repetition",
+      "description": "Infinite grid repetition via mod coords",
+      "tags": [
+        "sdf",
+        "pattern",
+        "infinite"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-scene",
+      "title": "SDF Scene",
+      "description": "Composed scene with multiple shapes and lighting",
+      "tags": [
+        "sdf",
+        "scene",
+        "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-shadow",
+      "title": "SDF Shadow",
+      "description": "Soft shadows cast by SDF shapes",
+      "tags": [
+        "sdf",
+        "shadow",
+        "lighting"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-smooth-blend",
+      "title": "SDF Smooth Blend",
+      "description": "Smooth minimum blending shapes organically",
+      "tags": [
+        "sdf",
+        "organic",
+        "blend"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sdf-text",
+      "title": "SDF Text",
+      "description": "Letter forms as distance fields with glow",
+      "tags": [
+        "sdf",
+        "text",
+        "typography"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "seashell-spiral",
       "title": "Seashell Spiral",
       "description": "Logarithmic spiral with growth ridges and nacre sheen",
@@ -1640,6 +3152,42 @@
         "nature",
         "spiral",
         "shell"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sharpen",
+      "title": "Sharpen",
+      "description": "Unsharp mask enhancement",
+      "tags": [
+        "post-processing",
+        "filter",
+        "utility"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "shockwave-distort",
+      "title": "Shockwave Distort",
+      "description": "Expanding ring distortion effect",
+      "tags": [
+        "ui",
+        "impact",
+        "distortion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sierpinski-triangle",
+      "title": "Sierpinski Triangle",
+      "description": "IFS chaos game triangle at high iteration count",
+      "tags": [
+        "fractal",
+        "geometry",
+        "classic"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1664,6 +3212,30 @@
         "noise",
         "procedural",
         "fundamental"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sine-wave-sum",
+      "title": "Sine Wave Sum",
+      "description": "Multiple superimposed sine waves",
+      "tags": [
+        "math",
+        "wave",
+        "interference"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "smoke-vapor",
+      "title": "Smoke Vapor",
+      "description": "Wispy smoke trails dissipating over time",
+      "tags": [
+        "smoke",
+        "particles",
+        "atmosphere"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1705,6 +3277,30 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "solar-flare",
+      "title": "Solar Flare",
+      "description": "Arcing plasma loop from stellar surface",
+      "tags": [
+        "space",
+        "energy",
+        "sun"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sparks-embers",
+      "title": "Sparks & Embers",
+      "description": "Glowing particles rising with wind drift",
+      "tags": [
+        "fire",
+        "particles",
+        "warm"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "spider-web",
       "title": "Spider Web",
       "description": "Radial and spiral threads with glistening dew drops",
@@ -1741,6 +3337,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "spring-mesh-deform",
+      "title": "Spring Mesh Deform",
+      "description": "Grid of connected springs that wobbles like jelly physics",
+      "tags": [
+        "physics",
+        "mesh",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "stained-glass",
+      "title": "Stained Glass",
+      "description": "Colored panels with lead came and light",
+      "tags": [
+        "material",
+        "art",
+        "glass"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "stained-glass-light",
+      "title": "Stained Glass Light",
+      "description": "Colored light through stained glass panels with lead lines",
+      "tags": [
+        "glass",
+        "light",
+        "artistic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "starfield",
       "title": "Starfield Parallax",
       "description": "Multi-depth star layers with twinkling, slow drift, and parallax depth",
@@ -1753,6 +3385,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "stereogram-dots",
+      "title": "Stereogram",
+      "description": "Random-dot autostereogram with hidden depth shape",
+      "tags": [
+        "optical",
+        "3d",
+        "hidden"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "strange-attractor",
       "title": "Strange Attractor",
       "description": "Lorenz attractor trajectory rendered as glowing density. Camera slowly orbits. Bright core trails with dim outer paths.",
@@ -1760,6 +3404,66 @@
         "math",
         "chaos",
         "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "sunset-sky",
+      "title": "Sunset Sky",
+      "description": "Atmospheric scattering with purple overhead to orange horizon",
+      "tags": [
+        "nature",
+        "sky",
+        "atmosphere"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "supernova",
+      "title": "Supernova",
+      "description": "Expanding shell of light with glowing remnant core",
+      "tags": [
+        "space",
+        "explosion",
+        "dramatic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "suprematism",
+      "title": "Suprematism",
+      "description": "Floating geometric shapes on white",
+      "tags": [
+        "art",
+        "geometric",
+        "minimal"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "swipe-reveal",
+      "title": "Swipe Reveal",
+      "description": "Diagonal wipe with feathered edge",
+      "tags": [
+        "ui",
+        "transition",
+        "clean"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "swirl-vortex-portal",
+      "title": "Swirl Vortex Portal",
+      "description": "Spiral vortex sucking pixels toward point creating wormhole",
+      "tags": [
+        "vortex",
+        "portal",
+        "interactive"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1801,6 +3505,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "threshold",
+      "title": "Threshold",
+      "description": "Black and white cutoff with noise dithering at boundary",
+      "tags": [
+        "post-processing",
+        "bw",
+        "graphic"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "tidal-wave",
       "title": "Tidal Wave",
       "description": "Ocean surface with large directional waves, foam on crests, deep troughs, and dramatic lighting",
@@ -1837,6 +3553,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "tornado-vortex",
+      "title": "Tornado Vortex",
+      "description": "Rotating funnel cloud with debris and dark sky",
+      "tags": [
+        "weather",
+        "dramatic",
+        "nature"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "torus-knot",
+      "title": "Torus Knot",
+      "description": "p q torus knot projected to 2D",
+      "tags": [
+        "math",
+        "topology",
+        "3d"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "touch-shockwave",
+      "title": "Touch Shockwave",
+      "description": "Expanding energy rings with sci-fi shockwave distortion",
+      "tags": [
+        "energy",
+        "shockwave",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "touch-water-ripple",
       "title": "Touch Water Ripple",
       "description": "Concentric ripples emanating from animated points, distorting a colored background with realistic water caustics",
@@ -1856,6 +3608,30 @@
         "organic",
         "growth",
         "fractal"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "tricorn-fractal",
+      "title": "Tricorn",
+      "description": "Conjugate Mandelbrot with three-fold symmetry",
+      "tags": [
+        "fractal",
+        "math",
+        "symmetry"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "tron-gridscape",
+      "title": "Tron Gridscape",
+      "description": "Glowing blue grid extending to the horizon",
+      "tags": [
+        "retro",
+        "scifi",
+        "neon"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1885,6 +3661,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "tunnel-zoom",
+      "title": "Tunnel Zoom",
+      "description": "Radial texture scrolling inward with infinite fly-through",
+      "tags": [
+        "optical",
+        "tunnel",
+        "animation"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "turbulence",
       "title": "Turbulence",
       "description": "Absolute-value FBM with sharper creases and folds",
@@ -1892,6 +3680,18 @@
         "noise",
         "procedural",
         "texture"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "underwater-bubbles",
+      "title": "Underwater Bubbles",
+      "description": "Rising bubbles wobbling and refracting, merging when close",
+      "tags": [
+        "water",
+        "bubbles",
+        "nature"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1909,6 +3709,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "vector-field",
+      "title": "Vector Field",
+      "description": "Arrow grid showing gradient curl",
+      "tags": [
+        "math",
+        "physics",
+        "visualization"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "velvet",
       "title": "Velvet",
       "description": "Rim-lit soft material bright at grazing angles",
@@ -1916,6 +3728,42 @@
         "material",
         "fabric",
         "soft"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "vhs-glitch",
+      "title": "VHS Glitch",
+      "description": "Tracking errors, color bleed, and horizontal tearing",
+      "tags": [
+        "retro",
+        "glitch",
+        "distortion"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "vignette",
+      "title": "Vignette",
+      "description": "Darkened corners with multiple falloff curves",
+      "tags": [
+        "post-processing",
+        "photo",
+        "subtle"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "vinyl-record",
+      "title": "Vinyl Record",
+      "description": "Spinning disk with groove microstructure",
+      "tags": [
+        "retro",
+        "music",
+        "spinning"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -1945,6 +3793,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "voronoi-glass-shatter",
+      "title": "Voronoi Glass Shatter",
+      "description": "Impact point creates Voronoi glass fragments that fall away",
+      "tags": [
+        "voronoi",
+        "shatter",
+        "interactive"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "voronoi-shatter",
       "title": "Voronoi Glass Shatter",
       "description": "Screen shatters into Voronoi glass fragments that separate and fall with refraction and edge highlights",
@@ -1952,6 +3812,18 @@
         "voronoi",
         "glass",
         "transition"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "warp-speed",
+      "title": "Warp Speed",
+      "description": "Star-trek elongated star streaks accelerating",
+      "tags": [
+        "space",
+        "scifi",
+        "speed"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
@@ -2005,6 +3877,42 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "wax-subsurface",
+      "title": "Wax Subsurface",
+      "description": "Translucent material with SSS glow",
+      "tags": [
+        "material",
+        "organic",
+        "light"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "welding-sparks",
+      "title": "Welding Sparks",
+      "description": "White-hot point with radiating spark trajectories",
+      "tags": [
+        "industrial",
+        "particles",
+        "bright"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "wet-asphalt",
+      "title": "Wet Asphalt",
+      "description": "Dark surface with scattered specular reflections",
+      "tags": [
+        "material",
+        "urban",
+        "rain"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "wood-grain",
       "title": "Wood Grain",
       "description": "Concentric ring distortion with noise irregularity",
@@ -2029,6 +3937,18 @@
       "date": "2026-02-08"
     },
     {
+      "slug": "wormhole-tunnel",
+      "title": "Wormhole Tunnel",
+      "description": "Spacetime tunnel with star streaks",
+      "tags": [
+        "space",
+        "tunnel",
+        "scifi"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "woven-basket",
       "title": "Woven Basket",
       "description": "Over-under strip weaving with two strip colors",
@@ -2036,6 +3956,18 @@
         "pattern",
         "craft",
         "texture"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
+      "slug": "xray-reveal-lens",
+      "title": "X-Ray Reveal Lens",
+      "description": "Circular lens showing alternative hidden layer underneath",
+      "tags": [
+        "reveal",
+        "lens",
+        "interactive"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"
