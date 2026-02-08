@@ -1,0 +1,8 @@
+{
+  "slug": "truchet-tiles",
+  "title": "Truchet Tiles",
+  "description": "Quarter-circle arcs randomly rotated per cell creating animated maze-like paths",
+  "tags": ["pattern", "geometry", "tiling"],
+  "author": "Jared Davidson",
+  "date": "2026-02-08"
+}
