@@ -65,14 +65,13 @@ export default function ShaderOverlay({
 
     hero.style.transition = "none";
     hero.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
-    hero.style.opacity = "0.6";
+    hero.style.opacity = "1";
 
     hero.offsetHeight;
 
     hero.style.transition =
-      "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease";
+      "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)";
     hero.style.transform = "none";
-    hero.style.opacity = "1";
 
     requestAnimationFrame(() => setBackdropVisible(true));
     setTimeout(() => setDetailsVisible(true), 150);
@@ -111,9 +110,8 @@ export default function ShaderOverlay({
         (heroRect.top + heroRect.height / 2);
 
       hero.style.transition =
-        "transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.35s ease";
+        "transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)";
       hero.style.transform = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
-      hero.style.opacity = "0";
 
       setTimeout(onClose, 400);
     } else if (hero) {

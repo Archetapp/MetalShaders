@@ -30,8 +30,8 @@ export default function ShaderCard({ shader, onExpand, isExpanded }: ShaderCardP
     <div
       ref={cardRef}
       onClick={handleExpand}
-      className={`shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full transition-opacity duration-300 ${
-        isExpanded ? "opacity-0" : "opacity-100"
+      className={`shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full ${
+        isExpanded ? "opacity-0" : ""
       }`}
       role="button"
       tabIndex={0}
