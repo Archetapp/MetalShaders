@@ -1,8 +1,0 @@
-{
-  "slug": "game-of-life",
-  "title": "Game of Life",
-  "description": "Conway's cellular automaton with gliders and emergent patterns from random initial state",
-  "tags": ["simulation", "cellular", "math"],
-  "author": "Jared Davidson",
-  "date": "2026-02-08"
-}

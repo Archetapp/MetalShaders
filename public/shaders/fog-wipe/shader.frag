@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float fwHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -30,11 +31,15 @@ void main() {
     fogDensity += fwFbm(centered * 4.0 - vec2(iTime * 0.08, iTime * 0.02)) * 0.5;
     fogDensity = fogDensity * 0.6 + 0.3;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
+
     float clearMask = 0.0;
     for (int i = 0; i < 5; i++) {
         float fi = float(i);
         float t = iTime * 0.3 + fi * 1.8;
-        vec2 wipePos = vec2(sin(t * 0.7 + fi) * 0.5, cos(t * 0.5 + fi * 0.7) * 0.4);
+        vec2 wipePos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(t * 0.7 + fi) * 0.5, cos(t * 0.5 + fi * 0.7) * 0.4);
         float wipeAge = fract(t / 5.0) * 5.0;
         float wipeRadius = 0.2 + 0.1 * sin(fi);
         float wipeClear = smoothstep(wipeRadius, wipeRadius * 0.3, length(centered - wipePos));

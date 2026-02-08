@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float frostHash(vec2 p) {
@@ -111,6 +112,10 @@ void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     float aspect = iResolution.x / iResolution.y;
     vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseP = (mouseUV - 0.5) * vec2(aspect, 1.0);
 
     float growthTime = 10.0;
     float cycleProgress = mod(iTime, growthTime) / growthTime;

@@ -1,8 +1,0 @@
-{
-  "slug": "mandelbrot",
-  "title": "Mandelbrot Set",
-  "description": "Classic escape-time fractal with smooth continuous coloring and slow auto-zoom",
-  "tags": ["fractal", "math", "zoom"],
-  "author": "Jared Davidson",
-  "date": "2026-02-08"
-}

@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float gcHash(float n){return fract(sin(n)*43758.5453);}
@@ -11,6 +12,9 @@ void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     vec2 centered = uv * 2.0 - 1.0;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+
     vec3 content = vec3(0.0);
     content.r = sin(uv.x * 20.0) * 0.5 + 0.5;
     content.g = sin(uv.y * 15.0 + 1.0) * 0.5 + 0.5;
@@ -18,7 +22,7 @@ void main() {
     content *= 0.5;
 
     float glitchTime = floor(iTime * 8.0);
-    float glitchIntensity = pow(sin(iTime * 0.5) * 0.5 + 0.5, 2.0);
+    float glitchIntensity = hasInput ? smoothstep(0.5, 0.0, length(uv - mouseUV)) : pow(sin(iTime * 0.5) * 0.5 + 0.5, 2.0);
 
     float blockSize = 0.05 + gcHash(glitchTime) * 0.1;
     vec2 blockId = floor(uv / blockSize);

@@ -2,12 +2,17 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float psHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
 
     vec3 skyColor = mix(vec3(0.4, 0.5, 0.6), vec3(0.6, 0.65, 0.7), uv.y + 0.5);
     float reflectY = abs(uv.y);
@@ -17,7 +22,7 @@ void main() {
         float fi = float(i);
         float dropInterval = 1.5 + fi * 0.7;
         float dropTime = mod(iTime + fi * 2.3, dropInterval);
-        vec2 dropPos = vec2(sin(fi * 3.1 + floor((iTime + fi * 2.3) / dropInterval) * 1.7) * 0.3,
+        vec2 dropPos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 3.1 + floor((iTime + fi * 2.3) / dropInterval) * 1.7) * 0.3,
                             cos(fi * 2.7 + floor((iTime + fi * 2.3) / dropInterval) * 2.1) * 0.2);
 
         float dist = length(uv - dropPos);
