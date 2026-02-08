@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { ShaderMeta } from "@/types/shader";
 import ShaderCard from "./ShaderCard";
 import SearchFilter from "./SearchFilter";
+import ShaderOverlay from "./ShaderOverlay";
 
 interface ShaderGridProps {
   shaders: ShaderMeta[];
@@ -12,6 +14,23 @@ interface ShaderGridProps {
 export default function ShaderGrid({ shaders }: ShaderGridProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (expandedSlug) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [expandedSlug]);
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -40,6 +59,10 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     );
   };
 
+  const expandedShader = expandedSlug
+    ? shaders.find((s) => s.slug === expandedSlug) ?? null
+    : null;
+
   return (
     <div>
       <SearchFilter
@@ -60,10 +83,24 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredShaders.map((shader) => (
-            <ShaderCard key={shader.slug} shader={shader} />
+            <ShaderCard
+              key={shader.slug}
+              shader={shader}
+              onExpand={() => setExpandedSlug(shader.slug)}
+            />
           ))}
         </div>
       )}
+
+      {mounted &&
+        expandedShader &&
+        createPortal(
+          <ShaderOverlay
+            shader={expandedShader}
+            onClose={() => setExpandedSlug(null)}
+          />,
+          document.body
+        )}
     </div>
   );
 }

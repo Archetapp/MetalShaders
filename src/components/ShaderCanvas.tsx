@@ -10,6 +10,7 @@ interface ShaderCanvasProps {
   height?: number;
   className?: string;
   alwaysVisible?: boolean;
+  onRecompileReady?: (recompile: (src: string) => string | null) => void;
 }
 
 export default function ShaderCanvas({
@@ -18,16 +19,19 @@ export default function ShaderCanvas({
   height = 300,
   className = "",
   alwaysVisible = false,
+  onRecompileReady,
 }: ShaderCanvasProps) {
   const [observerRef, isIntersecting] = useIntersectionObserver(0.1);
   const isVisible = alwaysVisible || isIntersecting;
 
-  const { canvasRef, error } = useShaderRenderer({
+  const { canvasRef, error, recompile } = useShaderRenderer({
     fragSource,
     isVisible,
     width,
     height,
   });
+
+  useShaderRendererRecompileRef(recompile, onRecompileReady);
 
   return (
     <div
@@ -44,4 +48,19 @@ export default function ShaderCanvas({
       {error && <ShaderError error={error} />}
     </div>
   );
+}
+
+import { useEffect, useRef } from "react";
+
+function useShaderRendererRecompileRef(
+  recompile: (src: string) => string | null,
+  onRecompileReady?: (recompile: (src: string) => string | null) => void
+) {
+  const sentRef = useRef(false);
+  useEffect(() => {
+    if (onRecompileReady && !sentRef.current) {
+      sentRef.current = true;
+      onRecompileReady(recompile);
+    }
+  }, [recompile, onRecompileReady]);
 }

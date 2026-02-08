@@ -20,6 +20,7 @@ interface UseShaderRendererOptions {
 interface UseShaderRendererResult {
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
   error: string | null;
+  recompile: (newSource: string) => string | null;
 }
 
 export function useShaderRenderer({
@@ -58,6 +59,35 @@ export function useShaderRenderer({
       }
     }
   }, []);
+
+  const recompile = useCallback(
+    (newSource: string): string | null => {
+      const gl = glRef.current;
+      if (!gl) return "No WebGL context available";
+
+      const { state: newState, error: compileError } = createRenderer(
+        gl,
+        newSource
+      );
+
+      if (!newState || compileError) {
+        setError(compileError);
+        return compileError;
+      }
+
+      if (stateRef.current) {
+        stopRenderLoop(stateRef.current);
+        destroyRenderer(gl, stateRef.current);
+      }
+
+      setError(null);
+      newState.startTime = stateRef.current?.startTime ?? newState.startTime;
+      stateRef.current = newState;
+      startRenderLoop(gl, newState, canvasRef.current);
+      return null;
+    },
+    []
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -125,5 +155,5 @@ export function useShaderRenderer({
     }
   }, [isVisible, restoreFrame]);
 
-  return { canvasRef, error };
+  return { canvasRef, error, recompile };
 }

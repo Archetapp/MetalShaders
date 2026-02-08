@@ -15,3 +15,17 @@ export interface ShaderData extends ShaderMeta {
 export interface ShaderIndex {
   shaders: ShaderMeta[];
 }
+
+export interface ShaderParameter {
+  id: string;
+  label: string;
+  type: "color" | "float" | "int";
+  value: number | [number, number, number];
+  min?: number;
+  max?: number;
+  step?: number;
+  lineNumber: number;
+  matchStart: number;
+  matchEnd: number;
+  originalText: string;
+}
