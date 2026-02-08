@@ -22,6 +22,7 @@ interface UseShaderRendererResult {
   error: string | null;
   recompile: (newSource: string) => string | null;
   setMouse: (x: number, y: number) => void;
+  setMousePressed: (pressed: boolean) => void;
 }
 
 export function useShaderRenderer({
@@ -175,5 +176,11 @@ export function useShaderRenderer({
     }
   }, []);
 
-  return { canvasRef, error, recompile, setMouse };
+  const setMousePressed = useCallback((pressed: boolean) => {
+    if (stateRef.current) {
+      stateRef.current.mousePressed = pressed;
+    }
+  }, []);
+
+  return { canvasRef, error, recompile, setMouse, setMousePressed };
 }

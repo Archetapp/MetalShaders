@@ -29,7 +29,7 @@ export default function ShaderCanvas({
   const [observerRef, isIntersecting] = useIntersectionObserver(0.1);
   const isVisible = !paused && (alwaysVisible || isIntersecting);
 
-  const { canvasRef, error, recompile, setMouse } = useShaderRenderer({
+  const { canvasRef, error, recompile, setMouse, setMousePressed } = useShaderRenderer({
     fragSource,
     isVisible,
     width,
@@ -53,11 +53,10 @@ export default function ShaderCanvas({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!mouseMode) return;
       mouseDownRef.current = true;
-      if (mouseMode === "press") {
-        computeMouse(e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
-      }
+      computeMouse(e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
+      if (mouseMode === "press") setMousePressed(true);
     },
-    [mouseMode, computeMouse]
+    [mouseMode, computeMouse, setMousePressed]
   );
 
   const handleMouseMove = useCallback(
@@ -72,14 +71,22 @@ export default function ShaderCanvas({
   const handleMouseUp = useCallback(() => {
     if (!mouseMode) return;
     mouseDownRef.current = false;
-    setMouse(0, 0);
-  }, [mouseMode, setMouse]);
+    if (mouseMode === "press") {
+      setMousePressed(false);
+    } else {
+      setMouse(0, 0);
+    }
+  }, [mouseMode, setMouse, setMousePressed]);
 
   const handleMouseLeave = useCallback(() => {
     if (!mouseMode) return;
     mouseDownRef.current = false;
-    setMouse(0, 0);
-  }, [mouseMode, setMouse]);
+    if (mouseMode === "press") {
+      setMousePressed(false);
+    } else {
+      setMouse(0, 0);
+    }
+  }, [mouseMode, setMouse, setMousePressed]);
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent<HTMLDivElement>) => {
@@ -87,14 +94,19 @@ export default function ShaderCanvas({
       const touch = e.touches[0];
       if (!touch) return;
       computeMouse(touch.clientX, touch.clientY, e.currentTarget.getBoundingClientRect());
+      if (mouseMode === "press") setMousePressed(true);
     },
-    [mouseMode, computeMouse]
+    [mouseMode, computeMouse, setMousePressed]
   );
 
   const handleTouchEnd = useCallback(() => {
     if (!mouseMode) return;
-    setMouse(0, 0);
-  }, [mouseMode, setMouse]);
+    if (mouseMode === "press") {
+      setMousePressed(false);
+    } else {
+      setMouse(0, 0);
+    }
+  }, [mouseMode, setMouse, setMousePressed]);
 
   return (
     <div

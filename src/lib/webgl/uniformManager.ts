@@ -2,6 +2,7 @@ export interface Uniforms {
   iTime: WebGLUniformLocation | null;
   iResolution: WebGLUniformLocation | null;
   iMouse: WebGLUniformLocation | null;
+  iMouseTime: WebGLUniformLocation | null;
 }
 
 export function locateUniforms(
@@ -12,6 +13,7 @@ export function locateUniforms(
     iTime: gl.getUniformLocation(program, "iTime"),
     iResolution: gl.getUniformLocation(program, "iResolution"),
     iMouse: gl.getUniformLocation(program, "iMouse"),
+    iMouseTime: gl.getUniformLocation(program, "iMouseTime"),
   };
 }
 
@@ -22,7 +24,8 @@ export function setUniforms(
   width: number,
   height: number,
   mouseX: number,
-  mouseY: number
+  mouseY: number,
+  mouseTime: number
 ) {
   if (uniforms.iTime !== null) {
     gl.uniform1f(uniforms.iTime, time);
@@ -32,5 +35,8 @@ export function setUniforms(
   }
   if (uniforms.iMouse !== null) {
     gl.uniform2f(uniforms.iMouse, mouseX, mouseY);
+  }
+  if (uniforms.iMouseTime !== null) {
+    gl.uniform1f(uniforms.iMouseTime, mouseTime);
   }
 }

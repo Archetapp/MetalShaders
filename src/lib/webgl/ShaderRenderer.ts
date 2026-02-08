@@ -10,6 +10,10 @@ export interface RendererState {
   animationId: number | null;
   mouseX: number;
   mouseY: number;
+  mousePressed: boolean;
+  mouseTime: number;
+  _mousePrevPressed: boolean;
+  _mousePressStart: number;
 }
 
 export interface CreateRendererResult {
@@ -48,6 +52,10 @@ export function createRenderer(
       animationId: null,
       mouseX: 0,
       mouseY: 0,
+      mousePressed: false,
+      mouseTime: 0,
+      _mousePrevPressed: false,
+      _mousePressStart: 0,
     },
     error: null,
   };
@@ -64,7 +72,18 @@ export function renderFrame(
   gl.viewport(0, 0, width, height);
   gl.useProgram(state.program);
 
-  const elapsed = performance.now() / 1000 - state.startTime;
+  const now = performance.now() / 1000;
+  const elapsed = now - state.startTime;
+
+  if (state.mousePressed && !state._mousePrevPressed) {
+    state._mousePressStart = now;
+    state.mouseTime = 0;
+  }
+  if (state.mousePressed) {
+    state.mouseTime = now - state._mousePressStart;
+  }
+  state._mousePrevPressed = state.mousePressed;
+
   setUniforms(
     gl,
     state.uniforms,
@@ -72,7 +91,8 @@ export function renderFrame(
     width,
     height,
     state.mouseX,
-    state.mouseY
+    state.mouseY,
+    state.mouseTime
   );
 
   drawQuad(gl, state.vao);
