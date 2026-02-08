@@ -55,6 +55,16 @@ export default function ShaderCard({
       `rotateY(${t.cy}deg)`,
       `scale3d(${s.current}, ${s.current}, 1)`,
     ].join(" ");
+
+    const lift = (s.current - 1) * 500;
+    const shadowX = t.cy * -0.8;
+    const shadowY = 4 + lift + t.cx * 0.8;
+    const blur = 16 + lift * 1.5;
+    const opacity = 0.06 + lift * 0.004;
+    card.style.boxShadow = [
+      `${shadowX}px ${shadowY}px ${blur}px rgba(0,0,0,${opacity.toFixed(3)})`,
+      `0 2px 6px rgba(0,0,0,0.04)`,
+    ].join(", ");
   }, []);
 
   const ensureLoop = useCallback(() => {
