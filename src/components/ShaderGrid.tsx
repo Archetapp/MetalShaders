@@ -11,10 +11,15 @@ interface ShaderGridProps {
   shaders: ShaderMeta[];
 }
 
+interface ExpandState {
+  slug: string;
+  rect: DOMRect;
+}
+
 export default function ShaderGrid({ shaders }: ShaderGridProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const [expandState, setExpandState] = useState<ExpandState | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +27,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
   }, []);
 
   useEffect(() => {
-    if (expandedSlug) {
+    if (expandState) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -30,7 +35,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [expandedSlug]);
+  }, [expandState]);
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -59,8 +64,8 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     );
   };
 
-  const expandedShader = expandedSlug
-    ? shaders.find((s) => s.slug === expandedSlug) ?? null
+  const expandedShader = expandState
+    ? shaders.find((s) => s.slug === expandState.slug) ?? null
     : null;
 
   return (
@@ -86,18 +91,22 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
             <ShaderCard
               key={shader.slug}
               shader={shader}
-              onExpand={() => setExpandedSlug(shader.slug)}
+              onExpand={(rect) =>
+                setExpandState({ slug: shader.slug, rect })
+              }
             />
           ))}
         </div>
       )}
 
       {mounted &&
+        expandState &&
         expandedShader &&
         createPortal(
           <ShaderOverlay
             shader={expandedShader}
-            onClose={() => setExpandedSlug(null)}
+            sourceRect={expandState.rect}
+            onClose={() => setExpandState(null)}
           />,
           document.body
         )}

@@ -1,23 +1,16 @@
 import Foundation
 
 struct ShaderLoader {
-    static func shadersDirectory() -> URL? {
-        let sourceFile = URL(fileURLWithPath: #filePath)
-        let projectRoot = sourceFile
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-        let shadersDir = projectRoot.appendingPathComponent("public/shaders")
-        guard FileManager.default.fileExists(atPath: shadersDir.path) else {
-            return nil
-        }
-        return shadersDir
-    }
-
     static func loadIndex() -> [ShaderMeta] {
-        guard let dir = shadersDirectory() else { return [] }
-        let indexURL = dir.appendingPathComponent("index.json")
-        guard let data = try? Data(contentsOf: indexURL) else { return [] }
+        guard let url = Bundle.main.url(
+            forResource: "index",
+            withExtension: "json",
+            subdirectory: "ShaderResources"
+        ),
+        let data = try? Data(contentsOf: url)
+        else {
+            return []
+        }
 
         struct Index: Codable {
             let shaders: [ShaderMeta]
@@ -30,14 +23,28 @@ struct ShaderLoader {
     }
 
     static func loadShaderData(slug: String) -> ShaderData? {
-        guard let dir = shadersDirectory() else { return nil }
-        let shaderDir = dir.appendingPathComponent(slug)
+        let subdirectory = "ShaderResources/\(slug)"
 
         guard
-            let metaData = try? Data(contentsOf: shaderDir.appendingPathComponent("meta.json")),
+            let metaURL = Bundle.main.url(
+                forResource: "meta",
+                withExtension: "json",
+                subdirectory: subdirectory
+            ),
+            let metaData = try? Data(contentsOf: metaURL),
             let meta = try? JSONDecoder().decode(ShaderMeta.self, from: metaData),
-            let metalSource = try? String(contentsOf: shaderDir.appendingPathComponent("shader.metal"), encoding: .utf8),
-            let fragSource = try? String(contentsOf: shaderDir.appendingPathComponent("shader.frag"), encoding: .utf8)
+            let metalURL = Bundle.main.url(
+                forResource: "shader",
+                withExtension: "msl",
+                subdirectory: subdirectory
+            ),
+            let metalSource = try? String(contentsOf: metalURL, encoding: .utf8),
+            let fragURL = Bundle.main.url(
+                forResource: "shader",
+                withExtension: "frag",
+                subdirectory: subdirectory
+            ),
+            let fragSource = try? String(contentsOf: fragURL, encoding: .utf8)
         else {
             return nil
         }

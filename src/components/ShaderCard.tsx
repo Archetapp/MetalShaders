@@ -2,15 +2,16 @@
 
 import ShaderCanvas from "./ShaderCanvas";
 import { ShaderMeta } from "@/types/shader";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface ShaderCardProps {
   shader: ShaderMeta;
-  onExpand: () => void;
+  onExpand: (rect: DOMRect) => void;
 }
 
 export default function ShaderCard({ shader, onExpand }: ShaderCardProps) {
   const [fragSource, setFragSource] = useState<string | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch(`/shaders/${shader.slug}/shader.frag`)
@@ -19,16 +20,22 @@ export default function ShaderCard({ shader, onExpand }: ShaderCardProps) {
       .catch(() => setFragSource(null));
   }, [shader.slug]);
 
+  const handleExpand = () => {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (rect) onExpand(rect);
+  };
+
   return (
     <div
-      onClick={onExpand}
+      ref={cardRef}
+      onClick={handleExpand}
       className="shader-preview group rounded-2xl overflow-hidden cursor-pointer h-full"
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          onExpand();
+          handleExpand();
         }
       }}
     >
