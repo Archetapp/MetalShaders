@@ -2,13 +2,14 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float csWave(vec2 p, float freq, float speed, vec2 dir, float t) {
     return sin(dot(p, dir) * freq + t * speed);
 }
 
-float csHeight(vec2 p, float t) {
+float csHeight(vec2 p, float t, vec2 pinch1Pos) {
     float h = 0.0;
     h += csWave(p, 3.0, 1.2, vec2(1.0, 0.3), t) * 0.15;
     h += csWave(p, 5.0, 1.8, vec2(0.7, 1.0), t) * 0.08;
@@ -17,7 +18,7 @@ float csHeight(vec2 p, float t) {
     h += csWave(p, 2.0, 0.8, vec2(0.3, 1.0), t) * 0.2;
     h += csWave(p, 1.5, 0.5, vec2(1.0, 0.0), t) * 0.12;
 
-    float pinch1 = exp(-length(p - vec2(-0.8, -0.8)) * 3.0) * 0.15;
+    float pinch1 = exp(-length(p - pinch1Pos) * 3.0) * 0.15;
     float pinch2 = exp(-length(p - vec2(0.8, -0.8)) * 3.0) * 0.15;
     float pinch3 = exp(-length(p - vec2(0.0, 0.8)) * 2.0) * 0.1;
     h += pinch1 + pinch2 + pinch3;
@@ -30,13 +31,17 @@ float csHeight(vec2 p, float t) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
+    vec2 pinch1Pos = hasInput ? mouseCentered : vec2(-0.8, -0.8);
     float t = iTime;
 
-    float h = csHeight(uv, t);
+    float h = csHeight(uv, t, pinch1Pos);
 
     float eps = 0.005;
-    float hx = csHeight(uv + vec2(eps, 0.0), t);
-    float hy = csHeight(uv + vec2(0.0, eps), t);
+    float hx = csHeight(uv + vec2(eps, 0.0), t, pinch1Pos);
+    float hy = csHeight(uv + vec2(0.0, eps), t, pinch1Pos);
     vec3 normal = normalize(vec3(-(hx - h) / eps, -(hy - h) / eps, 1.0));
 
     vec3 lightPos1 = vec3(0.5, 0.8, 1.5);

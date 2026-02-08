@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dewHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -11,6 +12,11 @@ void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 0.15 : 0.0;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.15 : 0.0;
 
     vec3 leafColor = vec3(0.15, 0.4, 0.1);
     float vein = abs(sin(centered.x * 20.0 + centered.y * 5.0)) * 0.1;
@@ -44,10 +50,11 @@ void main() {
                     float normalizedDist = dist / (radius * s);
                     float sphereHeight = sqrt(max(0.0, 1.0 - normalizedDist * normalizedDist));
 
-                    vec2 refractOffset = dropUv * (1.0 - sphereHeight * 0.5) * 0.3;
+                    vec2 refractOffset = (dropUv + vec2(tiltX, tiltY) * 0.1) * (1.0 - sphereHeight * 0.5) * 0.3;
                     vec3 refractedLeaf = leafColor + 0.1 * sin((uv + refractOffset) * 40.0).x;
 
-                    float highlight = pow(max(0.0, 1.0 - length(dropUv * s - vec2(-radius * 0.3, radius * 0.3) * s) / (radius * s * 0.4)), 3.0);
+                    vec2 highlightOffset = vec2(-radius * 0.3 + tiltX * radius, radius * 0.3 + tiltY * radius);
+                    float highlight = pow(max(0.0, 1.0 - length(dropUv * s - highlightOffset * s) / (radius * s * 0.4)), 3.0);
                     float rim = pow(normalizedDist, 4.0) * 0.3;
                     float caustic = pow(sphereHeight, 0.5) * 0.15;
 

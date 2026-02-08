@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float lmmNoise(vec2 p) {
@@ -15,20 +16,25 @@ float lmmNoise(vec2 p) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
-    float blobDist = length(uv);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
+    vec2 blobCenter = hasInput ? mouseCentered : vec2(0.0);
+    vec2 localUv = uv - blobCenter;
+    float blobDist = length(localUv);
     float deform = 0.0;
     for (int i = 0; i < 5; i++) {
         float fi = float(i);
-        float angle = atan(uv.y, uv.x) + fi * 1.257;
+        float angle = atan(localUv.y, localUv.x) + fi * 1.257;
         deform += sin(angle * (3.0+fi) + iTime * (0.5+fi*0.2)) * 0.03 / (1.0+fi*0.3);
     }
-    deform += lmmNoise(uv * 5.0 + iTime * 0.2) * 0.05;
+    deform += lmmNoise(localUv * 5.0 + iTime * 0.2) * 0.05;
     float surface = blobDist - 0.3 - deform;
     float mask = smoothstep(0.01, -0.01, surface);
 
     vec2 eps = vec2(0.003, 0.0);
-    float d1 = length(uv+eps) - 0.3 - lmmNoise((uv+eps)*5.0+iTime*0.2)*0.05;
-    float d2 = length(uv+eps.yx) - 0.3 - lmmNoise((uv+eps.yx)*5.0+iTime*0.2)*0.05;
+    float d1 = length(localUv+eps) - 0.3 - lmmNoise((localUv+eps)*5.0+iTime*0.2)*0.05;
+    float d2 = length(localUv+eps.yx) - 0.3 - lmmNoise((localUv+eps.yx)*5.0+iTime*0.2)*0.05;
     vec3 normal = normalize(vec3(d1-surface, d2-surface, 0.08));
 
     vec3 viewDir = vec3(0,0,1);

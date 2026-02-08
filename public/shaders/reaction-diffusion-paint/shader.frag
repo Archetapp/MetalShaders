@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float rdpHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -16,10 +17,14 @@ float rdpNoise(vec2 p) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+
     float pattern = 0.0;
     for (int i = 0; i < 5; i++) {
         float fi = float(i);
-        vec2 seedPoint = vec2(sin(fi * 2.1 + 1.0) * 0.3, cos(fi * 1.7 + 0.5) * 0.25);
+        vec2 seedPoint = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 2.1 + 1.0) * 0.3, cos(fi * 1.7 + 0.5) * 0.25);
         float seedTime = fi * 1.2;
         float growthTime = max(0.0, iTime - seedTime);
         float growthRadius = growthTime * 0.08;

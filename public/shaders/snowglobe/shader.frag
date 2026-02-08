@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float globeHash(vec2 p) {
@@ -40,6 +41,11 @@ void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     float aspect = iResolution.x / iResolution.y;
     vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float shakeX = hasInput ? (mouseUV.x - 0.5) * 0.06 : 0.0;
+    float shakeY = hasInput ? (mouseUV.y - 0.5) * 0.04 : 0.0;
 
     vec3 bgCol = mix(vec3(0.15, 0.1, 0.08), vec3(0.08, 0.05, 0.04), uv.y);
 
@@ -106,8 +112,9 @@ void main() {
             float fallProgress = age / settleTime;
             vec2 snowPos = startPos;
             snowPos.y -= fallProgress * globeRadius * 0.8;
-            snowPos.x += sin(age * 2.0 + id) * 0.03;
+            snowPos.x += sin(age * 2.0 + id) * 0.03 + shakeX * (1.0 - settled);
             snowPos.x += sin(iTime * 0.3) * 0.02 * (1.0 - settled);
+            snowPos.y += shakeY * (1.0 - settled);
 
             if (length(snowPos) > globeRadius * 0.9) {
                 snowPos = normalize(snowPos) * globeRadius * 0.9;

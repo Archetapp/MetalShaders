@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dteNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);
@@ -15,7 +16,10 @@ void main() {
     float cycle = mod(iTime * 0.3, 2.0);
     float burnProgress = smoothstep(0.0, 1.5, cycle);
 
-    vec2 burnOrigin = vec2(sin(floor(iTime * 0.3 / 2.0) * 2.3) * 0.2,
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 burnOrigin = hasInput ? mouseCentered : vec2(sin(floor(iTime * 0.3 / 2.0) * 2.3) * 0.2,
                            cos(floor(iTime * 0.3 / 2.0) * 1.7) * 0.15);
 
     float dist = length(uv - burnOrigin);

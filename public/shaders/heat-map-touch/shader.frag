@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float hmtHash(vec2 p) {
@@ -26,6 +27,10 @@ vec3 hmtThermalPalette(float t) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+
     float heat = 0.0;
 
     for (int i = 0; i < 6; i++) {
@@ -33,7 +38,7 @@ void main() {
         float phase = floor(t / 3.0);
         float localT = fract(t / 3.0) * 3.0;
 
-        vec2 touchPos = vec2(
+        vec2 touchPos = (i == 0 && hasInput) ? mouseCentered : vec2(
             sin(phase * 2.1 + float(i)) * 0.3,
             cos(phase * 1.7 + float(i) * 0.5) * 0.3
         );

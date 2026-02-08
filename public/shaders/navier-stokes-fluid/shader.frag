@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float nsHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -28,11 +29,16 @@ void main() {
         advectedUv -= vel * 0.02;
     }
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
+
     vec3 dye = vec3(0.0);
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        vec2 injectionPoint = vec2(sin(iTime * 0.3 + fi * 1.57) * 0.25,
-                                   cos(iTime * 0.4 + fi * 1.57) * 0.2);
+        vec2 timePos = vec2(sin(iTime * 0.3 + fi * 1.57) * 0.25,
+                            cos(iTime * 0.4 + fi * 1.57) * 0.2);
+        vec2 injectionPoint = (i == 0 && hasInput) ? mouseCentered : timePos;
         float dist = length(advectedUv - injectionPoint);
         float injection = exp(-dist * dist * 50.0);
         vec3 dyeColor = 0.5 + 0.5 * cos(6.28 * (fi * 0.25 + iTime * 0.1 + vec3(0.0, 0.33, 0.67)));

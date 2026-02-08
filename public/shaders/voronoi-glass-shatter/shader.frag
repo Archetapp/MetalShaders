@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 vec2 vgsHash2(vec2 p) {
@@ -17,7 +18,10 @@ void main() {
     float shatterProgress = smoothstep(0.0, 0.5, t);
     float fallProgress = smoothstep(0.5, 3.5, t);
 
-    vec2 impactPoint = vec2(sin(floor(iTime / cycleTime) * 2.3) * 0.2,
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 impactPoint = hasInput ? mouseCentered : vec2(sin(floor(iTime / cycleTime) * 2.3) * 0.2,
                             cos(floor(iTime / cycleTime) * 1.7) * 0.15);
 
     float scale = 8.0;

@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dropHash(vec2 p) {
@@ -42,6 +43,11 @@ void main() {
     float aspect = iResolution.x / iResolution.y;
     vec2 uvAspect = vec2(uv.x * aspect, uv.y);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 0.2 : 0.0;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.2 : 0.0;
+
     vec3 surface = dropSurfacePattern(uv);
 
     float gridSize = 6.0;
@@ -67,7 +73,7 @@ void main() {
             dropCenter.x /= aspect;
 
             float wobble = sin(iTime * 0.5 + cellHash.x * 6.28) * 0.002;
-            dropCenter += vec2(wobble, wobble * 0.5);
+            dropCenter += vec2(wobble + tiltX * 0.01, wobble * 0.5 + tiltY * 0.01);
 
             vec2 diff = uv - dropCenter;
             diff.x *= aspect;
@@ -88,7 +94,7 @@ void main() {
 
                 refractedSurface *= 1.1;
 
-                vec3 lightDir = normalize(vec3(0.3, 0.5, 1.0));
+                vec3 lightDir = normalize(vec3(0.3 + tiltX, 0.5 + tiltY, 1.0));
                 float diffuseLight = max(dot(normal3d, lightDir), 0.0);
 
                 vec3 viewDir = vec3(0.0, 0.0, 1.0);

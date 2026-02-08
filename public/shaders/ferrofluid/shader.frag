@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float ffHash(vec2 p) {
@@ -34,7 +35,10 @@ float ffFbm(vec2 p) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
-    vec2 magnetPos = vec2(cos(iTime * 0.7) * 0.35, sin(iTime * 0.9) * 0.35);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 magnetPos = hasInput ? mouseCentered : vec2(cos(iTime * 0.7) * 0.35, sin(iTime * 0.9) * 0.35);
     vec2 toMagnet = magnetPos - uv;
     float distToMagnet = length(toMagnet);
     vec2 magnetDir = normalize(toMagnet);

@@ -8,6 +8,7 @@ interface EditableCodeBlockProps {
   code: string;
   language: string;
   onChange: (code: string) => void;
+  maxHeight?: number;
 }
 
 const GLSL_LANGUAGE_ID = "glsl";
@@ -152,11 +153,12 @@ export default function EditableCodeBlock({
   code,
   language,
   onChange,
+  maxHeight = 600,
 }: EditableCodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const lineCount = code.split("\n").length;
-  const editorHeight = Math.min(Math.max(lineCount * 20 + 16, 200), 600);
+  const editorHeight = Math.min(Math.max(lineCount * 20 + 16, 200), maxHeight);
 
   const handleCopy = useCallback(async () => {
     const value = editorRef.current?.getValue() ?? code;

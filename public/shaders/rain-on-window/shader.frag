@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float rainHash(float n) {
@@ -45,7 +46,7 @@ vec2 rainDrop(vec2 uv, float t, float id) {
     return normal * distortion * 10.0;
 }
 
-vec3 rainBackground(vec2 uv, float t) {
+vec3 rainBackground(vec2 uv, float t, vec2 lightShift) {
     vec3 col1 = vec3(0.15, 0.18, 0.25);
     vec3 col2 = vec3(0.08, 0.1, 0.15);
     vec3 col3 = vec3(0.2, 0.15, 0.1);
@@ -54,12 +55,12 @@ vec3 rainBackground(vec2 uv, float t) {
     vec3 bg = mix(col1, col2, uv.y);
     bg = mix(bg, col3, n * 0.3);
 
-    float light1 = exp(-length(uv - vec2(0.3, 0.7)) * 3.0) * 0.4;
-    float light2 = exp(-length(uv - vec2(0.7, 0.6)) * 4.0) * 0.3;
+    float light1 = exp(-length(uv - (vec2(0.3, 0.7) + lightShift)) * 3.0) * 0.4;
+    float light2 = exp(-length(uv - (vec2(0.7, 0.6) + lightShift)) * 4.0) * 0.3;
     bg += vec3(1.0, 0.9, 0.7) * light1;
     bg += vec3(0.7, 0.8, 1.0) * light2;
 
-    float light3 = exp(-length(uv - vec2(0.5, 0.4)) * 2.5) * 0.2;
+    float light3 = exp(-length(uv - (vec2(0.5, 0.4) + lightShift)) * 2.5) * 0.2;
     bg += vec3(1.0, 0.6, 0.3) * light3;
 
     return bg;
@@ -68,6 +69,10 @@ vec3 rainBackground(vec2 uv, float t) {
 void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     float aspect = iResolution.x / iResolution.y;
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float windBias = hasInput ? (mouseUV.x - 0.5) * 0.04 : 0.0;
 
     vec2 totalRefraction = vec2(0.0);
 
@@ -80,12 +85,15 @@ void main() {
             float id = layerId + float(i);
             vec2 cellUv = layerUv;
             cellUv.x += rainHash(id) * 2.0;
-            totalRefraction += rainDrop(cellUv, iTime, id) * (1.0 / layerScale);
+            vec2 dropRefraction = rainDrop(cellUv, iTime, id) * (1.0 / layerScale);
+            dropRefraction.x += windBias * (1.0 / layerScale);
+            totalRefraction += dropRefraction;
         }
     }
 
     vec2 refractedUv = uv + totalRefraction;
-    vec3 bg = rainBackground(refractedUv, iTime);
+    vec2 lightShift = hasInput ? (mouseUV - 0.5) * 0.15 : vec2(0.0);
+    vec3 bg = rainBackground(refractedUv, iTime, lightShift);
 
     float dropMask = length(totalRefraction) * 20.0;
     bg += vec3(0.15, 0.2, 0.25) * dropMask;

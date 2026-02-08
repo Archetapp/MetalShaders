@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 vec3 lenticularRainbow(float t) {
@@ -17,8 +18,10 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
-    float tiltX = sin(iTime * 0.6) * 0.5;
-    float tiltY = cos(iTime * 0.4) * 0.3;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 1.0 : sin(iTime * 0.6) * 0.5;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.6 : cos(iTime * 0.4) * 0.3;
 
     float lensCount = 60.0;
     float lensPhase = floor(uv.x * lensCount);

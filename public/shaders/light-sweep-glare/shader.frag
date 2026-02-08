@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 void main() {
@@ -9,11 +10,14 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+
     vec3 surface = vec3(0.15, 0.15, 0.18);
     surface += sin(centered.x * 100.0) * 0.01;
 
-    float sweepPos = sin(iTime * 0.8) * 1.5;
-    float sweepAngle = 0.3;
+    float sweepPos = hasInput ? (mouseUV.x - 0.5) * 3.0 : sin(iTime * 0.8) * 1.5;
+    float sweepAngle = hasInput ? (mouseUV.y - 0.5) * 0.6 + 0.3 : 0.3;
     float sweepLine = centered.x * cos(sweepAngle) + centered.y * sin(sweepAngle) - sweepPos;
 
     float mainGlare = exp(-sweepLine * sweepLine * 20.0);

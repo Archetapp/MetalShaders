@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float snowHash(vec2 p) {
@@ -30,15 +31,15 @@ float snowflake(vec2 uv, vec2 pos, float size) {
     return core + armShape * 0.3;
 }
 
-float snowLayer(vec2 uv, float depth, float time) {
+float snowLayer(vec2 uv, float depth, float time, vec2 windBias) {
     float result = 0.0;
     float gridSize = 4.0 + depth * 3.0;
     float fallSpeed = 0.15 + depth * 0.05;
     float windStrength = 0.3 + depth * 0.1;
 
-    float wind = sin(time * 0.3 + depth) * windStrength;
+    float wind = sin(time * 0.3 + depth) * windStrength + windBias.x;
     uv.x += wind * time * 0.1;
-    uv.y += time * fallSpeed;
+    uv.y += time * fallSpeed + windBias.y * time * 0.02;
 
     vec2 grid = floor(uv * gridSize);
     vec2 gridUv = fract(uv * gridSize);
@@ -85,9 +86,13 @@ void main() {
     vec3 groundColor = vec3(0.6, 0.65, 0.75) * (0.3 + snowNoise(uv * 20.0) * 0.1);
     col = mix(col, groundColor, groundMask);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 windBias = hasInput ? (mouseUV - 0.5) * vec2(0.5, 0.3) : vec2(0.0);
+
     for (int i = 0; i < 6; i++) {
         float depth = float(i) / 5.0;
-        float layerIntensity = snowLayer(uv, depth, iTime);
+        float layerIntensity = snowLayer(uv, depth, iTime, windBias);
         float brightness = 0.4 + depth * 0.6;
         float opacity = (0.3 + depth * 0.7);
 

@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float twHash(vec2 p) {
@@ -55,12 +56,17 @@ void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
     float t = iTime;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+
     vec2 oceanUV = uv * 3.0;
     oceanUV.y += t * 0.5;
 
     float perspY = uv.y - 0.1;
     float perspective = 1.0 / (perspY * 2.0 + 1.5);
     vec2 worldPos = vec2(uv.x * perspective * 5.0, perspective * 8.0);
+    float waveShiftX = hasInput ? (mouseUV.x - 0.5) * 0.5 : 0.0;
+    worldPos.x += waveShiftX;
     worldPos.y += t * 1.5;
 
     float skyMask = smoothstep(0.1, 0.15, uv.y);
@@ -72,7 +78,9 @@ void main() {
     float hy = twOceanHeight(worldPos + vec2(0.0, eps), t);
     vec3 normal = normalize(vec3(-(hx - h) / eps * 0.3, 1.0, -(hy - h) / eps * 0.3));
 
-    vec3 sunDir = normalize(vec3(0.3, 0.6, -0.5));
+    float sunShiftX = hasInput ? (mouseUV.x - 0.5) * 0.6 : 0.0;
+    float sunShiftY = hasInput ? (mouseUV.y - 0.5) * 0.4 : 0.0;
+    vec3 sunDir = normalize(vec3(0.3 + sunShiftX, 0.6 + sunShiftY, -0.5));
     vec3 viewDir = normalize(vec3(0.0, 0.3, -1.0));
 
     float diff = max(dot(normal, sunDir), 0.0);

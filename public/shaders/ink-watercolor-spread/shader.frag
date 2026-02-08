@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float iwsHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -21,6 +22,10 @@ float iwsFbm(vec2 p) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+
     float paperGrain = iwsFbm(uv * 40.0) * 0.08;
     vec3 paperColor = vec3(0.95, 0.93, 0.88) - paperGrain;
 
@@ -29,7 +34,7 @@ void main() {
 
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
-        vec2 dropPos = vec2(sin(fi * 2.3 + 0.5) * 0.25, cos(fi * 1.8 + 1.0) * 0.2);
+        vec2 dropPos = (i == 0 && hasInput) ? mouseCentered : vec2(sin(fi * 2.3 + 0.5) * 0.25, cos(fi * 1.8 + 1.0) * 0.2);
         float dropTime = max(0.0, iTime * 0.3 - fi * 0.8);
 
         float baseRadius = dropTime * 0.12;

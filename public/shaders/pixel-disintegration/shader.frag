@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float pdHash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
@@ -11,11 +12,15 @@ void main() {
     float cycle = mod(iTime * 0.25, 2.0);
     float progress = smoothstep(0.0, 1.5, cycle);
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+
     float pixelSize = 0.015;
     vec2 pixelId = floor(uv / pixelSize);
     vec2 pixelCenter = (pixelId + 0.5) * pixelSize;
 
-    float sweepDir = pixelCenter.x + pixelCenter.y * 0.3;
+    float sweepDir = hasInput ? -length(pixelCenter - mouseCentered) * 2.0 : pixelCenter.x + pixelCenter.y * 0.3;
     float threshold = pdHash(pixelId) * 0.5;
     float dissolveT = smoothstep(threshold, threshold + 0.3, progress + sweepDir * 0.3);
 

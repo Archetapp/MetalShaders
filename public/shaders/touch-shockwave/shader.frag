@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float tswHash(vec2 p) {
@@ -10,6 +11,10 @@ float tswHash(vec2 p) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
 
     vec3 bgPattern = vec3(0.0);
     float grid = smoothstep(0.01, 0.0, abs(fract(uv.x * 8.0) - 0.5) - 0.48) +
@@ -25,7 +30,7 @@ void main() {
         float phase = mod(t, cycleTime);
         float age = phase / cycleTime;
 
-        vec2 origin = vec2(
+        vec2 origin = (i == 0 && hasInput) ? mouseCentered : vec2(
             sin(floor(t / cycleTime) * 2.1 + float(i)) * 0.25,
             cos(floor(t / cycleTime) * 1.7 + float(i) * 0.7) * 0.25
         );

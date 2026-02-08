@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float xrlHash(vec2 p) {
@@ -19,7 +20,10 @@ float xrlNoise(vec2 p) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 
-    vec2 lensPos = vec2(sin(iTime * 0.5) * 0.3, cos(iTime * 0.4) * 0.25);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 lensPos = hasInput ? mouseCentered : vec2(sin(iTime * 0.5) * 0.3, cos(iTime * 0.4) * 0.25);
     float lensRadius = 0.2;
 
     vec3 surfaceColor = vec3(0.15, 0.12, 0.1);

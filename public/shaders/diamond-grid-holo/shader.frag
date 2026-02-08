@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dgHash(vec2 p) {
@@ -17,10 +18,12 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
-    float tiltX = sin(iTime * 0.5) * 0.6;
-    float tiltY = cos(iTime * 0.7) * 0.4;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 1.2 : sin(iTime * 0.5) * 0.6;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.8 : cos(iTime * 0.7) * 0.4;
     vec3 viewDir = normalize(vec3(tiltX, tiltY, 1.0));
-    vec3 lightDir = normalize(vec3(sin(iTime * 0.3), cos(iTime * 0.4), 1.2));
+    vec3 lightDir = hasInput ? normalize(vec3(tiltX * 0.5, tiltY * 0.5, 1.2)) : normalize(vec3(sin(iTime * 0.3), cos(iTime * 0.4), 1.2));
 
     float gridScale = 20.0;
     vec2 rotUv = vec2(uv.x + uv.y, uv.x - uv.y) * gridScale;

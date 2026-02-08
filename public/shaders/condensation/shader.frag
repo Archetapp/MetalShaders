@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float condHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -12,8 +13,13 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 0.3 : 0.0;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.3 : 0.0;
+
     vec3 behindGlass = vec3(0.15, 0.2, 0.25);
-    behindGlass += 0.05 * sin(centered.x * 3.0 + iTime * 0.1);
+    behindGlass += 0.05 * sin((centered.x + tiltX) * 3.0 + iTime * 0.1);
 
     vec3 col = behindGlass;
     float totalDroplet = 0.0;
@@ -43,7 +49,7 @@ void main() {
                 float highlight = smoothstep(size * 0.6, size * 0.2, length(dropPos - vec2(-0.05, 0.05) * size * 5.0));
 
                 float refract = droplet * 0.02;
-                vec3 refractedBg = vec3(0.15, 0.2, 0.25) + 0.08 * sin((centered.x + refract) * 5.0);
+                vec3 refractedBg = vec3(0.15, 0.2, 0.25) + 0.08 * sin((centered.x + tiltX + refract) * 5.0);
 
                 col = mix(col, refractedBg * 1.1, droplet * 0.3);
                 col += highlight * vec3(0.4, 0.45, 0.5) * droplet;
@@ -52,7 +58,7 @@ void main() {
         }
     }
 
-    float fogLayer = 0.3 + 0.1 * sin(centered.y * 2.0 + iTime * 0.1);
+    float fogLayer = 0.3 + 0.1 * sin((centered.y + tiltY) * 2.0 + iTime * 0.1);
     col = mix(col, vec3(0.6, 0.65, 0.7), fogLayer * (1.0 - totalDroplet));
 
     float condenseMicro = condHash(floor(uv * 200.0)) * 0.05;

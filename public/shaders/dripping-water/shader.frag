@@ -2,12 +2,19 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dripHash(float n) { return fract(sin(n) * 43758.5453); }
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 0.15 : 0.0;
+    float gravityTilt = hasInput ? (1.0 - mouseUV.y) * 0.5 + 1.0 : 1.5;
+
     vec3 bg = vec3(0.12, 0.12, 0.14);
     bg += smoothstep(0.5, -0.5, uv.y) * 0.03;
     vec3 col = bg;
@@ -38,12 +45,13 @@ void main() {
             col += highlight * 0.3 * drop;
         } else {
             float fallTime = t - fallStart;
-            float gravity = 1.5;
+            float gravity = gravityTilt;
             float yPos = 0.5 - 0.03 - fallTime * fallTime * gravity * 0.5;
             float dropSize = 0.012;
 
             if (yPos > -0.5) {
-                vec2 dropVec = vec2(uv.x - xPos, (uv.y - yPos) * 0.6);
+                float driftX = tiltX * fallTime * 0.5;
+                vec2 dropVec = vec2(uv.x - xPos - driftX, (uv.y - yPos) * 0.6);
                 float drop = smoothstep(dropSize, dropSize * 0.4, length(dropVec));
                 col = mix(col, vec3(0.2, 0.25, 0.3), drop * 0.6);
             } else {

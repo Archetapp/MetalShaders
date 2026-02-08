@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float holoHash(vec2 p) {
@@ -40,8 +41,10 @@ void main() {
     vec2 centeredUv = uv * 2.0 - 1.0;
     centeredUv.x *= iResolution.x / iResolution.y;
 
-    float viewAngleX = sin(iTime * 0.7) * 0.5;
-    float viewAngleY = cos(iTime * 0.5) * 0.3;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float viewAngleX = hasInput ? (mouseUV.x - 0.5) * 1.0 : sin(iTime * 0.7) * 0.5;
+    float viewAngleY = hasInput ? (mouseUV.y - 0.5) * 0.6 : cos(iTime * 0.5) * 0.3;
     vec3 viewDir = normalize(vec3(viewAngleX, viewAngleY, 1.0));
 
     float noiseVal = holoFbm(uv * 4.0 + iTime * 0.1);

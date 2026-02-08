@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float fgwHash(vec2 p) {
@@ -31,7 +32,10 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
-    vec2 wipePos = vec2(sin(iTime * 0.4) * 0.4, cos(iTime * 0.3) * 0.3);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
+    vec2 wipePos = hasInput ? mouseCentered : vec2(sin(iTime * 0.4) * 0.4, cos(iTime * 0.3) * 0.3);
     float wipeDist = length(centered - wipePos);
 
     float wipeRadius = 0.3 + 0.1 * sin(iTime * 0.5);

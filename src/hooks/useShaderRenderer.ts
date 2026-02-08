@@ -21,6 +21,7 @@ interface UseShaderRendererResult {
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
   error: string | null;
   recompile: (newSource: string) => string | null;
+  setMouse: (x: number, y: number) => void;
 }
 
 export function useShaderRenderer({
@@ -167,5 +168,12 @@ export function useShaderRenderer({
     }
   }, [isVisible, restoreFrame]);
 
-  return { canvasRef, error, recompile };
+  const setMouse = useCallback((x: number, y: number) => {
+    if (stateRef.current) {
+      stateRef.current.mouseX = x;
+      stateRef.current.mouseY = y;
+    }
+  }, []);
+
+  return { canvasRef, error, recompile, setMouse };
 }

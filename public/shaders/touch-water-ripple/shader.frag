@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float rippleWave(vec2 uv, vec2 center, float time, float birthTime) {
@@ -21,8 +22,11 @@ void main() {
 
     float totalDisplacement = 0.0;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+
     vec2 touchPoints[5];
-    touchPoints[0] = vec2(0.5 + 0.3 * cos(iTime * 0.4), 0.5 + 0.3 * sin(iTime * 0.5));
+    touchPoints[0] = hasInput ? mouseUV : vec2(0.5 + 0.3 * cos(iTime * 0.4), 0.5 + 0.3 * sin(iTime * 0.5));
     touchPoints[1] = vec2(0.5 + 0.25 * sin(iTime * 0.7 + 1.0), 0.5 + 0.25 * cos(iTime * 0.3 + 2.0));
     touchPoints[2] = vec2(0.5 + 0.35 * cos(iTime * 0.3 + 3.0), 0.5 + 0.2 * sin(iTime * 0.6 + 1.5));
     touchPoints[3] = vec2(0.5 + 0.2 * sin(iTime * 0.5 + 4.0), 0.5 + 0.35 * cos(iTime * 0.4 + 3.0));

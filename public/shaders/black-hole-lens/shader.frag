@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float bhHash(vec2 p) {
@@ -37,7 +38,10 @@ void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
     float t = iTime;
 
-    vec2 bhPos = vec2(0.0, 0.0);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 bhPos = hasInput ? mouseCentered : vec2(0.0, 0.0);
     float dist = length(uv - bhPos);
 
     float schwarzschild = 0.08;

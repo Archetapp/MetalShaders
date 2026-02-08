@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float pdcHash(vec2 p) {
@@ -21,8 +22,10 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
-    float tiltX = sin(iTime * 0.5) * 0.3;
-    float tiltY = cos(iTime * 0.7) * 0.2;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 0.6 : sin(iTime * 0.5) * 0.3;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.4 : cos(iTime * 0.7) * 0.2;
 
     vec3 bgColor = vec3(0.08, 0.06, 0.15);
     float bgStars = pdcHash(floor(uv * 100.0));

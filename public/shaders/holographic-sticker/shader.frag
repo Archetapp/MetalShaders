@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float hsHash(vec2 p) {
@@ -25,8 +26,10 @@ void main() {
     vec2 centered = uv * 2.0 - 1.0;
     centered.x *= iResolution.x / iResolution.y;
 
-    float tiltX = sin(iTime * 0.5) * 0.5;
-    float tiltY = cos(iTime * 0.7) * 0.4;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 1.0 : sin(iTime * 0.5) * 0.5;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.8 : cos(iTime * 0.7) * 0.4;
     vec3 viewDir = normalize(vec3(tiltX, tiltY, 1.0));
 
     float embossScale = 8.0;

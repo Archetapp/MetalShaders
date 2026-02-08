@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float pdLineSeg(vec2 p, vec2 a, vec2 b) {
@@ -50,7 +51,9 @@ void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
     float t = iTime;
 
-    float bobY = sin(t * 0.5) * 0.02;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float bobY = hasInput ? (mouseUV.y - 0.5) * 0.04 : sin(t * 0.5) * 0.02;
     vec2 triA = vec2(-0.05, 0.25 + bobY);
     vec2 triB = vec2(-0.05, -0.25 + bobY);
     vec2 triC = vec2(0.25, 0.0 + bobY);
@@ -88,7 +91,8 @@ void main() {
         float wavelength = 380.0 + (i / numRays) * 400.0;
         float refractIndex = 1.5 + (wavelength - 580.0) / 580.0 * 0.04;
 
-        float angle = (i / numRays - 0.5) * 0.55;
+        float spreadAmount = hasInput ? 0.35 + (mouseUV.x) * 0.4 : 0.55;
+        float angle = (i / numRays - 0.5) * spreadAmount;
 
         vec2 rayDir = normalize(vec2(1.0, angle));
         vec2 rayStart = exitPoint;

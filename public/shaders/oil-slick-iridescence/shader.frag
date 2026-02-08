@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float osiNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);
@@ -13,8 +14,10 @@ return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution)/min(iResolution.x,iResolution.y);
-    float tiltX = sin(iTime*0.4)*0.5;
-    float tiltY = cos(iTime*0.6)*0.3;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    float tiltX = hasInput ? (mouseUV.x - 0.5) * 1.0 : sin(iTime*0.4)*0.5;
+    float tiltY = hasInput ? (mouseUV.y - 0.5) * 0.6 : cos(iTime*0.6)*0.3;
     float thickness = osiNoise(uv*3.0+iTime*0.05)*0.5+osiNoise(uv*7.0-iTime*0.03)*0.3+0.3;
     float viewAngle = 1.0 - length(uv)*0.5 + tiltX*uv.x + tiltY*uv.y;
     float phase = thickness * viewAngle * 15.0;

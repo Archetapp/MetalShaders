@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 vec2 nlpTrailPos(float t, float seed) {
@@ -28,6 +29,10 @@ vec3 nlpTrailColor(float seed) {
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
     float t = iTime;
+
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
 
     vec3 col = vec3(0.01, 0.01, 0.02);
 
@@ -58,7 +63,7 @@ void main() {
             col += trailCol * outerGlow * 0.01;
         }
 
-        vec2 headPos = nlpTrailPos(t, seed);
+        vec2 headPos = (trail < 1.0 && hasInput) ? mouseCentered : nlpTrailPos(t, seed);
         float headDist = length(uv - headPos);
         float headGlow = 0.003 / (headDist * headDist + 0.0001);
         col += trailCol * headGlow * 0.05;

@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		264385F22F39310000A52FE5 /* ShaderResources in Resources */ = {isa = PBXBuildFile; fileRef = 264385F12F39310000A52FE5 /* ShaderResources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		264385CA2F3930D200A52FE5 /* MetalShaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalShaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		264385F12F39310000A52FE5 /* ShaderResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShaderResources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,7 +36,6 @@
 			isa = PBXGroup;
 			children = (
 				264385CC2F3930D200A52FE5 /* MetalShaders */,
-				264385F12F39310000A52FE5 /* ShaderResources */,
 				264385CB2F3930D200A52FE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,7 +112,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264385F22F39310000A52FE5 /* ShaderResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

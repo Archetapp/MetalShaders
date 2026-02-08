@@ -2,17 +2,23 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x, iResolution.y) / min(iResolution.x, iResolution.y);
+    vec2 islandOffset = hasInput ? mouseCentered : vec2(0.0);
+
     float phase = mod(iTime * 0.5, 4.0);
     float expand = smoothstep(0.0, 1.0, phase) - smoothstep(2.0, 3.0, phase);
     float split = smoothstep(1.0, 2.0, phase) - smoothstep(3.0, 4.0, phase);
 
     float separation = split * 0.2;
-    vec2 pos1 = vec2(-separation, 0.0);
-    vec2 pos2 = vec2(separation, 0.0);
+    vec2 pos1 = vec2(-separation, 0.0) + islandOffset;
+    vec2 pos2 = vec2(separation, 0.0) + islandOffset;
 
     float w1 = 0.12 + expand * 0.08;
     float h1 = 0.04 + expand * 0.02;

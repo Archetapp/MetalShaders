@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 vec2 sglHash2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return fract(sin(p)*43758.5453);}
@@ -28,10 +29,13 @@ void main() {
     vec3 glassColor = 0.5 + 0.5 * cos(6.28*(h.x + vec3(0.0,0.33,0.67)));
     glassColor = pow(glassColor, vec3(0.7)) * 0.8;
 
-    vec2 lightDir = vec2(sin(iTime*0.3), cos(iTime*0.4));
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 lightDir = hasInput ? normalize(mouseUV * 2.0 - 1.0) : vec2(sin(iTime*0.3), cos(iTime*0.4));
     float lightAngle = dot(normalize(uv+0.001), lightDir)*0.5+0.5;
     float lightIntensity = 0.5 + 0.5 * lightAngle;
-    float lightBeam = pow(max(dot(normalize(uv-vec2(0.0,0.5)), vec2(0.0,-1.0)), 0.0), 2.0);
+    vec2 lightOrigin = hasInput ? (mouseUV * 2.0 - 1.0) * vec2(iResolution.x/iResolution.y, 1.0) * 0.5 : vec2(0.0, 0.5);
+    float lightBeam = pow(max(dot(normalize(uv-lightOrigin), vec2(0.0,-1.0)), 0.0), 2.0);
 
     vec3 col = glassColor * lightIntensity;
     col *= 1.0 + lightBeam * 0.5;

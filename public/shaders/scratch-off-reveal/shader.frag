@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float scratchHash(vec2 p) {
@@ -67,6 +68,9 @@ void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     float aspect = iResolution.x / iResolution.y;
 
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+
     float cycleTime = 12.0;
     float t = mod(iTime, cycleTime);
 
@@ -82,7 +86,7 @@ void main() {
         float pathProgress = clamp((t - pathTime) / 1.5, 0.0, 1.0);
 
         float id = float(i);
-        vec2 start = vec2(
+        vec2 start = (i == 0 && hasInput) ? mouseUV : vec2(
             scratchHash(vec2(id * 1.3, 0.0)),
             scratchHash(vec2(id * 2.7, 1.0))
         );

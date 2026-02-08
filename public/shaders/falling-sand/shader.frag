@@ -2,6 +2,7 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float sandHash(vec2 p) {
@@ -35,6 +36,8 @@ vec3 sandColor(float id) {
 void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     float aspect = iResolution.x / iResolution.y;
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
 
     float gridRes = 80.0;
     vec2 gridUv = floor(uv * gridRes) / gridRes;
@@ -49,8 +52,7 @@ void main() {
     float streamId = 0.0;
 
     for (float s = 0.0; s < 6.0; s++) {
-        float streamX = 0.1 + s / numStreams * 0.8;
-        streamX += sin(iTime * 0.3 + s * 2.0) * 0.08;
+        float streamX = (s == 0.0 && hasInput) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
         float streamWidth = 0.03 + 0.02 * sin(iTime * 0.5 + s);
 
         float inStream = smoothstep(streamWidth, 0.0, abs(cellX - streamX));
@@ -109,8 +111,7 @@ void main() {
         col += vec3(0.03) * gridLine;
 
         for (float s = 0.0; s < 6.0; s++) {
-            float streamX = 0.1 + s / numStreams * 0.8;
-            streamX += sin(iTime * 0.3 + s * 2.0) * 0.08;
+            float streamX = (s == 0.0 && hasInput) ? mouseUV.x : (0.1 + s / numStreams * 0.8 + sin(iTime * 0.3 + s * 2.0) * 0.08);
             float funnelGlow = exp(-abs(cellX - streamX) * 40.0) * smoothstep(0.8, 1.0, uv.y);
             col += sandColor(s) * funnelGlow * 0.3;
         }

@@ -2,13 +2,17 @@
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec2 iMouse;
 out vec4 fragColor;
 
 float dwHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
-    vec2 pokePoint = vec2(sin(iTime * 0.6) * 0.25, cos(iTime * 0.5) * 0.2);
+    vec2 mouseUV = iMouse / iResolution;
+    bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
+    vec2 mouseCentered = (mouseUV - 0.5) * vec2(iResolution.x / min(iResolution.x, iResolution.y), iResolution.y / min(iResolution.x, iResolution.y));
+    vec2 pokePoint = hasInput ? mouseCentered : vec2(sin(iTime * 0.6) * 0.25, cos(iTime * 0.5) * 0.2);
     vec2 toPoint = uv - pokePoint;
     float dist = length(toPoint);
     float pokeRadius = 0.25;

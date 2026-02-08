@@ -272,179 +272,229 @@ export default function ShaderOverlay({
         onClick={handleClose}
       >
         <div className="min-h-full flex items-start justify-center py-8 px-4 md:px-8">
-          <div className="w-full max-w-4xl flex flex-col gap-4 pointer-events-none">
-            <div
-              ref={heroRef}
-              className="pointer-events-auto"
-              style={{ transformOrigin: "center center" }}
-              onClick={(e) => e.stopPropagation()}
-              onMouseMove={handleHeroMouseMove}
-              onMouseEnter={handleHeroMouseEnter}
-              onMouseLeave={handleHeroMouseLeave}
-            >
+          <div className="w-full max-w-[90rem] flex flex-col xl:flex-row gap-4 pointer-events-none">
+            <div className="flex-1 min-w-0 flex flex-col gap-4">
               <div
-                ref={heroInnerRef}
-                className="rounded-2xl overflow-hidden shadow-2xl relative"
-                style={{ willChange: "transform", isolation: "isolate" }}
+                ref={heroRef}
+                className="pointer-events-auto"
+                style={{ transformOrigin: "center center" }}
+                onClick={(e) => e.stopPropagation()}
+                onMouseMove={handleHeroMouseMove}
+                onMouseEnter={handleHeroMouseEnter}
+                onMouseLeave={handleHeroMouseLeave}
               >
-                {bgEnabled && (
-                  <img
-                    src={bgImageUrl}
-                    alt="Background"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ zIndex: 0 }}
-                  />
-                )}
-
-                <div style={{ position: "relative", zIndex: 10, mixBlendMode: bgEnabled ? blendMode : undefined } as React.CSSProperties}>
-                  <button
-                    onClick={handleClose}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
-                    style={{ zIndex: 30 }}
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-
-                  {editedFragSource ? (
-                    <ShaderCanvas
-                      fragSource={editedFragSource}
-                      width={1024}
-                      height={576}
-                      alwaysVisible
-                      onRecompileReady={handleRecompileReady}
-                    />
-                  ) : (
-                    <div
-                      className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
-                      style={{ aspectRatio: "16/9" }}
+                <div
+                  ref={heroInnerRef}
+                  className="rounded-2xl overflow-hidden shadow-2xl relative"
+                  style={{ willChange: "transform", isolation: "isolate" }}
+                >
+                  {bgEnabled && (
+                    <img
+                      src={bgImageUrl}
+                      alt="Background"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ zIndex: 0 }}
                     />
                   )}
+
+                  <div style={{ position: "relative", zIndex: 10, mixBlendMode: bgEnabled ? blendMode : undefined } as React.CSSProperties}>
+                    <button
+                      onClick={handleClose}
+                      className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white transition-colors"
+                      style={{ zIndex: 30 }}
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+
+                    {editedFragSource ? (
+                      <ShaderCanvas
+                        fragSource={editedFragSource}
+                        width={1024}
+                        height={576}
+                        alwaysVisible
+                        onRecompileReady={handleRecompileReady}
+                      />
+                    ) : (
+                      <div
+                        className="w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse"
+                        style={{ aspectRatio: "16/9" }}
+                      />
+                    )}
+                  </div>
+
+                  <div
+                    ref={glareRef}
+                    className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+                    style={{ opacity: 0, zIndex: 20, mixBlendMode: "overlay" }}
+                  />
+                </div>
+              </div>
+
+              <div
+                className={`flex flex-col gap-4 transition-all duration-500 ease-out ${
+                  detailsVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-6"
+                }`}
+              >
+                <div
+                  className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="text-sm font-medium text-gray-700">
+                      Background
+                    </span>
+                    <button
+                      onClick={() => setBgEnabled((v) => !v)}
+                      className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+                        bgEnabled
+                          ? "bg-gray-900 text-white"
+                          : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                      }`}
+                    >
+                      {bgEnabled ? "On" : "Off"}
+                    </button>
+
+                    {bgEnabled && (
+                      <>
+                        <select
+                          value={blendMode}
+                          onChange={(e) => setBlendMode(e.target.value)}
+                          className="px-2 py-1 text-xs rounded-lg border border-gray-200 bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                        >
+                          {BLEND_MODES.map((m) => (
+                            <option key={m.value} value={m.value}>
+                              {m.label}
+                            </option>
+                          ))}
+                        </select>
+
+                        <label className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer">
+                          Upload Image
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleBgUpload}
+                          />
+                        </label>
+
+                        {hasCustomBg && (
+                          <button
+                            onClick={handleBgReset}
+                            className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+                          >
+                            Reset
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 <div
-                  ref={glareRef}
-                  className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
-                  style={{ opacity: 0, zIndex: 20, mixBlendMode: "overlay" }}
-                />
+                  className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-5"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <h2 className="text-xl font-bold text-gray-900">
+                    {shader.title}
+                  </h2>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {shader.description}
+                  </p>
+                  <div className="border-t border-gray-200/60 mt-4 pt-3 flex flex-wrap items-center gap-2">
+                    {shader.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-50 text-gray-600 border border-gray-200/60"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    <span className="text-xs text-gray-400 ml-auto">
+                      By {shader.author}
+                    </span>
+                  </div>
+                </div>
+
+                {editedFragSource && (
+                  <div
+                    className="pointer-events-auto"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ParameterControls
+                      fragSource={editedFragSource}
+                      onSourceChange={handleParameterChange}
+                    />
+                  </div>
+                )}
+
+                <div
+                  className="glass-card rounded-2xl overflow-hidden shadow-lg pointer-events-auto xl:hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex gap-1 px-4 pt-4 pb-2">
+                    <button
+                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                        activeTab === "glsl"
+                          ? "bg-gray-900 text-white shadow-sm"
+                          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                      }`}
+                      onClick={() => setActiveTab("glsl")}
+                    >
+                      GLSL (Editable)
+                    </button>
+                    <button
+                      className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                        activeTab === "metal"
+                          ? "bg-gray-900 text-white shadow-sm"
+                          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                      }`}
+                      onClick={() => setActiveTab("metal")}
+                    >
+                      Metal
+                    </button>
+                  </div>
+
+                  <div className="px-4 pb-4">
+                    <div className="rounded-xl overflow-hidden">
+                      {activeTab === "glsl" && editedFragSource ? (
+                        <EditableCodeBlock
+                          code={editedFragSource}
+                          language="glsl"
+                          onChange={handleCodeChange}
+                        />
+                      ) : metalSource ? (
+                        <CodeBlock code={metalSource} language="cpp" />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div
-              className={`flex flex-col gap-4 transition-all duration-500 ease-out ${
+              className={`hidden xl:block xl:w-[480px] xl:shrink-0 pointer-events-auto sticky top-8 self-start transition-all duration-500 ease-out ${
                 detailsVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
               }`}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-4"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-sm font-medium text-gray-700">
-                    Background
-                  </span>
-                  <button
-                    onClick={() => setBgEnabled((v) => !v)}
-                    className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                      bgEnabled
-                        ? "bg-gray-900 text-white"
-                        : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-                    }`}
-                  >
-                    {bgEnabled ? "On" : "Off"}
-                  </button>
-
-                  {bgEnabled && (
-                    <>
-                      <select
-                        value={blendMode}
-                        onChange={(e) => setBlendMode(e.target.value)}
-                        className="px-2 py-1 text-xs rounded-lg border border-gray-200 bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300"
-                      >
-                        {BLEND_MODES.map((m) => (
-                          <option key={m.value} value={m.value}>
-                            {m.label}
-                          </option>
-                        ))}
-                      </select>
-
-                      <label className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors cursor-pointer">
-                        Upload Image
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleBgUpload}
-                        />
-                      </label>
-
-                      {hasCustomBg && (
-                        <button
-                          onClick={handleBgReset}
-                          className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
-                        >
-                          Reset
-                        </button>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-
-              <div
-                className="glass-card rounded-2xl shadow-lg pointer-events-auto px-6 py-5"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h2 className="text-xl font-bold text-gray-900">
-                  {shader.title}
-                </h2>
-                <p className="text-sm text-gray-500 mt-1">
-                  {shader.description}
-                </p>
-                <div className="border-t border-gray-200/60 mt-4 pt-3 flex flex-wrap items-center gap-2">
-                  {shader.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-50 text-gray-600 border border-gray-200/60"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  <span className="text-xs text-gray-400 ml-auto">
-                    By {shader.author}
-                  </span>
-                </div>
-              </div>
-
-              {editedFragSource && (
-                <div
-                  className="pointer-events-auto"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ParameterControls
-                    fragSource={editedFragSource}
-                    onSourceChange={handleParameterChange}
-                  />
-                </div>
-              )}
-
-              <div
-                className="glass-card rounded-2xl overflow-hidden shadow-lg pointer-events-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <div className="glass-card rounded-2xl overflow-hidden shadow-lg">
                 <div className="flex gap-1 px-4 pt-4 pb-2">
                   <button
                     className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
@@ -475,6 +525,7 @@ export default function ShaderOverlay({
                         code={editedFragSource}
                         language="glsl"
                         onChange={handleCodeChange}
+                        maxHeight={800}
                       />
                     ) : metalSource ? (
                       <CodeBlock code={metalSource} language="cpp" />
