@@ -24,6 +24,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
   const [expandState, setExpandState] = useState<ExpandState | null>(null);
   const [mounted, setMounted] = useState(false);
   const [votes, setVotes] = useState<Record<string, number>>({});
+  const [sortVotes, setSortVotes] = useState<Record<string, number>>({});
   const [userVotes, setUserVotes] = useState<Set<string>>(new Set());
   const [votingEnabled, setVotingEnabled] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("name");
@@ -45,6 +46,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
       .then((data: { enabled: boolean; votes?: Record<string, number> }) => {
         if (data.enabled && data.votes) {
           setVotes(data.votes);
+          setSortVotes(data.votes);
           setVotingEnabled(true);
           setSortBy("popular");
         }
@@ -142,7 +144,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     switch (sortBy) {
       case "popular":
         sorted.sort((a, b) => {
-          const diff = (votes[b.slug] || 0) - (votes[a.slug] || 0);
+          const diff = (sortVotes[b.slug] || 0) - (sortVotes[a.slug] || 0);
           return diff !== 0 ? diff : a.title.localeCompare(b.title);
         });
         break;
@@ -160,7 +162,7 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
     }
 
     return sorted;
-  }, [shaders, searchQuery, selectedTags, sortBy, votes]);
+  }, [shaders, searchQuery, selectedTags, sortBy, sortVotes]);
 
   const handleTagToggle = (tag: string) => {
     setSelectedTags((prev) =>
