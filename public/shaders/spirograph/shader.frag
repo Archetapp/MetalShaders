@@ -38,7 +38,6 @@ void main() {
 
     vec3 col = vec3(0.01, 0.01, 0.02);
 
-    float tMod = mod(t * 0.3, 6.28318 * 3.0);
     float R1 = 1.0;
     float r1 = 0.38 + 0.1 * sin(t * 0.1);
     float d1 = 0.3 + 0.15 * cos(t * 0.15);

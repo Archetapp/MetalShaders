@@ -22,7 +22,7 @@ fragment float4 soapFilmFragment(
     thickness += 0.2*sfNoise(uv*7.0 - t*0.5);
     thickness += r*0.5;
     thickness += uv.y*0.3 + sin(t*0.2)*0.1;
-    thickness += sin(atan2(uv.y, uv.x) + t*0.2)*3.0*0.1;
+    thickness += sin((atan2(uv.y, uv.x) + t*0.2)*3.0)*0.1;
     float phase = thickness * 12.0;
     float3 thinFilm;
     thinFilm.r = sin(phase)*0.5+0.5;

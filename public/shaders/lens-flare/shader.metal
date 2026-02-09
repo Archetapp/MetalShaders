@@ -19,5 +19,10 @@ fragment float4 lensFlareFragment(
     for(int i=0;i<8;i++){float angle=float(i)*0.785+0.2;
     float2 sd=float2(cos(angle),sin(angle));
     col+=exp(-pow(max(abs(dot(tl,sd)),0.0),1.0)*50.0)*exp(-dist*5.0)*float3(0.8,0.85,1.0)*0.05;}
+    float iris=exp(-pow(dist-0.08,2.0)*2000.0)*0.2;
+    col+=iris*float3(0.5,0.3,0.8);
+    float chromatic=exp(-dist*8.0)*0.1;
+    col.r+=chromatic*0.3;
+    col.b+=chromatic*0.2;
     return float4(col, 1.0);
 }

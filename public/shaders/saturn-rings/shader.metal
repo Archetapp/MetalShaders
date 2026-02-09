@@ -53,6 +53,10 @@ fragment float4 saturnRingsFragment(VertexOut in [[stage_in]],
 
     float3 ringCol = mix(float3(0.7, 0.65, 0.55), float3(0.85, 0.8, 0.7), (r - ringInner) / (ringOuter - ringInner));
 
+    float shadow = 1.0 - smoothstep(-0.01, 0.01, ringUV.x) * smoothstep(planetR * 0.9, planetR * 1.1, ringR) *
+                   step(ringUV.y, 0.05) * step(-0.05, ringUV.y) * 0.5;
+    ringCol *= shadow;
+
     bool inFront = ruv.y < 0.0;
     if (inFront) {
         col = mix(col, ringCol, ringMask * ringDensity);

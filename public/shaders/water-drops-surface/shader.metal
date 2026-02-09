@@ -111,9 +111,13 @@ fragment float4 waterDropsSurfaceFragment(
                 float edgeHighlight = smoothstep(0.8, 1.0, normalizedDist) * 0.2;
                 dropColor += float3(0.5, 0.55, 0.6) * edgeHighlight;
 
+                float contactShadow = smoothstep(radius * 1.2, radius * 0.8, dist + 0.005);
                 float dropMask = smoothstep(radius, radius - 0.002, dist);
                 totalColor = mix(totalColor, dropColor, dropMask);
                 totalDropMask = max(totalDropMask, dropMask);
+                if (dropMask < 0.1) {
+                    totalColor -= float3(0.03) * contactShadow * (1.0 - dropMask);
+                }
             } else if (dist < radius * 1.3) {
                 float shadow = smoothstep(radius * 1.3, radius, dist) * 0.08;
                 totalColor -= float3(shadow);

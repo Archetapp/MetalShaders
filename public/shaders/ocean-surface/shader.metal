@@ -6,18 +6,18 @@ struct VertexOut {
     float2 uv;
 };
 
-float hashOcean(float2 p) {
+float oceanHash(float2 p) {
     return fract(sin(dot(p, float2(127.1, 311.7))) * 43758.5453);
 }
 
-float noiseOcean(float2 p) {
+float oceanNoise(float2 p) {
     float2 i = floor(p);
     float2 f = fract(p);
     f = f * f * (3.0 - 2.0 * f);
-    float a = hashOcean(i);
-    float b = hashOcean(i + float2(1.0, 0.0));
-    float c = hashOcean(i + float2(0.0, 1.0));
-    float d = hashOcean(i + float2(1.0, 1.0));
+    float a = oceanHash(i);
+    float b = oceanHash(i + float2(1.0, 0.0));
+    float c = oceanHash(i + float2(0.0, 1.0));
+    float d = oceanHash(i + float2(1.0, 1.0));
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
@@ -65,7 +65,7 @@ fragment float4 oceanSurfaceFragment(
     float2 worldPos = float2((uv.x - 0.5) * perspScale * 2.0, perspScale * 0.5);
 
     float wave = oceanWaves(worldPos * 0.3, t);
-    float waveDetail = noiseOcean(worldPos * 3.0 + t * 0.3) * 0.1;
+    float waveDetail = oceanNoise(worldPos * 3.0 + t * 0.3) * 0.1;
     wave += waveDetail;
 
     float nx = oceanWaves((worldPos + float2(0.01, 0.0)) * 0.3, t) - wave;

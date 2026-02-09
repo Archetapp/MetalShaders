@@ -13,4 +13,8 @@ fragment float4 sdfOutlineFragment(VertexOut in[[stage_in]],constant float &iTim
     col=mix(col,float3(0.2,0.7,0.3),smoothstep(w,0.0,abs(d2)-0.005));
     col=mix(col,float3(0.8,0.2,0.1),smoothstep(w,0.0,abs(d3)-0.005)*step(0.0,sin(atan2(uv.y,uv.x-0.3)*8.0+t*3.0)));
     col-=smoothstep(0.005,0.0,d1)*0.1*float3(0,0,0.3);col-=smoothstep(0.005,0.0,d2)*0.1*float3(0,0.3,0);
+    float anim=sin(t*2.0)*0.5+0.5;
+    float grow=soCircle(uv-float2(-0.3,0.0),0.2*anim);
+    float animOutline=smoothstep(w,0.0,abs(grow)-0.003);
+    col=mix(col,float3(0.8,0.5,0.1),animOutline*0.5);
     return float4(col,1.0);}

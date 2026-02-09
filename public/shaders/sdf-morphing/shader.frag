@@ -7,7 +7,6 @@ float smSphere(vec3 p,float r){return length(p)-r;}
 float smTorus(vec3 p,vec2 tr){vec2 q=vec2(length(p.xz)-tr.x,p.y);return length(q)-tr.y;}
 float smBox(vec3 p,vec3 b){vec3 q=abs(p)-b;return length(max(q,0.0))+min(max(q.x,max(q.y,q.z)),0.0);}
 float smMap(vec3 p,float t){
-    float morph=sin(t*0.5)*0.5+0.5;
     float a=smSphere(p,0.8);float b=smTorus(p,vec2(0.6,0.25));float c=smBox(p,vec3(0.55));
     float phase=mod(t*0.2,3.0);
     if(phase<1.0)return mix(a,b,smoothstep(0.0,1.0,fract(phase)));

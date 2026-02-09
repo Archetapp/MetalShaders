@@ -66,7 +66,6 @@ void main() {
     vec2 cell = floor(deformed + 0.5);
     vec2 f = deformed - cell;
 
-    float cellId = etHash(cell);
     float cellType = mod(cell.x + cell.y, 2.0);
 
     float creature = etCreatureShape(f, cellType);

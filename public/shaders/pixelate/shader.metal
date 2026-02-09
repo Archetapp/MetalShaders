@@ -8,6 +8,7 @@ fragment float4 pixelateFragment(VertexOut in[[stage_in]],constant float &iTime[
     float d=length(blocks-float2(0.5+0.2*sin(t),0.5+0.2*cos(t*0.7)));
     float3 scene=0.5+0.5*cos(6.28*(d*3.0+t*0.5+float3(0,0.33,0.67)));
     scene=mix(float3(0.1),scene,smoothstep(0.3,0.25,d));
+    scene+=sin(blocks.x*20.0)*sin(blocks.y*20.0)*0.1;
     float2 cellUv=fract(uv*blockSize);
     float border=smoothstep(0.0,0.05,cellUv.x)*smoothstep(0.0,0.05,cellUv.y)*
                  smoothstep(1.0,0.95,cellUv.x)*smoothstep(1.0,0.95,cellUv.y);

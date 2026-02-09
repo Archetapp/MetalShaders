@@ -11,4 +11,6 @@ fragment float4 barrelDistortionFragment(VertexOut in[[stage_in]],constant float
         for(int i=0;i<4;i++){float fi=float(i);
             float2 p=float2(0.25+fi*0.2,0.5+0.15*sin(t+fi));
             col=mix(col,float3(1.0,0.9,0.3),smoothstep(0.08,0.06,length(distorted-p)));}}
+    float grid=smoothstep(0.02,0.0,min(fract(distorted.x*15.0),fract(distorted.y*15.0)));
+    col=mix(col,float3(0.1),grid*0.3);
     return float4(col,1.0);}

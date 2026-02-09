@@ -15,7 +15,7 @@ fragment float4 stainedGlassFragment(VertexOut in[[stage_in]],constant float &iT
     float edge=secondDist-minDist;float lead=1.0-smoothstep(0.0,0.08,edge);
     float cellId=sgHash(closestCell);
     float3 glassColors[6]={float3(0.8,0.1,0.1),float3(0.1,0.2,0.8),float3(0.9,0.7,0.1),float3(0.1,0.6,0.2),float3(0.6,0.1,0.6),float3(0.8,0.4,0.1)};
-    int idx=int(cellId*6.0);
+    int idx=min(int(cellId*6.0),5);
     float3 glass=glassColors[idx];
     float light=0.6+0.4*sin(uv.x*M_PI_F+t*0.3)*sin(uv.y*M_PI_F+t*0.21);
     float3 col=glass*light*(1.0-lead*0.8);col=mix(col,float3(0.02),lead);

@@ -10,5 +10,10 @@ fragment float4 loadingSpinnerFragment(VertexOut in[[stage_in]],constant float &
     float ring=smoothstep(0.15,0.14,abs(r-0.2));
     float gradient=smoothstep(0.0,arcLength,relAngle+arcLength);
     float3 spinnerCol=mix(float3(0.2,0.4,0.9),float3(0.4,0.7,1.0),gradient);
-    col=mix(col,spinnerCol,arc*ring);col-=smoothstep(0.005,0.0,abs(r-0.2))*0.1;
+    col=mix(col,spinnerCol,arc*ring);
+    float cap1=smoothstep(0.02,0.01,length(uv-float2(cos(spinAngle),sin(spinAngle))*0.2));
+    float cap2Angle=spinAngle+arcLength;
+    float cap2=smoothstep(0.02,0.01,length(uv-float2(cos(cap2Angle),sin(cap2Angle))*0.2));
+    col=mix(col,spinnerCol,(cap1+cap2)*0.5);
+    col-=smoothstep(0.005,0.0,abs(r-0.2))*0.1;
     return float4(col,1.0);}

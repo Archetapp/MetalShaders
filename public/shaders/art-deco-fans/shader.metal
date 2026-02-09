@@ -10,5 +10,9 @@ fragment float4 artDecoFansFragment(VertexOut in[[stage_in]],constant float &iTi
     float fan=smoothstep(0.0,0.01,angle)*smoothstep(M_PI_F,M_PI_F-0.01,angle)*smoothstep(0.8,0.78,r);
     float pattern=mix(sin(angle*8.0+t*0.5)*0.5+0.5,sin(r*20.0-t)*0.5+0.5,0.5);
     col=mix(col,mix(darkGold,gold,pattern),fan);
-    col+=gold*smoothstep(0.005,0.0,abs(r-0.8))*fan*0.5;
+    float arc=smoothstep(0.005,0.0,abs(r-0.8))*fan;
+    for(float ri=0.2;ri<0.8;ri+=0.2){arc+=smoothstep(0.003,0.0,abs(r-ri))*fan*0.5;}
+    col+=gold*arc*0.5;
+    float rayLines=smoothstep(0.01,0.0,abs(sin(angle*8.0)))*fan*smoothstep(0.1,0.2,r);
+    col+=gold*rayLines*0.2;
     return float4(col,1.0);}

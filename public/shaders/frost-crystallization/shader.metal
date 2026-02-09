@@ -72,7 +72,7 @@ float frostCrystalBranch(float2 uv, float angle, float growthProgress) {
     float along = dot(uv, dir);
     float across = abs(dot(uv, perp));
 
-    float branchLen = growthProgress * 0.3;
+    float branchLen = max(growthProgress * 0.3, 0.0001);
     float branchWidth = 0.003 * (1.0 - along / branchLen);
     branchWidth = max(branchWidth, 0.0005);
 

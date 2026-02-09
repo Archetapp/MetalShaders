@@ -11,7 +11,7 @@ float webHashMtl(float n) { return fract(sin(n) * 43758.5453); }
 fragment float4 spiderWebFragment(VertexOut in [[stage_in]],
                                    constant float &iTime [[buffer(0)]],
                                    constant float2 &iResolution [[buffer(1)]]) {
-    float2 uv = (in.position.xy - 0.5 * iResolution) / iResolution.y;
+    float2 uv = (in.uv * iResolution - 0.5 * iResolution) / iResolution.y;
     float3 col = float3(0.02, 0.02, 0.05);
 
     float r = length(uv);

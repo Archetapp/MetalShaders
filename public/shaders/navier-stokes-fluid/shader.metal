@@ -29,7 +29,15 @@ fragment float4 navierStokesFluidFragment(
         float2 ip = float2(sin(iTime*0.3+fi*1.57)*0.25, cos(iTime*0.4+fi*1.57)*0.2);
         dye += (0.5+0.5*cos(6.28*(fi*0.25+iTime*0.1+float3(0,0.33,0.67)))) * exp(-dot(advUv-ip,advUv-ip)*50.0);
     }
-    float3 col = dye + pow(navierStokesNoise(advUv*15.0+iTime*0.3), 3.0)*0.2*float3(0.3,0.4,0.5);
+    float2 vel = navierStokesVelField(uv, iTime);
+    float vorticity = length(vel) * 2.0;
+    float turbulence = navierStokesNoise(advUv * 8.0 + iTime * 0.5) * 0.3;
+    float3 col = dye;
+    col += turbulence * float3(0.05, 0.05, 0.08);
+    float wisps = navierStokesNoise(advUv*15.0+iTime*0.3);
+    wisps = pow(wisps, 3.0)*0.2;
+    col += wisps*float3(0.3,0.4,0.5);
+    col *= 0.8 + 0.2 * vorticity;
     col = pow(max(col, 0.0), float3(0.85));
     return float4(col, 1.0);
 }

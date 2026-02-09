@@ -16,12 +16,6 @@ void main() {
     float spiral = sin(a * 3.0 - logR * 8.0 + iTime * 2.0);
     float bands = smoothstep(-0.1, 0.1, spiral);
 
-    float zoom = fract(iTime * 0.3);
-    float scale = pow(2.0, zoom);
-    float logR2 = logR + zoom * 0.693;
-    float spiral2 = sin(a * 3.0 - logR2 * 8.0 + iTime * 2.0);
-    float bands2 = smoothstep(-0.1, 0.1, spiral2);
-
     vec3 col1 = mix(vec3(0.1, 0.0, 0.3), vec3(0.8, 0.2, 0.5), bands);
     vec3 col2 = mix(vec3(0.0, 0.1, 0.3), vec3(0.2, 0.5, 0.9), bands);
 

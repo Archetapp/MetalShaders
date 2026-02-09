@@ -23,8 +23,14 @@ fragment float4 springMeshDeformFragment(
     float2 movedLocal = cellLocal-displacement;
     float nodeSize = 0.08+pokePower*0.04;
     float node = smoothstep(nodeSize, nodeSize*0.5, length(movedLocal));
+    float springH = smoothstep(0.04, 0.0, abs(movedLocal.y - displacement.y*0.5));
+    springH *= step(-0.5, movedLocal.x) * step(movedLocal.x, 0.5);
+    float springV = smoothstep(0.04, 0.0, abs(movedLocal.x - displacement.x*0.5));
+    springV *= step(-0.5, movedLocal.y) * step(movedLocal.y, 0.5);
     float3 col = float3(0.05,0.05,0.08);
     float3 nodeColor = mix(float3(0.2,0.5,0.8), float3(0.8,0.3,0.2), pokePower);
+    float3 springColor = float3(0.15, 0.3, 0.5);
+    col = mix(col, springColor * 0.5, max(springH, springV) * 0.5);
     col = mix(col, nodeColor, node);
     col += node*(wave+wave2)*float3(0.3,0.5,0.8);
     col += exp(-distToPoke*3.0)*0.1*float3(0.2,0.4,0.7);

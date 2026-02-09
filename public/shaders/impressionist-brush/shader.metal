@@ -12,4 +12,6 @@ fragment float4 impressionistBrushFragment(VertexOut in[[stage_in]],constant flo
     float2 rf=float2(f.x*cs-f.y*sn,f.x*sn+f.y*cs);
     float brushStroke=smoothstep(0.4,0.0,abs(rf.y)*3.0)*smoothstep(0.5,0.3,abs(rf.x))*(0.7+ibHash(cell+float2(2,0))*0.6);
     float3 brushCol=clamp(scene+float3(ibHash(cell+float2(3,0))-0.5,ibHash(cell+float2(4,0))-0.5,ibHash(cell+float2(5,0))-0.5)*0.2,0.0,1.0);
-    return float4(mix(float3(0.9,0.87,0.8),brushCol,brushStroke),1.0);}
+    float3 col=mix(float3(0.9,0.87,0.8),brushCol,brushStroke);
+    col+=float3(ibHash(cell*17.0)-0.5)*0.04;
+    return float4(col,1.0);}

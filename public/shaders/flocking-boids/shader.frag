@@ -18,7 +18,6 @@ void main(){
     vec2 uv = (gl_FragCoord.xy - 0.5*iResolution) / iResolution.y;
     float t = iTime;
     vec3 col = vec3(0.05, 0.07, 0.15);
-    float glow = 0.0;
     for(int i = 0; i < 50; i++){
         float fi = float(i);
         vec2 pos = fbBoidPos(fi, t);

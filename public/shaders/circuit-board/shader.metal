@@ -23,7 +23,12 @@ fragment float4 circuitBoardFragment(
     float3 col = mix(pcbDark, pcbGreen, 0.5+0.5*cbHash(cell*7.0));
     float traceH = smoothstep(0.04, 0.0, abs(f.y-0.5))*step(0.3, id);
     float traceV = smoothstep(0.04, 0.0, abs(f.x-0.5))*step(0.5, id);
-    float trace = max(traceH, traceV);
+    float traceCorner = 0.0;
+    if(id > 0.7){
+        float d = length(f - float2(step(0.5, cbHash(cell+float2(1,0))), step(0.5, cbHash(cell+float2(0,1)))));
+        traceCorner = smoothstep(0.54, 0.46, d) * smoothstep(0.42, 0.46, d);
+    }
+    float trace = max(max(traceH, traceV), traceCorner);
     float3 copperCol = float3(0.7, 0.5, 0.2);
     float3 solderCol = float3(0.75, 0.75, 0.7);
     col = mix(col, copperCol, trace*0.8);

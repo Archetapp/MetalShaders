@@ -4,10 +4,6 @@ uniform float iTime;
 uniform vec2 iResolution;
 out vec4 fragColor;
 
-float weHash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453);
-}
-
 void main(){
     vec2 uv = gl_FragCoord.xy / iResolution;
     float t = iTime;

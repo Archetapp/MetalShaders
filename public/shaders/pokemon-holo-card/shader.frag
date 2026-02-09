@@ -64,7 +64,7 @@ void main() {
     vec3 baseColor = vec3(0.85, 0.85, 0.88);
     vec3 holoColor = mix(rainbow1, rainbow2, gratingPattern);
 
-    float fresnelLike = 1.0 - abs(dot(normalize(centeredUv.xyy), viewDir));
+    float fresnelLike = 1.0 - abs(dot(normalize(vec3(centeredUv, 0.0)), viewDir));
     fresnelLike = pow(fresnelLike, 2.0);
 
     float holoStrength = 0.5 + 0.3 * sin(iTime * 0.4) + fresnelLike * 0.3;

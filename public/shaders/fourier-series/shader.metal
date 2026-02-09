@@ -12,4 +12,5 @@ fragment float4 fourierSeriesFragment(VertexOut in[[stage_in]],constant float &i
     col+=float3(0.2,0.6,1.0)*0.002/(sd+0.002)*0.2;
     float td=abs(uv.y+0.15-triApprox);col+=float3(1.0,0.4,0.2)*smoothstep(0.005,0.0,td);
     col+=float3(1.0,0.4,0.2)*0.002/(td+0.002)*0.2;
+    col+=float3(0.1)*(smoothstep(0.002,0.0,abs(uv.y-0.15))+smoothstep(0.002,0.0,abs(uv.y+0.15)));
     return float4(col,1.0);}

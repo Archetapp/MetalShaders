@@ -23,7 +23,6 @@ void main(){
     vec2 endPos=vec2(cos(endAngle),sin(endAngle))*radius;
     float endDot=smoothstep(0.03,0.02,length(uv-endPos));
     col=mix(col,fillCol*1.3,endDot*fill);
-    float pct=floor(progress*100.0);
     float textY=smoothstep(0.03,0.0,abs(uv.y));
     float textX=smoothstep(0.05,0.0,abs(uv.x));
     col+=vec3(0.5)*textX*textY*0.2;

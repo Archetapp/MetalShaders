@@ -5,10 +5,6 @@ uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
 
-float pgeHash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-}
-
 void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
     vec2 centered = uv * 2.0 - 1.0;

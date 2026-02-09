@@ -22,7 +22,7 @@ void main(){
     glassColors[0]=vec3(0.8,0.1,0.1);glassColors[1]=vec3(0.1,0.2,0.8);
     glassColors[2]=vec3(0.9,0.7,0.1);glassColors[3]=vec3(0.1,0.6,0.2);
     glassColors[4]=vec3(0.6,0.1,0.6);glassColors[5]=vec3(0.8,0.4,0.1);
-    int idx=int(cellId*6.0);
+    int idx=min(int(cellId*6.0),5);
     vec3 glass=glassColors[idx];
     float lightAngle=t*0.3;
     float light=0.6+0.4*sin(uv.x*3.14159+lightAngle)*sin(uv.y*3.14159+lightAngle*0.7);

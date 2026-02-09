@@ -109,7 +109,6 @@ void main() {
         float edgeDarken = smoothstep(0.3, 0.0, ink) * ink * 0.3;
         inkCol *= (1.0 + edgeDarken);
 
-        float bleedAmount = iwFbm(uv * 8.0 + float(i) + t * 0.05) * 0.15;
         vec3 bleedColor = inkCol * 0.3;
 
         float paperAbsorb = (1.0 - paperNoise * 2.0);

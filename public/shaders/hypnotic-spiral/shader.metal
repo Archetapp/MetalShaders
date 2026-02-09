@@ -19,10 +19,6 @@ fragment float4 hypnoticSpiralFragment(VertexOut in [[stage_in]],
     float spiral = sin(a * 3.0 - logR * 8.0 + iTime * 2.0);
     float bands = smoothstep(-0.1, 0.1, spiral);
 
-    float zoom = fract(iTime * 0.3);
-    float logR2 = logR + zoom * 0.693;
-    float spiral2 = sin(a * 3.0 - logR2 * 8.0 + iTime * 2.0);
-
     float3 col1 = mix(float3(0.1, 0.0, 0.3), float3(0.8, 0.2, 0.5), bands);
     float3 col2 = mix(float3(0.0, 0.1, 0.3), float3(0.2, 0.5, 0.9), bands);
 

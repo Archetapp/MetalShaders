@@ -9,4 +9,9 @@ fragment float4 parametricSurfaceFragment(VertexOut in[[stage_in]],constant floa
         butterflyR*=0.08;float2 pos=float2(sin(param)*butterflyR,cos(param)*butterflyR);
         float d=length(uv-pos);float3 c=0.5+0.5*cos(6.28*(param*0.05+float3(0,0.33,0.67)));
         col+=c*0.001/(d+0.002)*(0.5+0.5*sin(s*0.1))+c*smoothstep(0.005,0.002,d)*0.3;}
+    for(float s=0.0;s<100.0;s+=1.0){float param=s*0.08;
+        float a=0.2+0.1*sin(t*0.3);float b=0.15+0.05*cos(t*0.4);
+        float2 pos=float2(a*sin(param*3.0+t),b*sin(param*2.0));
+        float d=length(uv-pos);
+        col+=float3(0.8,0.6,0.2)*0.001/(d+0.003)*0.5;}
     return float4(col,1.0);}

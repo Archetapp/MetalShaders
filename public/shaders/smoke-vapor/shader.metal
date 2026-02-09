@@ -38,5 +38,7 @@ fragment float4 smokeVaporFragment(
             col = mix(col, smokeColor, density*0.6);
         }
     }
+    float ambientSmoke = smokeVaporFbm(uv * 3.0 + iTime * 0.02) * 0.05;
+    col += ambientSmoke * float3(0.2, 0.2, 0.25);
     return float4(col, 1.0);
 }

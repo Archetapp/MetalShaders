@@ -7,8 +7,7 @@ out vec4 fragColor;
 
 float sierpinskiDE(vec2 p) {
     float scale = 1.0;
-    float angle = iTime * 0.2;
-    
+
     for (int i = 0; i < 12; i++) {
         p = p * 2.0 - 1.0;
         

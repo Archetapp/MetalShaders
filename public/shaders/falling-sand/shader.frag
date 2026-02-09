@@ -37,7 +37,6 @@ vec3 sandColor(float id) {
 
 void main() {
     vec2 uv = gl_FragCoord.xy / iResolution;
-    float aspect = iResolution.x / iResolution.y;
     vec2 mouseUV = iMouse / iResolution;
     bool hasInput = iMouse.x > 0.0 || iMouse.y > 0.0;
     bool isInteracting = iMouseDown > 0.5;

@@ -4,7 +4,7 @@ using namespace metal;
 struct VertexOut { float4 position [[position]]; float2 uv; };
 
 float2 newtonCmul(float2 a, float2 b) { return float2(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
-float2 newtonCdiv(float2 a, float2 b) { float d = dot(b,b); return float2(a.x*b.x+a.y*b.y, a.y*b.x-a.x*b.y)/d; }
+float2 newtonCdiv(float2 a, float2 b) { float d = dot(b,b) + 1e-10; return float2(a.x*b.x+a.y*b.y, a.y*b.x-a.x*b.y)/d; }
 
 fragment float4 newtonsFractalFragment(VertexOut in [[stage_in]],
                                         constant float &iTime [[buffer(0)]],

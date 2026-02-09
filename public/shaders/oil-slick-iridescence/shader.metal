@@ -17,9 +17,13 @@ fragment float4 oilSlickIridescenceFragment(
     float phase = thickness*viewAngle*15.0;
     float3 thinFilm = float3(pow(sin(phase)*0.5+0.5,2.0),pow(sin(phase*1.2+2.094)*0.5+0.5,2.0),pow(sin(phase*1.4+4.189)*0.5+0.5,2.0));
     float3 waterBase = float3(0.05,0.08,0.12);
+    float waterRipple = sin(uv.x*15.0+iTime*0.5)*sin(uv.y*12.0+iTime*0.3)*0.02;
+    waterBase += waterRipple;
     float oilShape = oilSlickIridNoise(uv*2.0+iTime*0.02)+oilSlickIridNoise(uv*4.0-iTime*0.03)*0.5;
     float oilMask = smoothstep(0.3,0.6,oilShape);
     float3 col = mix(waterBase, thinFilm*0.7+waterBase*0.3, oilMask);
     col += smoothstep(0.05,0.0,abs(oilShape-0.45))*thinFilm*0.3;
+    float spec = pow(max(0.0, dot(normalize(float3(uv, 1.0)), normalize(float3(tiltX, tiltY, 1.0)))), 16.0);
+    col += spec * 0.15 * oilMask;
     return float4(col, 1.0);
 }

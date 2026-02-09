@@ -52,6 +52,12 @@ fragment float4 cassetteTapeFragment(VertexOut in [[stage_in]],
     col = mix(col, float3(0.15, 0.08, 0.05), tapeMask);
     col += tapeMask * float3(0.03) * (sin(uv.x * 100.0 - iTime * 20.0) * 0.5 + 0.5);
 
+    float windowW = 0.25, windowH = 0.06;
+    float windowY = 0.05;
+    float window = step(abs(uv.x), windowW) * step(abs(uv.y - windowY), windowH);
+    float windowBorder = step(abs(uv.x), windowW + 0.005) * step(abs(uv.y - windowY), windowH + 0.005) * (1.0 - window);
+    col = mix(col, float3(0.08, 0.06, 0.05), windowBorder * caseMask);
+
     float label = step(abs(uv.x), 0.3) * step(abs(uv.y + 0.1), 0.08) * caseMask;
     col = mix(col, float3(0.85, 0.82, 0.75), label);
     float labelLine = step(abs(fract((uv.y + 0.1 + 0.08) * 20.0) - 0.5), 0.45) * label;

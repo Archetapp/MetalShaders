@@ -3,7 +3,6 @@ precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
 out vec4 fragColor;
-float ppHash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 void main(){
     vec2 uv=(gl_FragCoord.xy-0.5*iResolution)/iResolution.y*3.0;float t=iTime;
     float mode=mod(t*0.1,3.0);

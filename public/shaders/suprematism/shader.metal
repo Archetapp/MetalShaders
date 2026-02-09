@@ -15,4 +15,7 @@ fragment float4 suprematismFragment(VertexOut in[[stage_in]],constant float &iTi
         if(ci<1.0)shapeCol=float3(0.85,0.1,0.1);else if(ci<2.0)shapeCol=float3(0.1);
         else if(ci<3.0)shapeCol=float3(0.1,0.15,0.55);else shapeCol=float3(0.9,0.75,0.1);
         col=mix(col,shapeCol,rect);}
+    float cross1=step(abs(uv.x),0.005)*step(abs(uv.y-0.1),0.15);
+    float cross2=step(abs(uv.y),0.005)*step(abs(uv.x+0.1),0.15);
+    col=mix(col,float3(0.1),max(cross1,cross2)*0.5);
     return float4(col,1.0);}

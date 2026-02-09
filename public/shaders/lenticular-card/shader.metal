@@ -10,10 +10,6 @@ float3 lenticularCardRainbow(float t) {
     return 0.5 + 0.5 * cos(6.28318 * (t + float3(0.0, 0.33, 0.67)));
 }
 
-float lenticularCardHash(float2 p) {
-    return fract(sin(dot(p, float2(127.1, 311.7))) * 43758.5453);
-}
-
 fragment float4 lenticularCardFragment(
     VertexOut in [[stage_in]],
     constant float &iTime [[buffer(0)]],

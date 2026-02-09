@@ -28,7 +28,6 @@ void main(){
         pts[i].x*=aspect;
     }
     vec3 col=vec3(0.03,0.03,0.08);
-    float minEdge=1e9;
     for(int i=0;i<N;i++){
         for(int j=i+1;j<N;j++){
             float d=length(pts[i]-pts[j]);
@@ -38,7 +37,6 @@ void main(){
                 float hue=float(i+j)*0.3+t*0.2;
                 vec3 lc=0.5+0.5*cos(hue+vec3(0,2,4));
                 col+=lc*glow*0.3;
-                minEdge=min(minEdge,sd);
             }
         }
     }

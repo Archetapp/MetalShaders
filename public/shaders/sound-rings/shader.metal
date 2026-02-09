@@ -18,6 +18,11 @@ fragment float4 soundRingsFragment(
     col+=ring*rc*(0.5+freq*0.5)*(0.4+freq*0.6);}
     col+=exp(-dist*15.0)*(bass*0.5+0.2)*float3(0.5,0.3,0.8);
     col+=max(sin(dist*30.0-iTime*5.0)*exp(-dist*3.0)*bass*0.1,0.0)*float3(0.3,0.4,0.6);
+    float particleAngle=angle+iTime*0.5;
+    float particleRing=sin(particleAngle*12.0)*0.5+0.5;
+    float particleDist=abs(dist-0.35-bass*0.05);
+    float particles=pow(particleRing,8.0)*exp(-particleDist*50.0)*0.5;
+    col+=particles*float3(0.6,0.7,1.0);
     col = pow(col, float3(0.9));
     return float4(col, 1.0);
 }

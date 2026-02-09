@@ -19,7 +19,7 @@ fragment float4 morphingBlobDragFragment(
     float field = 0.0;
     float3 colorField = float3(0.0);
 
-    float mainBlob = 0.12 / length(uv - dragPos);
+    float mainBlob = 0.12 / (length(uv - dragPos) + 0.0001);
     field += mainBlob;
     colorField += mainBlob * float3(0.3, 0.6, 1.0);
 
@@ -31,7 +31,7 @@ fragment float4 morphingBlobDragFragment(
 
         float dist = length(uv - blobPos);
         float blobSize = 0.06 + 0.02 * sin(iTime * 0.5 + fi * 2.0);
-        float blob = blobSize / dist;
+        float blob = blobSize / (dist + 0.0001);
         field += blob;
 
         float3 blobColor = 0.5 + 0.5 * cos(6.28 * (fi * 0.15 + float3(0.0, 0.33, 0.67)));
@@ -41,7 +41,7 @@ fragment float4 morphingBlobDragFragment(
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
         float2 trailPos = dragPos - normalize(float2(cos(iTime * 0.7), -sin(iTime * 0.5))) * (fi + 1.0) * 0.06;
-        float trailBlob = (0.04 - fi * 0.008) / length(uv - trailPos);
+        float trailBlob = (0.04 - fi * 0.008) / (length(uv - trailPos) + 0.0001);
         field += trailBlob;
         colorField += trailBlob * float3(0.2, 0.4, 0.9);
     }

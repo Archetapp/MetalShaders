@@ -21,13 +21,12 @@ void main() {
     vec2 c2 = vec2(sep, 0.0);
 
     float cellSize1 = 0.25 - split * 0.05;
-    float cellSize2 = 0.25 - split * 0.05;
 
     float pinch = 1.0 - 0.4 * sin(split * 3.14159);
     float membraneWidth = 0.008;
 
     float d1 = length((uv - c1) * vec2(1.0, 1.0 / pinch)) - cellSize1;
-    float d2 = length((uv - c2) * vec2(1.0, 1.0 / pinch)) - cellSize2;
+    float d2 = length((uv - c2) * vec2(1.0, 1.0 / pinch)) - cellSize1;
     float cellDist = min(d1, d2);
 
     float membrane = smoothstep(membraneWidth, 0.0, abs(cellDist));

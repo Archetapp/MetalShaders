@@ -6,14 +6,6 @@ out vec4 fragColor;
 
 float penHash(vec2 p){return fract(sin(dot(p,vec2(41.1,67.7)))*4758.5);}
 
-float penRhomb(vec2 p,float a,float b){
-    float c=cos(a),s=sin(a);
-    mat2 m=mat2(c,-s,s,c);
-    p=m*p;
-    float d=max(abs(p.x)/b,abs(p.y)/(b*0.5878));
-    return d;
-}
-
 void main(){
     vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
     float t=iTime*0.2;

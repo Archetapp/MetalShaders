@@ -17,7 +17,7 @@ void main() {
     float field = 0.0;
     vec3 colorField = vec3(0.0);
 
-    float mainBlob = 0.12 / length(uv - dragPos);
+    float mainBlob = 0.12 / (length(uv - dragPos) + 0.0001);
     field += mainBlob;
     colorField += mainBlob * vec3(0.3, 0.6, 1.0);
 
@@ -29,7 +29,7 @@ void main() {
 
         float dist = length(uv - blobPos);
         float blobSize = 0.06 + 0.02 * sin(iMouseTime * 0.5 + fi * 2.0);
-        float blob = blobSize / dist;
+        float blob = blobSize / (dist + 0.0001);
         field += blob;
 
         vec3 blobColor = 0.5 + 0.5 * cos(6.28 * (fi * 0.15 + vec3(0.0, 0.33, 0.67)));
@@ -39,7 +39,7 @@ void main() {
     for (int i = 0; i < 4; i++) {
         float fi = float(i);
         vec2 trailPos = dragPos - normalize(vec2(cos(iMouseTime * 0.7), -sin(iMouseTime * 0.5))) * (fi + 1.0) * 0.06;
-        float trailBlob = (0.04 - fi * 0.008) / length(uv - trailPos);
+        float trailBlob = (0.04 - fi * 0.008) / (length(uv - trailPos) + 0.0001);
         field += trailBlob;
         colorField += trailBlob * vec3(0.2, 0.4, 0.9);
     }

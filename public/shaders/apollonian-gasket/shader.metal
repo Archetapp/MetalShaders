@@ -2,7 +2,7 @@
 using namespace metal;
 struct VertexOut{float4 position[[position]];float2 uv;};
 fragment float4 apollonianGasketFragment(VertexOut in[[stage_in]],constant float &iTime[[buffer(0)]],constant float2 &iResolution[[buffer(1)]]){
-    float2 uv=(in.uv-0.5)*float2(iResolution.x/iResolution.y,1.0);float t=iTime;
+    float2 uv=(in.position.xy-0.5*iResolution)/iResolution.y;float t=iTime;
     float3 col=float3(0.02,0.02,0.06);float minDist=1e5;int depth=0;float2 p=uv*2.0;
     for(int iter=0;iter<8;iter++){float r=length(p);
         if(r<0.01)break;float d=abs(r-1.0);

@@ -18,7 +18,6 @@ fragment float4 inkInWaterFragment(VertexOut in[[stage_in]],constant float&iTime
     float2 uv=(in.position.xy-0.5*iResolution)/iResolution.y;
     float t=iTime*0.4;
     float spread=min(t*0.3,0.8);
-    float dist=length(uv);
     float ink=0.0;
     for(int i=0;i<3;i++){
         float fi=float(i);

@@ -9,7 +9,7 @@ void main(){
     float minDist=1e5;int depth=0;
     vec2 p=uv*2.0;
     for(int iter=0;iter<8;iter++){
-        float r=length(p);float a=atan(p.y,p.x)+t*0.1;
+        float r=length(p);
         if(r<0.01)break;
         float d=abs(r-1.0);
         if(d<minDist){minDist=d;depth=iter;}

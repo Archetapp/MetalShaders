@@ -6,10 +6,6 @@ struct VertexOut {
     float2 uv;
 };
 
-float treeGrowthHash(float2 p) {
-    return fract(sin(dot(p, float2(127.1, 311.7))) * 43758.5453);
-}
-
 float treeGrowthBranch(float2 p, float2 a, float2 b, float w) {
     float2 pa = p - a, ba = b - a;
     float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);

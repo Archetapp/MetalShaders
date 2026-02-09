@@ -11,11 +11,12 @@ fragment float4 paintPeelFragment(
     VertexOut in [[stage_in]],constant float &iTime [[buffer(0)]],constant float2 &iResolution [[buffer(1)]]
 ) {
     float2 uv = in.uv; float2 centered = uv*2.0-1.0; centered.x *= iResolution.x/iResolution.y;
-    float pp = sin(iTime*0.3)*0.5+0.5;
+    float pp = clamp(fmod(iTime * 0.3, 2.0), 0.0, 1.0);
     float pl = centered.x+centered.y*0.3-(pp*2.5-1.0)+paintPeelNoise(centered*5.0)*0.15;
     float peeled = smoothstep(0.0,0.05,pl);
     float3 under = float3(0.6,0.55,0.45)+paintPeelNoise(centered*10.0)*0.1;
     float3 paint = float3(0.3,0.5,0.7);
+    paint += paintPeelNoise(centered*8.0+100.0)*0.05;
     float cw = 0.15;
     float cz = smoothstep(cw,0.0,pl)*smoothstep(-0.02,0.0,pl);
     float ca = (1.0-pl/cw)*M_PI_F*1.5;
@@ -23,5 +24,7 @@ fragment float4 paintPeelFragment(
     float3 col = mix(under*(1.0-peeled), paint, peeled);
     col = mix(col,cc,cz);
     col *= 1.0-smoothstep(cw*1.5,0.0,pl)*0.3*(1.0-peeled);
+    float edgeHighlight = smoothstep(0.01, 0.0, abs(pl)) * 0.3;
+    col += edgeHighlight * float3(1.0, 0.95, 0.9);
     return float4(col, 1.0);
 }

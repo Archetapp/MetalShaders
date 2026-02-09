@@ -41,5 +41,6 @@ fragment float4 rainfallFragment(VertexOut in[[stage_in]],constant float&iTime[[
         }
     }
     col+=float3(0.5,0.55,0.6)*rain*0.4;
+    col*=0.9+0.1*sin(uv.y*200.0+t*20.0)*0.05;
     return float4(col,1.0);
 }

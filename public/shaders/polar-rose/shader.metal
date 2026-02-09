@@ -10,4 +10,7 @@ fragment float4 polarRoseFragment(VertexOut in[[stage_in]],constant float &iTime
         float dist=abs(r-abs(0.35*cos(n*theta/d+t*0.5*fi*0.2)));
         float3 rc=0.5+0.5*cos(6.28*(fi*0.25+t*0.05+float3(0,0.33,0.67)));
         col+=rc*smoothstep(0.008,0.0,dist)*0.6+rc*0.002/(dist+0.002)*0.15;}
+    float grid=smoothstep(0.002,0.0,abs(uv.x))+smoothstep(0.002,0.0,abs(uv.y));
+    for(float ri=0.1;ri<=0.5;ri+=0.1)grid+=smoothstep(0.002,0.0,abs(r-ri))*0.3;
+    col+=float3(0.1)*grid;
     return float4(col,1.0);}

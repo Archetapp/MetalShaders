@@ -25,7 +25,6 @@ float dfSdCone(vec3 p, float angle, float h) {
 float dfDiamond(vec3 p) {
     float crown = dfSdCone(p - vec3(0.0, 0.15, 0.0), 0.6, 0.35);
     float pavilion = dfSdCone(vec3(p.x, -p.y, p.z) - vec3(0.0, -0.15, 0.0), 0.45, 0.65);
-    float girdle = length(max(abs(p) - vec3(0.5, 0.02, 0.5), 0.0)) - 0.02;
     float d = max(crown, pavilion);
     return d;
 }

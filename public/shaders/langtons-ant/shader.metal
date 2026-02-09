@@ -17,7 +17,6 @@ fragment float4 langtonsAntFragment(
     float gridSize = 64.0;
     float2 cell = floor(uv * gridSize);
     float2 cellUv = fract(uv * gridSize);
-    float steps = floor(t * 30.0);
     float pattern = 0.0;
     float dx = cell.x - 32.0;
     float dy = cell.y - 32.0;

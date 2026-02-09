@@ -18,4 +18,6 @@ fragment float4 wetAsphaltFragment(VertexOut in[[stage_in]],constant float &iTim
     float3 col=asphalt;col=mix(col,col*1.3+float3(0.02),puddle);col+=float3(0.2)*ripple;
     float spec=pow(max(0.0,1.0-length(uv-float2(0.5,0.8))*2.0),12.0)*puddle;
     col+=float3(1.0,0.9,0.7)*spec*0.4;
+    float scatter=waNoise(uv*50.0+t)*puddle;
+    col+=float3(0.1)*pow(scatter,3.0);
     return float4(col,1.0);}

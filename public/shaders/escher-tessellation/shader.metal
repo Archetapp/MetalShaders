@@ -69,7 +69,6 @@ fragment float4 escherTessellationFragment(VertexOut in [[stage_in]],
     float2 cell = floor(deformed + 0.5);
     float2 f = deformed - cell;
 
-    float cellId = etHash(cell);
     float cellType = fmod(cell.x + cell.y, 2.0);
 
     float creature = etCreatureShape(f, cellType);

@@ -6,8 +6,6 @@ uniform vec2 iResolution;
 uniform vec2 iMouse;
 out vec4 fragColor;
 
-float psHash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
 

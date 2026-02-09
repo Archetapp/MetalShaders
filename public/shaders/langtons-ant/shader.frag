@@ -12,13 +12,7 @@ void main(){
     float gridSize = 64.0;
     vec2 cell = floor(uv * gridSize);
     vec2 cellUv = fract(uv * gridSize);
-    float cellId = laHash(cell);
-    float steps = floor(t * 30.0);
-    float antX = 32.0, antY = 32.0;
-    float dir = 0.0;
     float pattern = 0.0;
-    float cellState = step(0.5, laHash(cell + floor(steps*0.01)*0.1));
-    float diagonal = mod(cell.x + cell.y + floor(t*2.0), 4.0)/4.0;
     float highway = 0.0;
     float dx = cell.x - 32.0;
     float dy = cell.y - 32.0;

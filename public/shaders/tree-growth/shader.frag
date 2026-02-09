@@ -5,10 +5,6 @@ uniform float iTime;
 uniform vec2 iResolution;
 out vec4 fragColor;
 
-float treeHash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-}
-
 float treeBranch(vec2 p, vec2 a, vec2 b, float w) {
     vec2 pa = p - a, ba = b - a;
     float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
@@ -42,7 +38,6 @@ void main() {
         for (int j = 0; j < 4; j++) {
             float fj = float(j);
             float side = fj < 2.0 ? -1.0 : 1.0;
-            float tier = mod(fj, 2.0);
 
             vec2 base = vec2(side * 0.05 * (fi + 1.0), -0.1 + fi * 0.06);
             float a = spread * side + sin(iTime + fi + fj) * 0.05;

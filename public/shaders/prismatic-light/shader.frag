@@ -39,7 +39,6 @@ void main() {
     col += vec3(0.95, 0.95, 1.0) * beam * 2.0;
     col += prismSpectrum(clamp(specT, 0.0, 1.0)) * rainbow * 1.5;
     
-    float prismShape = step(abs(centered.x - (prismX - 0.5)), 0.04) * step(abs(centered.y), 0.12);
     float prismEdge = smoothstep(0.04, 0.035, abs(centered.x - (prismX - 0.5))) * step(abs(centered.y), 0.12);
     col += vec3(0.15, 0.15, 0.2) * prismEdge * 0.5;
     

@@ -28,6 +28,18 @@ float fbmRD(float2 p) {
     return v;
 }
 
+float rdComputeV(float2 p, float t, float feed, float kill) {
+    float n1 = fbmRD(p + t * 0.5);
+    float n2 = fbmRD(p * 1.5 - t * 0.3 + n1 * 2.0);
+    float n3 = fbmRD(p * 2.5 + n2 * 1.5 + t * 0.2);
+    float a = n1;
+    float b = smoothstep(0.35, 0.65, n2 + n3 * 0.5);
+    float reaction = a * b * b;
+    float pattern = b - reaction + feed * (1.0 - a);
+    float pattern2 = reaction - b * (kill + feed);
+    return smoothstep(0.2, 0.8, pattern * 2.0 + pattern2);
+}
+
 fragment float4 reactionDiffusionFragment(
     VertexOut in [[stage_in]],
     constant float &iTime [[buffer(0)]],
@@ -59,6 +71,13 @@ fragment float4 reactionDiffusionFragment(
     float3 col3 = float3(0.4, 0.7, 0.6);
     float3 col4 = float3(0.8, 0.9, 0.7);
 
+    float2 epsFD = float2(1.0 / iResolution.x, 1.0 / iResolution.y);
+    float vR = rdComputeV((uv + float2(epsFD.x, 0.0)) * 8.0, t, feed, kill);
+    float vL = rdComputeV((uv - float2(epsFD.x, 0.0)) * 8.0, t, feed, kill);
+    float vU = rdComputeV((uv + float2(0.0, epsFD.y)) * 8.0, t, feed, kill);
+    float vD = rdComputeV((uv - float2(0.0, epsFD.y)) * 8.0, t, feed, kill);
+    float edge = (abs(vR - vL) + abs(vU - vD)) * 15.0;
+
     float3 col;
     if (v < 0.33) {
         col = mix(col1, col2, v * 3.0);
@@ -67,6 +86,8 @@ fragment float4 reactionDiffusionFragment(
     } else {
         col = mix(col3, col4, (v - 0.66) * 3.0);
     }
+
+    col += float3(0.8, 0.9, 1.0) * edge * 0.3;
 
     float pulse = sin(t * 5.0 + v * 10.0) * 0.02;
     col += pulse;

@@ -15,7 +15,6 @@ void main(){
         float R=0.3+0.05*fi;
         float r=0.08+0.02*sin(t+fi);
         float d=0.1+0.03*cos(t*0.7+fi*0.5);
-        float th=float(i)*6.2831/8.0;
         for(float s=0.0;s<62.83;s+=0.05){
             float x=(R-r)*cos(s)+d*cos((R-r)/r*s+a);
             float y=(R-r)*sin(s)+d*sin((R-r)/r*s+a);

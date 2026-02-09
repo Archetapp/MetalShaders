@@ -25,5 +25,7 @@ fragment float4 frequencySpectrumFragment(
     else bc=mix(float3(0.2,0.8,0.3),float3(0.2,0.4,0.9),(t-0.66)*3.0);
     col+=bc*bm*0.8+bc*smoothstep(bh-0.02,bh,uv.y)*step(uv.y,bh+0.01)*1.5;
     col+=bc*exp(-abs(uv.y-bh)*20.0)*bg*0.3;
+    float scanline=sin(uv.y*iResolution.y*1.5)*0.02;
+    col-=scanline;
     return float4(col, 1.0);
 }

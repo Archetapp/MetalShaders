@@ -6,18 +6,18 @@ uniform vec2 iResolution;
 
 out vec4 fragColor;
 
-float hash(float n) {
+float lightningHash(float n) {
     return fract(sin(n) * 43758.5453);
 }
 
-float noise(float x) {
+float lightningNoise(float x) {
     float i = floor(x);
     float f = fract(x);
     f = f * f * (3.0 - 2.0 * f);
-    return mix(hash(i), hash(i + 1.0), f);
+    return mix(lightningHash(i), lightningHash(i + 1.0), f);
 }
 
-float bolt(vec2 uv, float seed, float yStart, float yEnd, float xCenter, float spread) {
+float lightningBolt(vec2 uv, float seed, float yStart, float yEnd, float xCenter, float spread) {
     float segments = 30.0;
     float minDist = 1e6;
 
@@ -25,8 +25,8 @@ float bolt(vec2 uv, float seed, float yStart, float yEnd, float xCenter, float s
     for (float i = 1.0; i <= segments; i++) {
         float t = i / segments;
         float y = mix(yStart, yEnd, t);
-        float offset = (noise(i * 3.7 + seed * 17.0) - 0.5) * spread;
-        offset += (noise(i * 7.3 + seed * 31.0) - 0.5) * spread * 0.5;
+        float offset = (lightningNoise(i * 3.7 + seed * 17.0) - 0.5) * spread;
+        offset += (lightningNoise(i * 7.3 + seed * 31.0) - 0.5) * spread * 0.5;
         float x = xCenter + offset * t;
 
         vec2 curr = vec2(x, y);
@@ -58,9 +58,9 @@ void main() {
     col += vec3(0.1, 0.1, 0.2) * flash * 0.5;
 
     float seed = strikeId * 7.0;
-    float xOff = (hash(strikeId * 13.0) - 0.5) * 0.5;
+    float xOff = (lightningHash(strikeId * 13.0) - 0.5) * 0.5;
 
-    float d1 = bolt(uv, seed, 0.5, -0.5, xOff, 0.3);
+    float d1 = lightningBolt(uv, seed, 0.5, -0.5, xOff, 0.3);
 
     float core = (0.003 / (d1 + 0.003)) * intensity;
     float glow = (0.03 / (d1 + 0.03)) * intensity * 0.5;
@@ -70,20 +70,20 @@ void main() {
     col += vec3(0.4, 0.5, 1.0) * glow;
     col += vec3(0.2, 0.2, 0.6) * bloom;
 
-    if (hash(seed + 1.0) > 0.3) {
-        float branchY = mix(0.5, -0.5, hash(seed + 2.0) * 0.6);
-        float branchX = xOff + (hash(seed + 3.0) - 0.5) * 0.15;
-        float d2 = bolt(uv, seed + 100.0, branchY, branchY - 0.3, branchX + 0.15, 0.15);
+    if (lightningHash(seed + 1.0) > 0.3) {
+        float branchY = mix(0.5, -0.5, lightningHash(seed + 2.0) * 0.6);
+        float branchX = xOff + (lightningHash(seed + 3.0) - 0.5) * 0.15;
+        float d2 = lightningBolt(uv, seed + 100.0, branchY, branchY - 0.3, branchX + 0.15, 0.15);
         float bc = (0.002 / (d2 + 0.002)) * intensity * 0.6;
         float bg = (0.02 / (d2 + 0.02)) * intensity * 0.3;
         col += vec3(0.5, 0.6, 1.0) * bc;
         col += vec3(0.2, 0.3, 0.7) * bg;
     }
 
-    if (hash(seed + 5.0) > 0.5) {
-        float branchY = mix(0.5, -0.5, hash(seed + 6.0) * 0.5 + 0.2);
-        float branchX = xOff + (hash(seed + 7.0) - 0.5) * 0.1;
-        float d3 = bolt(uv, seed + 200.0, branchY, branchY - 0.25, branchX - 0.12, 0.1);
+    if (lightningHash(seed + 5.0) > 0.5) {
+        float branchY = mix(0.5, -0.5, lightningHash(seed + 6.0) * 0.5 + 0.2);
+        float branchX = xOff + (lightningHash(seed + 7.0) - 0.5) * 0.1;
+        float d3 = lightningBolt(uv, seed + 200.0, branchY, branchY - 0.25, branchX - 0.12, 0.1);
         float bc2 = (0.002 / (d3 + 0.002)) * intensity * 0.4;
         col += vec3(0.4, 0.5, 1.0) * bc2;
     }

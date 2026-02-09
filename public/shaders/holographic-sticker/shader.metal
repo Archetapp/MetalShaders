@@ -77,6 +77,9 @@ fragment float4 holographicStickerFragment(
     float stickerEdge = smoothstep(0.85, 0.83, max(abs(centered.x), abs(centered.y)));
     col *= stickerEdge;
 
+    float peel = smoothstep(0.8, 0.75, centered.x + centered.y * 0.3 + 0.5);
+    col *= 0.9 + 0.1 * peel;
+
     col = pow(col, float3(0.95));
     return float4(col, 1.0);
 }

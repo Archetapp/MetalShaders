@@ -24,6 +24,8 @@ fragment float4 fogWipeFragment(
     centered.x *= iResolution.x / iResolution.y;
     float3 scene = float3(0.1, 0.15, 0.2);
     scene += smoothstep(-0.5, 0.5, centered.y) * float3(0.05, 0.08, 0.1);
+    float trees = smoothstep(0.0, -0.3, centered.y + sin(centered.x * 3.0) * 0.1);
+    scene = mix(scene, float3(0.05, 0.1, 0.05), trees);
     float fogDensity = fogWipeFbm(centered * 2.0 + float2(iTime * 0.05, 0.0));
     fogDensity += fogWipeFbm(centered * 4.0 - float2(iTime * 0.08, iTime * 0.02)) * 0.5;
     fogDensity = fogDensity * 0.6 + 0.3;
@@ -41,5 +43,7 @@ fragment float4 fogWipeFragment(
     float3 fogColor = float3(0.6, 0.65, 0.7) + fogWipeFbm(centered * 3.0 + iTime * 0.02) * 0.1;
     float finalFog = fogDensity * (1.0 - clearMask);
     float3 col = mix(scene, fogColor, finalFog);
+    float particles = pow(fogWipeNoise(centered * 20.0 + iTime * 0.3), 6.0) * finalFog;
+    col += particles * 0.2;
     return float4(col, 1.0);
 }

@@ -30,6 +30,20 @@ fragment float4 weldingSparksFragment(VertexOut in[[stage_in]],constant float&iT
         float spark=0.0005/(d*d+0.00005)*brightness;
         float3 sparkCol=mix(float3(1.0,0.9,0.5),float3(1.0,0.4,0.1),life);
         col+=sparkCol*spark*0.05;
+        if(life>0.3){
+            float2 prevPos=weldPt+vel*(life-0.02)+float2(0,-(life-0.02)*(life-0.02)*0.4);
+            float2 dp=uv-prevPos;
+            float2 trail=sparkPos-prevPos;
+            float tl=length(trail);
+            if(tl>0.001){
+                float along=dot(dp,trail/tl);
+                if(along>0.0&&along<tl){
+                    float perp=abs(dot(dp,float2(-trail.y,trail.x)/tl));
+                    float trailG=0.001/(perp+0.001)*brightness*0.3;
+                    col+=sparkCol*trailG*0.01;
+                }
+            }
+        }
     }
     return float4(col,1.0);
 }

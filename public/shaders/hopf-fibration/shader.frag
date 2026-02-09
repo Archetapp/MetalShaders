@@ -13,7 +13,6 @@ void main(){
             float psi=s*0.063;
             float a=ct*cos(psi)-st*sin(psi);
             float b=ct*sin(psi)+st*cos(psi);
-            float c=cp*cos(psi+t*0.2)-sp*sin(psi+t*0.2);
             float d_val=cp*sin(psi+t*0.2)+sp*cos(psi+t*0.2);
             float w=1.0/(2.5+d_val);
             vec2 proj=vec2(a,b)*w*0.8;

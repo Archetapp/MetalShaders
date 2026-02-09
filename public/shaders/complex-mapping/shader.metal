@@ -2,7 +2,7 @@
 using namespace metal;
 struct VertexOut{float4 position[[position]];float2 uv;};
 float2 cmMul(float2 a,float2 b){return float2(a.x*b.x-a.y*b.y,a.x*b.y+a.y*b.x);}
-float2 cmDiv(float2 a,float2 b){float d=dot(b,b);return float2(a.x*b.x+a.y*b.y,a.y*b.x-a.x*b.y)/d;}
+float2 cmDiv(float2 a,float2 b){float d=dot(b,b)+1e-10;return float2(a.x*b.x+a.y*b.y,a.y*b.x-a.x*b.y)/d;}
 fragment float4 complexMappingFragment(VertexOut in[[stage_in]],constant float &iTime[[buffer(0)]],constant float2 &iResolution[[buffer(1)]]){
     float2 uv=(in.uv-0.5)*float2(iResolution.x/iResolution.y,1.0)*3.0;float t=iTime;
     float2 z=uv;float mode=fmod(t*0.15,4.0);float2 w;
@@ -13,4 +13,6 @@ fragment float4 complexMappingFragment(VertexOut in[[stage_in]],constant float &
     float hue=atan2(w.y,w.x)/6.28318+0.5;float mag=length(w);
     float3 col=0.5+0.5*cos(6.28*(hue+float3(0,0.33,0.67)));
     col*=(1.0-1.0/(1.0+mag*0.5))*(fract(log2(mag+0.001))*0.3+0.7);
+    float grid=smoothstep(0.03,0.0,abs(fract(w.x)-0.5))*0.1+smoothstep(0.03,0.0,abs(fract(w.y)-0.5))*0.1;
+    col+=grid;
     return float4(col,1.0);}

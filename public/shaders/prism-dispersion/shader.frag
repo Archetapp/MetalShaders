@@ -81,7 +81,6 @@ void main() {
     float prismFresnel = pow(1.0 - smoothstep(-0.1, 0.0, prismDist), 2.0) * 0.3;
     prismColor += prismFresnel;
 
-    float refractAngle = 0.0;
     float numRays = 32.0;
     vec3 spectrumAccum = vec3(0.0);
 

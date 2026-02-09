@@ -17,8 +17,16 @@ fragment float4 stainedGlassLightFragment(
     float leadLine = smoothstep(0.08,0.04,secD-minD);
     float2 h = stainedGlassHash2(nId+100.0);
     float3 gc = pow(0.5+0.5*cos(6.28*(h.x+float3(0,0.33,0.67))),float3(0.7))*0.8;
-    float li = 0.5+0.5*(dot(normalize(uv+0.001),float2(sin(iTime*0.3),cos(iTime*0.4)))*0.5+0.5);
-    float3 col = mix(gc*li, float3(0.05,0.04,0.03), leadLine);
+    float2 lightDir = float2(sin(iTime*0.3),cos(iTime*0.4));
+    float lightAngle = dot(normalize(uv+0.001),lightDir)*0.5+0.5;
+    float li = 0.5+0.5*lightAngle;
+    float2 lightOrigin = float2(0.0, 0.5);
+    float lightBeam = pow(max(dot(normalize(uv-lightOrigin), float2(0.0,-1.0)), 0.0), 2.0);
+    float3 col = gc*li;
+    col *= 1.0 + lightBeam * 0.5;
+    col = mix(col, float3(0.05,0.04,0.03), leadLine);
+    float glow = pow(1.0 - minD * 0.5, 3.0) * li * 0.2;
+    col += glow * gc;
     col *= 1.0-0.3*length(uv);
     return float4(col, 1.0);
 }

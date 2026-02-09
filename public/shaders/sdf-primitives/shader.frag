@@ -46,19 +46,6 @@ float sdHeart(vec2 p) {
            sign(p.x - p.y);
 }
 
-float sdHexagon(vec2 p, float r) {
-    const vec3 k = vec3(-0.866025404, 0.5, 0.577350269);
-    p = abs(p);
-    p -= 2.0 * min(dot(k.xy, p), 0.0) * k.xy;
-    p -= vec2(clamp(p.x, -k.z * r, k.z * r), r);
-    return length(p) * sign(p.y);
-}
-
-float smin(float a, float b, float k) {
-    float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
-    return mix(b, a, h) - k * h * (1.0 - h);
-}
-
 vec3 renderShape(float d, vec3 shapeColor) {
     float edge = smoothstep(0.01, 0.0, abs(d)) * 0.8;
     float fill = smoothstep(0.01, -0.01, d);

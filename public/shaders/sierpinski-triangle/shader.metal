@@ -23,7 +23,7 @@ float sierpinskiDE(float2 p) {
 fragment float4 sierpinskiTriangleFragment(VertexOut in [[stage_in]],
                                             constant float &iTime [[buffer(0)]],
                                             constant float2 &iResolution [[buffer(1)]]) {
-    float2 uv = (in.position.xy - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
+    float2 uv = (in.uv * iResolution - 0.5 * iResolution) / min(iResolution.x, iResolution.y);
     
     float rotation = iTime * 0.1;
     float2x2 rot = float2x2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation));

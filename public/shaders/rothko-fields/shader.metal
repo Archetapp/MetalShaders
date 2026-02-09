@@ -17,4 +17,5 @@ fragment float4 rothkoFieldsFragment(VertexOut in[[stage_in]],constant float &iT
     col=mix(col,float3(0.7+0.1*sin(hs),0.15,0.1)+n,r1);
     col=mix(col,float3(0.8,0.55+0.1*sin(hs+1.0),0.1)+n,r2);
     col=mix(col,float3(0.1,0.1,0.3+0.1*sin(hs+2.0))+n,r3);
+    col+=rfNoise(uv*100.0)*0.02-0.01;
     return float4(col,1.0);}

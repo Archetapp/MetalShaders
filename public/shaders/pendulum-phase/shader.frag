@@ -15,8 +15,6 @@ void main(){
     vec2 p2 = p1 + vec2(sin(th2), -cos(th2))*l2;
     float pivot = smoothstep(0.008, 0.004, length(uv));
     col += vec3(0.5)*pivot;
-    float rod1 = smoothstep(0.004, 0.002, abs(length(uv)/l1 - 0.5) - 0.0);
-    float ang1 = atan(uv.y, uv.x) - atan(p1.y, p1.x);
     float joint1 = smoothstep(0.008, 0.004, length(uv-p1));
     col += vec3(0.3, 0.5, 0.8)*joint1;
     float joint2 = smoothstep(0.008, 0.004, length(uv-p2));

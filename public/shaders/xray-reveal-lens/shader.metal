@@ -32,6 +32,8 @@ fragment float4 xrayRevealLensFragment(
     float3 surfaceColor = float3(0.15, 0.12, 0.1);
     float woodGrain = sin(uv.x * 20.0 + xrayRevealNoise(uv * 5.0) * 3.0) * 0.5 + 0.5;
     surfaceColor += woodGrain * float3(0.08, 0.05, 0.02);
+    float plank = smoothstep(0.01, 0.0, abs(fract(uv.y * 4.0) - 0.5) - 0.48);
+    surfaceColor += plank * 0.03;
 
     float3 xrayColor = float3(0.0);
     float skeleton = 0.0;
@@ -52,15 +54,23 @@ fragment float4 xrayRevealLensFragment(
 
     xrayColor = float3(0.0, 0.15, 0.1) + skeleton * float3(0.6, 0.8, 0.7);
     xrayColor += sin(uv.y * 200.0 + iTime * 5.0) * 0.03;
+    xrayColor += xrayRevealNoise(uv * 50.0 + iTime) * 0.03;
 
     float lensDist = length(uv - lensPos);
     float lensMask = smoothstep(lensRadius, lensRadius - 0.02, lensDist);
 
     float3 col = mix(surfaceColor, xrayColor, lensMask);
 
+    float lensEdge = smoothstep(lensRadius - 0.02, lensRadius - 0.01, lensDist) *
+                     smoothstep(lensRadius + 0.01, lensRadius, lensDist);
+    col += lensEdge * float3(0.3, 0.4, 0.35) * 0.5;
+
     float lensRim = smoothstep(lensRadius + 0.01, lensRadius, lensDist) *
                     smoothstep(lensRadius - 0.015, lensRadius - 0.005, lensDist);
     col += lensRim * float3(0.5, 0.55, 0.5);
+
+    float lensGlare = pow(max(0.0, 1.0 - lensDist / lensRadius), 8.0) * lensMask * 0.1;
+    col += lensGlare * float3(0.3, 0.5, 0.4);
 
     return float4(col, 1.0);
 }

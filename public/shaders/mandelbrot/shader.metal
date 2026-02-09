@@ -6,7 +6,7 @@ struct VertexOut {
     float2 uv;
 };
 
-float3 palette(float t) {
+float3 mandelbrotPalette(float t) {
     float3 a = float3(0.5, 0.5, 0.5);
     float3 b = float3(0.5, 0.5, 0.5);
     float3 c = float3(1.0, 1.0, 1.0);
@@ -42,7 +42,7 @@ fragment float4 mandelbrotFragment(
     if (dot(z, z) > 4.0) {
         float sl = iter - log2(log2(dot(z, z))) + 4.0;
         float normalized = sl / maxIter;
-        float3 col = palette(normalized * 4.0 + iTime * 0.1);
+        float3 col = mandelbrotPalette(normalized * 4.0 + iTime * 0.1);
         return float4(col, 1.0);
     } else {
         return float4(0.0, 0.0, 0.0, 1.0);

@@ -32,8 +32,9 @@ fragment float4 forestFireFragment(
     float3 col = treeCol;
     col = mix(col, fireCol, isBurning*(1.0-burnedOut));
     col = mix(col, ashCol, burnedOut*isBurning);
+    float treeTrunk = smoothstep(0.1, 0.0, abs(cellUv.x-0.5)) * step(0.0, cellUv.y) * step(cellUv.y, 0.4);
     float treeTop = smoothstep(0.35, 0.0, length(cellUv - float2(0.5, 0.6)));
-    float tree = treeTop*(1.0-burnedOut*isBurning);
+    float tree = max(treeTrunk*0.5, treeTop)*(1.0-burnedOut*isBurning);
     col *= 0.5 + tree*0.5;
     float flicker = ffHash(cell+floor(t*10.0))*0.3;
     col += fireCol*flicker*isBurning*(1.0-burnedOut)*0.5;

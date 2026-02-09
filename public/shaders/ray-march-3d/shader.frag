@@ -65,7 +65,7 @@ float rmSoftShadow(vec3 ro, vec3 rd, float mint, float maxt) {
     for (int i = 0; i < 64; i++) {
         float h = rmScene(ro + rd * t).x;
         float y = h * h / (2.0 * ph);
-        float d = sqrt(h * h - y * y);
+        float d = sqrt(max(0.0, h * h - y * y));
         res = min(res, 10.0 * d / max(0.0, t - y));
         ph = h;
         t += h;

@@ -10,7 +10,7 @@ void main(){
     scene.r=0.5+0.5*sin(uv.x*5.0+t);
     scene.g=0.5+0.5*sin(uv.y*7.0-t*0.7);
     scene.b=0.5+0.5*cos(d*10.0+t*0.5);
-    float levels=3.0+3.0*sin(t*0.3);
+    float levels=max(1.0,3.0+3.0*sin(t*0.3));
     vec3 posterized=floor(scene*levels+0.5)/levels;
     float blend=smoothstep(0.48,0.52,uv.x+0.1*sin(t*0.5));
     vec3 col=mix(scene,posterized,blend);

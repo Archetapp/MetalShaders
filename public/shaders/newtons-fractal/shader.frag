@@ -6,7 +6,7 @@ uniform vec2 iResolution;
 out vec4 fragColor;
 
 vec2 newtonCmul(vec2 a, vec2 b) { return vec2(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
-vec2 newtonCdiv(vec2 a, vec2 b) { float d = dot(b,b); return vec2(a.x*b.x+a.y*b.y, a.y*b.x-a.x*b.y)/d; }
+vec2 newtonCdiv(vec2 a, vec2 b) { float d = dot(b,b) + 1e-10; return vec2(a.x*b.x+a.y*b.y, a.y*b.x-a.x*b.y)/d; }
 
 void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / min(iResolution.x, iResolution.y);

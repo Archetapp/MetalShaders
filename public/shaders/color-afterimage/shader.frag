@@ -40,7 +40,6 @@ void main() {
         col += hint;
     }
 
-    float borderPulse = sin(iTime * 2.0) * 0.01;
     float border = smoothstep(0.48, 0.47, max(abs(uv.x), abs(uv.y) * iResolution.x / iResolution.y));
     col = mix(vec3(0.2), col, border);
 

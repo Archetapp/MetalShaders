@@ -43,10 +43,6 @@ void main() {
     col += barColor * peak * 1.5;
     col += barColor * glow;
 
-    float reflection = step(uv.y, 0.0) * 0.0;
-    float reflUv = -uv.y;
-    float reflBar = step(reflUv, barHeight * 0.3) * barGap;
-
     float scanline = sin(uv.y * iResolution.y * 1.5) * 0.02;
     col -= scanline;
 

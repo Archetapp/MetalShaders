@@ -20,7 +20,6 @@ void main(){
     vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
     float t=iTime*0.4;
     float spread=min(t*0.3,0.8);
-    float dist=length(uv);
     float ink=0.0;
     for(int i=0;i<3;i++){
         float fi=float(i);

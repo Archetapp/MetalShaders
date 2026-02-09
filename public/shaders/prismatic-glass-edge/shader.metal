@@ -6,10 +6,6 @@ struct VertexOut {
     float2 uv;
 };
 
-float prismaticGlassHash(float2 p) {
-    return fract(sin(dot(p, float2(127.1, 311.7))) * 43758.5453);
-}
-
 fragment float4 prismaticGlassEdgeFragment(
     VertexOut in [[stage_in]],
     constant float &iTime [[buffer(0)]],

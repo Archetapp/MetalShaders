@@ -25,7 +25,7 @@ float solarFbmMtl(float2 p) {
 fragment float4 solarFlareFragment(VertexOut in [[stage_in]],
                                     constant float &iTime [[buffer(0)]],
                                     constant float2 &iResolution [[buffer(1)]]) {
-    float2 uv = (in.position.xy - 0.5 * iResolution) / iResolution.y;
+    float2 uv = (in.uv * iResolution - 0.5 * iResolution) / iResolution.y;
     uv.y += 0.25;
     float3 col = float3(0.0);
 

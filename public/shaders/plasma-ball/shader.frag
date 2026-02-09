@@ -15,13 +15,11 @@ void main(){
     float sphereMask=smoothstep(sphereR,sphereR-0.01,r);
     float glassEdge=smoothstep(sphereR+0.01,sphereR-0.02,r)-smoothstep(sphereR-0.02,sphereR-0.05,r);
     col+=vec3(0.1,0.1,0.15)*glassEdge;
-    float a=atan(uv.y,uv.x);
     for(int i=0;i<8;i++){
         float fi=float(i);
         float angle=fi*0.785+t*0.3+sin(t+fi)*0.5;
         vec2 target=vec2(cos(angle),sin(angle))*sphereR*0.9;
         vec2 dir=target;
-        float len=length(dir);
         for(float s=0.0;s<1.0;s+=0.01){
             vec2 pos=dir*s;
             float wobble=pbNoise(s*10.0+t*8.0+fi*5.0)*0.04;

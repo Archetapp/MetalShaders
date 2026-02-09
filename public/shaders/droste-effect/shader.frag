@@ -12,7 +12,6 @@ float drHash(vec2 p) {
 vec3 drFrame(vec2 uv, float t) {
     vec3 col = vec3(0.0);
 
-    float border = 0.05;
     float inner = 0.35;
     vec2 auv = abs(uv);
 

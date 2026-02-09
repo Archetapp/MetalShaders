@@ -767,7 +767,7 @@
     },
     {
       "slug": "dissolve-embers",
-      "title": "Dissolve to Embers",
+      "title": "Dissolve Embers",
       "description": "Content burns away from an animated point with noise-based dissolve, glowing orange edge, and rising ember particles",
       "tags": [
         "transition",
@@ -901,7 +901,7 @@
     },
     {
       "slug": "dynamic-island",
-      "title": "Dynamic Island Morph",
+      "title": "Dynamic Island",
       "description": "Two shapes that stretch, merge, and separate with elastic liquid bridging in Apple Dynamic Island style",
       "tags": [
         "ui",
@@ -1353,7 +1353,7 @@
     },
     {
       "slug": "galaxy-spiral-deep",
-      "title": "Galaxy Spiral",
+      "title": "Galaxy Spiral Deep",
       "description": "Rotating spiral arms with dust lanes and stellar glow",
       "tags": [
         "space",
@@ -2461,6 +2461,18 @@
       "mouseMode": "press"
     },
     {
+      "slug": "oil-slick",
+      "title": "Oil Slick",
+      "description": "Thin-film interference rainbow on dark water with swirling thickness variation and shifting colors",
+      "tags": [
+        "iridescence",
+        "rainbow",
+        "material"
+      ],
+      "author": "Jared Davidson",
+      "date": "2026-02-08"
+    },
+    {
       "slug": "oil-slick-material",
       "title": "Oil Slick",
       "description": "Thin oil on dark water with rainbow interference",
@@ -2468,18 +2480,6 @@
         "material",
         "iridescence",
         "water"
-      ],
-      "author": "Jared Davidson",
-      "date": "2026-02-08"
-    },
-    {
-      "slug": "oil-slick",
-      "title": "Oil Slick Iridescence",
-      "description": "Thin-film interference rainbow on dark water with swirling thickness variation and shifting colors",
-      "tags": [
-        "iridescence",
-        "rainbow",
-        "material"
       ],
       "author": "Jared Davidson",
       "date": "2026-02-08"

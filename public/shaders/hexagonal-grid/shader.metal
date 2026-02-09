@@ -9,8 +9,8 @@ struct VertexOut {
 float4 hgHexCoord(float2 uv) {
     float2 r = float2(1.0, 1.732);
     float2 h = r * 0.5;
-    float2 a = fmod(uv, r) - h;
-    float2 b = fmod(uv - h, r) - h;
+    float2 a = uv - r * floor(uv / r) - h;
+    float2 b = (uv - h) - r * floor((uv - h) / r) - h;
     float2 gv;
     if (length(a) < length(b))
         gv = a;

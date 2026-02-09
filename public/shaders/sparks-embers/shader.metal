@@ -5,7 +5,7 @@ struct VertexOut{float4 position[[position]];float2 uv;};
 float seHash(float n){return fract(sin(n)*43758.5453);}
 
 fragment float4 sparksEmbersFragment(VertexOut in[[stage_in]],constant float&iTime[[buffer(0)]],constant float2&iResolution[[buffer(1)]]){
-    float2 uv=(in.position.xy-0.5*iResolution)/iResolution.y;
+    float2 uv=(in.uv*iResolution-0.5*iResolution)/iResolution.y;
     float t=iTime;
     float3 col=float3(0.02,0.01,0.01);
     float glowBase=exp(-length(uv-float2(0,-0.4))*3.0)*0.15;

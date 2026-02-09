@@ -23,10 +23,8 @@ void main() {
     vec2 gv = fract(uv);
 
     float rnd = hash21(id + floor(t) * 0.1);
-    float nextRnd = hash21(id + (floor(t) + 1.0) * 0.1);
 
     bool flip = rnd > 0.5;
-    bool nextFlip = nextRnd > 0.5;
 
     if (flip) gv.x = 1.0 - gv.x;
 

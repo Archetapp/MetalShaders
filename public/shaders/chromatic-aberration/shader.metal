@@ -10,4 +10,6 @@ fragment float4 chromaticAberrationFragment(VertexOut in[[stage_in]],constant fl
     float2 uv=in.uv;float t=iTime;float2 dir=uv-float2(0.5);float dist=length(dir);
     float strength=0.01+0.005*sin(t*0.7);
     float r=caScene(uv+dir*strength*dist,t);float g=caScene(uv,t);float b=caScene(uv-dir*strength*dist,t);
-    return float4(r,g,b,1.0);}
+    float3 col=float3(r,g,b);
+    col*=0.95+0.05*cos(dist*20.0);
+    return float4(col,1.0);}

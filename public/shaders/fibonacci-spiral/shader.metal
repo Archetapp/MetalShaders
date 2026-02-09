@@ -11,4 +11,11 @@ fragment float4 fibonacciSpiralFragment(VertexOut in[[stage_in]],constant float 
         float d=length(uv-pos);float seedSize=0.008+0.004*sin(fi*0.1+t);
         float3 seedCol=mix(float3(0.6,0.4,0.1),float3(0.2,0.5,0.1),fi/float(count));
         col+=seedCol*smoothstep(seedSize,seedSize-0.003,d)+seedCol*0.0003/(d+0.003)*0.5;}
+    float spiral=0.0;
+    for(float s=0.0;s<50.0;s+=0.1){
+        float angle=s*goldenAngle;float r=0.02*sqrt(s);
+        float2 pos=float2(cos(angle+t*0.2),sin(angle+t*0.2))*r;
+        float d=length(uv-pos);
+        spiral+=0.0001/(d+0.002);}
+    col+=float3(0.3,0.5,0.1)*spiral*0.3;
     return float4(col,1.0);}

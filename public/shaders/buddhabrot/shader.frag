@@ -12,7 +12,6 @@ void main() {
     uv *= 1.5;
     uv.x -= 0.25;
     
-    float density = 0.0;
     float densityR = 0.0;
     float densityG = 0.0;
     float densityB = 0.0;
@@ -28,11 +27,10 @@ void main() {
         
         vec2 z = vec2(0.0);
         bool escaped = false;
-        int escapeIter = 0;
-        
+
         for (int i = 0; i < 60; i++) {
             z = vec2(z.x * z.x - z.y * z.y + c.x, 2.0 * z.x * z.y + c.y);
-            if (dot(z, z) > 4.0) { escaped = true; escapeIter = i; break; }
+            if (dot(z, z) > 4.0) { escaped = true; break; }
         }
         
         if (escaped) {

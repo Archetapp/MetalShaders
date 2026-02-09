@@ -22,6 +22,8 @@ fragment float4 glitchCorruptionFragment(
     col = mix(col,float3(glitchCorruptHash2(bid+gt+1.0),glitchCorruptHash2(bid+gt+2.0),glitchCorruptHash2(bid+gt+3.0)),bg*0.5);
     col += step(0.95,glitchCorruptHash(floor(uv.y*100.0+iTime*50.0)))*gi;
     col += glitchCorruptHash2(uv*500.0+iTime)*gi*0.15;
+    float colorBand=step(0.9,glitchCorruptHash(floor(uv.y*30.0)+gt*0.5));
+    col=mix(col,col.gbr,colorBand*gi);
     col -= sin(uv.y*iResolution.y*M_PI_F)*0.03;
     return float4(col, 1.0);
 }

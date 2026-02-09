@@ -18,8 +18,15 @@ fragment float4 discoBallReflectionsFragment(
     }
     float bd = length(uv); float bm = smoothstep(0.15,0.13,bd);
     float fa = atan2(uv.y,uv.x)+iTime*0.8;
-    float fs = pow(discoBallHash(floor(float2(fa*4.0,bd*20.0))),3.0);
+    float fr = acos(clamp(bd/0.15,-1.0,1.0))+iTime*0.3;
+    float facetGrid = step(0.5,fract(fa*4.0))*step(0.5,fract(fr*3.0));
+    float fs = pow(discoBallHash(floor(float2(fa*4.0,fr*3.0))),3.0);
     float3 bc = float3(0.5,0.5,0.55)*(0.3+fs*0.7);
+    bc += facetGrid*0.1;
+    float ballHighlight = pow(max(0.0,1.0-length(uv-float2(-0.04,0.04))/0.1),3.0)*bm;
+    bc += ballHighlight*0.5;
     col = mix(col,bc,bm);
+    float centerGlow = exp(-bd*5.0)*0.1;
+    col += centerGlow*float3(0.5,0.5,0.6);
     return float4(col, 1.0);
 }

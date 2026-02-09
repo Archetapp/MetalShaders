@@ -21,7 +21,6 @@ float kochCurve(vec2 p, int depth) {
         if (i >= depth) break;
         p.x = abs(p.x);
         s *= 3.0;
-        float scale = 1.0 / 3.0;
         p *= 3.0;
         p.x -= 1.5;
         p.y -= k;

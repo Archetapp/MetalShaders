@@ -18,4 +18,5 @@ fragment float4 crackedEarthFragment(VertexOut in[[stage_in]],constant float &iT
     float3 col=mix(mudDark,mudLight,ceHash(closest)*0.5+0.25+n);
     col=mix(col,crackCol,crackLine);col=mix(col,crackCol*0.5,deepCrack);
     col*=0.7+max(0.0,1.0-length(uv-float2(0.5+0.1*sin(t*0.3),0.6))*1.5)*0.4;
+    col+=float3(0.02)*smoothstep(0.03,0.06,crack)*smoothstep(0.1,0.06,crack);
     return float4(col,1.0);}

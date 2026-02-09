@@ -58,9 +58,9 @@ void main(){
         float limb=pow(1.0-normal.z,3.0);
         moonCol*=1.0-limb*0.3;
         col=mix(col,moonCol,moonMask);
-        float glowR=moonR*1.3;
-        float glow=smoothstep(glowR,moonR,moonDist)*0.05;
-        col+=vec3(0.3,0.3,0.4)*glow;
     }
+    float glowR=moonR*1.3;
+    float glow=smoothstep(glowR,moonR,moonDist)*0.05;
+    col+=vec3(0.3,0.3,0.4)*glow;
     fragColor=vec4(col,1.0);
 }

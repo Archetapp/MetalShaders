@@ -15,4 +15,7 @@ fragment float4 popArtDotsFragment(VertexOut in[[stage_in]],constant float &iTim
     float dotScale=15.0+5.0*sin(t*0.5+panelId*3.0);float2 dotUv=fract(panelUv*dotScale)-0.5;
     float dotSize=0.3+0.1*sin(t+panelId*5.0);
     float3 col=mix(bgCol,dotCol,smoothstep(dotSize,dotSize-0.05,length(dotUv)));
+    float border=smoothstep(0.01,0.02,panelUv.x)*smoothstep(0.01,0.02,panelUv.y)*
+                 smoothstep(0.99,0.98,panelUv.x)*smoothstep(0.99,0.98,panelUv.y);
+    col*=0.8+0.2*border;
     return float4(col,1.0);}

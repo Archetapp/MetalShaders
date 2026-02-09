@@ -33,8 +33,6 @@ void main() {
     float flyTime = max(0.0, dissolveT);
     vec2 flyOffset = windDir * flyTime * 0.3 * (1.0 + pdHash(pixelId + 100.0));
     flyOffset.y += flyTime * flyTime * 0.1;
-    float spin = flyTime * (pdHash(pixelId + 200.0) - 0.5) * 10.0;
-
     float alpha = 1.0 - dissolveT;
     float fadeOut = smoothstep(1.0, 0.5, dissolveT);
 
