@@ -42,9 +42,9 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
 
     fetch("/api/votes")
       .then((res) => res.json())
-      .then((data: Record<string, number>) => {
-        if (data && Object.keys(data).length >= 0) {
-          setVotes(data);
+      .then((data: { enabled: boolean; votes?: Record<string, number> }) => {
+        if (data.enabled && data.votes) {
+          setVotes(data.votes);
           setVotingEnabled(true);
           setSortBy("popular");
         }
@@ -103,6 +103,8 @@ export default function ShaderGrid({ shaders }: ShaderGridProps) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action }),
+    }).then((res) => {
+      if (!res.ok) throw new Error("Vote failed");
     }).catch(() => {
       /* revert on failure */
       setVotes((prev) => ({
