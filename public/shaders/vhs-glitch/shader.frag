@@ -36,9 +36,9 @@ void main() {
     vec3 scene = 0.5 + 0.5 * cos(iTime + centered.xyx * 3.0 + vec3(0.0, 2.0, 4.0));
     scene *= 0.7 + 0.3 * pattern;
 
-    float r = (0.5 + 0.5 * cos(iTime + (uvR - 0.5).x * 3.0)).x;
-    float g = (0.5 + 0.5 * cos(iTime + (uvG - 0.5).y * 3.0 + 2.0)).x;
-    float b = (0.5 + 0.5 * cos(iTime + (uvB - 0.5).x * 3.0 + 4.0)).x;
+    float r = 0.5 + 0.5 * cos(iTime + (uvR - 0.5).x * 3.0);
+    float g = 0.5 + 0.5 * cos(iTime + (uvG - 0.5).y * 3.0 + 2.0);
+    float b = 0.5 + 0.5 * cos(iTime + (uvB - 0.5).x * 3.0 + 4.0);
     vec3 col = vec3(r, g, b);
 
     float scanline = sin(uv.y * iResolution.y * 3.14159) * 0.1;
