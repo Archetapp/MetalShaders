@@ -9,6 +9,10 @@ interface ShaderCardProps {
   onExpand: (rect: DOMRect) => void;
   isExpanded?: boolean;
   overlayOpen?: boolean;
+  voteCount: number;
+  hasVoted: boolean;
+  onVote: (slug: string) => void;
+  votingEnabled: boolean;
 }
 
 export default function ShaderCard({
@@ -16,6 +20,10 @@ export default function ShaderCard({
   onExpand,
   isExpanded,
   overlayOpen = false,
+  voteCount,
+  hasVoted,
+  onVote,
+  votingEnabled,
 }: ShaderCardProps) {
   const [fragSource, setFragSource] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -245,10 +253,43 @@ export default function ShaderCard({
             style={{ aspectRatio: "4/3" }}
           />
         )}
-        <div className="absolute inset-x-0 top-0 px-4 py-3 bg-gradient-to-b from-black/50 to-transparent">
+        <div className="absolute inset-x-0 top-0 px-4 py-3 bg-gradient-to-b from-black/50 to-transparent flex items-start justify-between">
           <h2 className="text-sm font-semibold text-white drop-shadow-sm">
             {shader.title}
           </h2>
+          {votingEnabled && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onVote(shader.slug);
+              }}
+              onMouseDown={(e) => e.stopPropagation()}
+              className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer backdrop-blur-sm bg-black/20 hover:bg-black/40"
+              aria-label={hasVoted ? "Remove vote" : "Upvote shader"}
+            >
+              <svg
+                className={`w-3.5 h-3.5 transition-all duration-200 ${
+                  hasVoted
+                    ? "text-red-400 fill-red-400 scale-110"
+                    : "text-white/80 fill-none hover:text-red-300"
+                }`}
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+              {voteCount > 0 && (
+                <span className="text-white/90 drop-shadow-sm">
+                  {voteCount}
+                </span>
+              )}
+            </button>
+          )}
         </div>
       </div>
 

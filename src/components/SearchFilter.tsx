@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
 import SubmitShaderModal from "./SubmitShaderModal";
 
+export type SortOption = "popular" | "name" | "type";
+
 interface SearchFilterProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
@@ -11,7 +13,16 @@ interface SearchFilterProps {
   selectedTags: string[];
   onTagToggle: (tag: string) => void;
   tagCounts: Record<string, number>;
+  sortBy: SortOption;
+  onSortChange: (sort: SortOption) => void;
+  votingEnabled: boolean;
 }
+
+const SORT_OPTIONS: { value: SortOption; label: string }[] = [
+  { value: "popular", label: "Popular" },
+  { value: "name", label: "Name" },
+  { value: "type", label: "Type" },
+];
 
 export default function SearchFilter({
   searchQuery,
@@ -20,6 +31,9 @@ export default function SearchFilter({
   selectedTags,
   onTagToggle,
   tagCounts,
+  sortBy,
+  onSortChange,
+  votingEnabled,
 }: SearchFilterProps) {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [paletteSearch, setPaletteSearch] = useState("");
@@ -112,6 +126,24 @@ export default function SearchFilter({
             {shortcutLabel}
           </kbd>
         </button>
+
+        <div className="flex items-center rounded-xl overflow-hidden border border-gray-200/80">
+          {SORT_OPTIONS
+            .filter((opt) => votingEnabled || opt.value !== "popular")
+            .map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => onSortChange(opt.value)}
+                className={`px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer ${
+                  sortBy === opt.value
+                    ? "bg-gray-900 text-white"
+                    : "bg-white/60 text-gray-600 hover:bg-white"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+        </div>
 
         <div className="flex items-center gap-1 ml-auto">
           <a
