@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Metal Shaders
+
+A gallery of **339 Metal shaders** with live WebGL previews, side-by-side GLSL and Metal source code, and an interactive editor. Built with Next.js 16, TypeScript, and raw WebGL2.
+
+**Live site:** [metalshaders.vercel.app](https://metalshaders.vercel.app)
+
+## Features
+
+- **Live previews** — Every shader runs in real-time via WebGL2 with a shared context pool for performance
+- **Interactive editing** — Modify GLSL code in-browser with Monaco Editor and see changes instantly
+- **Dual source code** — View both the GLSL (WebGL) and Metal (MSL) versions of each shader
+- **Search and filter** — Find shaders by name, description, or tags with a command palette (`Cmd+K`)
+- **Parameter controls** — Adjust uniforms like speed, color, and intensity per shader
+- **Community submissions** — Submit your own shaders directly via GitHub Issues
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + DaisyUI v5 |
+| Rendering | Raw WebGL2 (no library) |
+| Code Editor | Monaco Editor |
+| Syntax Highlighting | react-syntax-highlighter |
+| Hosting | Vercel |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+public/shaders/
+  <slug>/
+    meta.json       # Title, description, tags, author
+    shader.frag     # GLSL fragment shader
+    shader.metal    # Metal shader equivalent
 
-## Learn More
+src/
+  app/              # Next.js App Router pages
+  components/       # React components
+    ShaderGrid.tsx      # Main grid with search/filter
+    ShaderCard.tsx      # Individual shader card with live preview
+    ShaderOverlay.tsx   # Expanded shader detail view
+    ShaderCanvas.tsx    # WebGL2 rendering canvas
+    EditableCodeBlock.tsx  # Monaco-based shader editor
+    CodeBlock.tsx       # Read-only syntax highlighted code
+    SearchFilter.tsx    # Search bar, tag filter, action buttons
+    SubmitShaderModal.tsx  # Shader submission form
+  lib/              # WebGL context pool and utilities
+  types/            # TypeScript type definitions
 
-To learn more about Next.js, take a look at the following resources:
+scripts/
+  generate-shader-index.ts  # Scans shader dirs -> index.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding a Shader
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a new directory under `public/shaders/` with three files:
 
-## Deploy on Vercel
+**`meta.json`**
+```json
+{
+  "slug": "my-shader",
+  "title": "My Shader",
+  "description": "A short description of the effect",
+  "tags": ["tag1", "tag2"],
+  "author": "Your Name",
+  "date": "2026-01-01"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**`shader.frag`** — GLSL fragment shader (WebGL2 / GLSL ES 3.0)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**`shader.metal`** — Metal Shading Language equivalent
+
+Then regenerate the index:
+
+```bash
+npm run generate-index
+```
+
+## Contributing
+
+The easiest way to contribute a shader is through the **Submit Shader** button on the site, which opens a pre-filled GitHub Issue. You can also open a PR directly with a new shader directory.
+
+## License
+
+MIT
